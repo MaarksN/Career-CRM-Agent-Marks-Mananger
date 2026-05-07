@@ -1,0 +1,25 @@
+{
+  "project": "Job Match OS / Career CRM Agent Marks Manager",
+  "executorAgent": "Jules",
+  "validatorAgent": null,
+  "currentPhase": 0,
+  "currentItem": null,
+  "executionPolicy": {
+    "executorCannotValidate": true,
+    "validatorCannotExecute": true,
+    "mustCheckValidationBeforeEachItem": true,
+    "noFakeSuccess": true,
+    "realImplementationSincePhase0": true
+  },
+  "items": {
+    "P0-01": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules", "validator": "", "executedAt": "2024-05-07T22:52", "validatedAt": "", "evidence": "Arquivo docs/00-executive-summary.md criado com a visão e regras.", "validationEvidence": "" },
+    "P0-02": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules", "validator": "", "executedAt": "2024-05-07T22:52", "validatedAt": "", "evidence": "Arquivo docs/17-no-fake-success-policy.md criado para cobrir a regra.", "validationEvidence": "" },
+    "P0-03": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules", "validator": "", "executedAt": "2024-05-07T22:52", "validatedAt": "", "evidence": "Arquivo docs/03-domain-model.md criado descrevendo as entidades do sistema.", "validationEvidence": "" },
+    "P0-04": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules", "validator": "", "executedAt": "2024-05-07T22:52", "validatedAt": "", "evidence": "Arquivo docs/04-job-sources-scope.md criado classificando fontes.", "validationEvidence": "" },
+    "P0-05": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules", "validator": "", "executedAt": "2024-05-07T22:52", "validatedAt": "", "evidence": "Arquivo docs/05-safe-automation-policy.md criado descrevendo auto apply.", "validationEvidence": "" },
+    "P0-06": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules", "validator": "", "executedAt": "2024-05-07T22:52", "validatedAt": "", "evidence": "Arquivo docs/02-architecture.md definindo apps/packages.", "validationEvidence": "" },
+    "P0-07": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules", "validator": "", "executedAt": "2024-05-07T22:52", "validatedAt": "", "evidence": "Arquivo docs/13-acceptance-criteria.md com o DoD.", "validationEvidence": "" },
+    "P0-08": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules", "validator": "", "executedAt": "2024-05-07T22:52", "validatedAt": "", "evidence": "Arquivo docs/10-data-privacy-and-security.md e docs/16-error-handling-and-validation-policy.md estabelecendo as tratativas para riscos.", "validationEvidence": "" },
+    "P0-09": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules", "validator": "", "executedAt": "2024-05-07T22:52", "validatedAt": "", "evidence": "Arquivos .ops/phase-0/ criados, incluindo phase-0-checklist.md e phase-0-final-report.md", "validationEvidence": "" }
+  }
+}
