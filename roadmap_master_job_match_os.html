@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roadmap Master do Zero — Job Match OS / Career CRM Agent Marks Manager</title>
+  <style>
+    :root {
+      --bg: #080b12;
+      --panel: #101624;
+      --panel-2: #151d2f;
+      --card: #121a2b;
+      --text: #eef4ff;
+      --muted: #a9b7cc;
+      --soft: #718096;
+      --line: rgba(255, 255, 255, 0.12);
+      --blue: #60a5fa;
+      --cyan: #22d3ee;
+      --green: #34d399;
+      --yellow: #fbbf24;
+      --orange: #fb923c;
+      --red: #fb7185;
+      --purple: #a78bfa;
+      --pink: #f472b6;
+      --white: #ffffff;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      --radius: 22px;
+      --mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
+      --sans: Inter, "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(96, 165, 250, 0.28), transparent 30%),
+        radial-gradient(circle at 80% 0%, rgba(167, 139, 250, 0.22), transparent 35%),
+        radial-gradient(circle at 55% 60%, rgba(34, 211, 238, 0.10), transparent 45%),
+        var(--bg);
+      line-height: 1.55;
+    }
+
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      min-height: 100vh;
+    }
+
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 24px;
+      overflow: auto;
+      border-right: 1px solid var(--line);
+      background: rgba(8, 11, 18, 0.78);
+      backdrop-filter: blur(16px);
+    }
+
+    main { padding: 38px clamp(20px, 4vw, 72px) 80px; }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      box-shadow: 0 12px 36px rgba(34, 211, 238, 0.22);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: #07111e;
+    }
+
+    .brand h1 {
+      font-size: 16px;
+      line-height: 1.15;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    nav { display: grid; gap: 8px; }
+
+    nav a {
+      color: var(--muted);
+      padding: 9px 11px;
+      border-radius: 12px;
+      display: block;
+      font-size: 13px;
+      border: 1px solid transparent;
+    }
+
+    nav a:hover {
+      text-decoration: none;
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+      border-color: var(--line);
+    }
+
+    .toc-group { margin-top: 22px; }
+    .toc-title { color: var(--soft); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; margin: 16px 0 8px; }
+
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 8px);
+      padding: clamp(28px, 5vw, 56px);
+      background:
+        linear-gradient(135deg, rgba(96, 165, 250, 0.14), rgba(167, 139, 250, 0.10)),
+        rgba(16, 22, 36, 0.82);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: -40% -15% auto auto;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(34, 211, 238, 0.22), transparent 66%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-family: var(--mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 12px;
+    }
+
+    .hero h2 {
+      font-size: clamp(34px, 6vw, 68px);
+      line-height: 0.96;
+      letter-spacing: -0.055em;
+      margin: 0 0 20px;
+      max-width: 980px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 920px;
+      margin: 0;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .badge {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-family: var(--mono);
+    }
+
+    section {
+      margin-top: 34px;
+      border: 1px solid var(--line);
+      background: rgba(16, 22, 36, 0.72);
+      border-radius: var(--radius);
+      padding: clamp(20px, 3vw, 34px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+    }
+
+    section h2 {
+      font-size: clamp(24px, 4vw, 38px);
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      margin: 0 0 14px;
+    }
+
+    section h3 {
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      margin: 28px 0 10px;
+    }
+
+    section p { color: var(--muted); margin: 8px 0 14px; }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.045);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .card h4 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .card p, .card li { color: var(--muted); font-size: 14px; }
+
+    .callout {
+      border-left: 4px solid var(--cyan);
+      background: rgba(34, 211, 238, 0.08);
+      padding: 16px 18px;
+      border-radius: 14px;
+      color: var(--text);
+      margin: 18px 0;
+    }
+
+    .danger { border-left-color: var(--red); background: rgba(251, 113, 133, 0.08); }
+    .success { border-left-color: var(--green); background: rgba(52, 211, 153, 0.08); }
+    .warning { border-left-color: var(--yellow); background: rgba(251, 191, 36, 0.08); }
+
+    code, pre {
+      font-family: var(--mono);
+    }
+
+    pre {
+      background: rgba(0,0,0,0.28);
+      border: 1px solid var(--line);
+      padding: 16px;
+      border-radius: 16px;
+      overflow: auto;
+      color: #d7e7ff;
+    }
+
+    .phase {
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .phase-header {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 90px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(96,165,250,0.12), rgba(167,139,250,0.09));
+      border-bottom: 1px solid var(--line);
+    }
+
+    .phase-num {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      font-family: var(--mono);
+      font-weight: 900;
+      color: #07111e;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+    }
+
+    .phase-header h3 {
+      margin: 0 0 4px;
+      font-size: 24px;
+    }
+
+    .phase-header p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .phase-status {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--yellow);
+      border: 1px solid rgba(251,191,36,0.35);
+      background: rgba(251,191,36,0.08);
+      padding: 8px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .phase-body { padding: 22px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    th {
+      color: var(--text);
+      background: rgba(255,255,255,0.065);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    ul, ol { color: var(--muted); padding-left: 22px; }
+    li { margin: 6px 0; }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .pill {
+      padding: 8px 10px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      padding: 12px 0 18px;
+      background: linear-gradient(to bottom, rgba(8, 11, 18, 0.96), rgba(8, 11, 18, 0));
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .toolbar input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      outline: none;
+    }
+
+    .toolbar button, .btn {
+      padding: 13px 16px;
+      border-radius: 15px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .toolbar button:hover, .btn:hover { background: rgba(255,255,255,0.13); }
+
+    .footer {
+      color: var(--soft);
+      text-align: center;
+      padding: 36px 0 0;
+      font-size: 12px;
+    }
+
+    .print-only { display: none; }
+
+    @media (max-width: 1100px) {
+      .layout { grid-template-columns: 1fr; }
+      aside { display: none; }
+      main { padding: 20px; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .phase-header { grid-template-columns: 1fr; }
+      .phase-num { width: 56px; height: 56px; border-radius: 16px; }
+      .phase-status { width: fit-content; }
+    }
+
+    @media print {
+      body { background: white; color: #111827; }
+      aside, .toolbar { display: none; }
+      .layout { display: block; }
+      main { padding: 0; }
+      section, .hero, .phase, .card { box-shadow: none; background: white; color: #111827; border-color: #d1d5db; page-break-inside: avoid; }
+      p, li, td { color: #374151; }
+      h1, h2, h3, h4, th { color: #111827; }
+      .badge, .pill, .phase-status { color: #111827; border-color: #d1d5db; background: #f3f4f6; }
+      pre { color: #111827; background: #f9fafb; border-color: #d1d5db; }
+      .print-only { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside>
+      <div class="brand">
+        <div class="logo">JM</div>
+        <div>
+          <h1>Job Match OS</h1>
+          <span>Roadmap Master do Zero</span>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#visao">Visão</a>
+        <a href="#regra-zero">Regra desde a Fase 0</a>
+        <a href="#arquitetura">Arquitetura</a>
+        <a href="#ferramentas">Ferramentas</a>
+        <a href="#governanca">Governança IA</a>
+        <a href="#roadmap">Roadmap 0–15</a>
+        <div class="toc-group">
+          <div class="toc-title">Fases</div>
+          <a href="#fase-0">Fase 0 — Blueprint real</a>
+          <a href="#fase-1">Fase 1 — Monorepo</a>
+          <a href="#fase-2">Fase 2 — Banco/Contratos</a>
+          <a href="#fase-3">Fase 3 — Backend real</a>
+          <a href="#fase-4">Fase 4 — UI real</a>
+          <a href="#fase-5">Fase 5 — Auth/Security</a>
+          <a href="#fase-6">Fase 6 — Resume-as-Code</a>
+          <a href="#fase-7">Fase 7 — Chrome Extension</a>
+          <a href="#fase-8">Fase 8 — Ingestão/OCR</a>
+          <a href="#fase-9">Fase 9 — Workers 24h</a>
+          <a href="#fase-10">Fase 10 — IA multiagente</a>
+          <a href="#fase-11">Fase 11 — CRM/SLA</a>
+          <a href="#fase-12">Fase 12 — Telegram</a>
+          <a href="#fase-13">Fase 13 — Calendário</a>
+          <a href="#fase-14">Fase 14 — Analytics</a>
+          <a href="#fase-15">Fase 15 — Go-live</a>
+        </div>
+        <a href="#criterios">Critérios Globais</a>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Buscar no roadmap: fase, ferramenta, erro, DoD, extensão, IA..." />
+        <button onclick="window.print()">Imprimir/PDF</button>
+      </div>
+
+      <header class="hero">
+        <div class="eyebrow">Documento do Zero • Sem histórico de fases concluídas</div>
+        <h2>Roadmap Master Detalhado — Job Match OS / Career CRM Agent Marks Manager</h2>
+        <p>
+          Documento base para iniciar o projeto do zero, com todas as diretrizes, ferramentas, fases, critérios de aceite,
+          tratativas de erro e governança de execução/validação. Este arquivo não marca nenhuma fase como concluída.
+        </p>
+        <div class="badges">
+          <span class="badge">Tudo real desde a Fase 0</span>
+          <span class="badge">Sem mock como entrega final</span>
+          <span class="badge">Chrome Extension</span>
+          <span class="badge">Worker 24h real</span>
+          <span class="badge">Resume-as-Code</span>
+          <span class="badge">CRM de carreira</span>
+          <span class="badge">IA com guardrails</span>
+        </div>
+      </header>
+
+      <section id="visao" class="searchable">
+        <h2>1. Visão do Produto</h2>
+        <p>
+          O Job Match OS é um sistema operacional de carreira e recrutamento reverso. Ele transforma busca de emprego em
+          uma operação comercial estruturada, onde vagas são tratadas como leads, empresas como contas-alvo, currículos como
+          propostas comerciais e candidaturas como pipeline de conversão.
+        </p>
+        <div class="grid grid-2">
+          <div class="card">
+            <h4>Premissa operacional</h4>
+            <pre>Candidato = produto de alto valor
+Currículo = proposta comercial
+Vaga = lead qualificado
+Empresa = conta-alvo
+Entrevista = reunião comercial
+Oferta = conversão</pre>
+          </div>
+          <div class="card">
+            <h4>Objetivo competitivo</h4>
+            <p>
+              Combinar CRM, automação, IA, extensão Chrome, análise de compatibilidade, currículos versionados, calendário,
+              Telegram, OCR, analytics e governança para criar uma ferramenta próxima das melhores soluções do mercado.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="regra-zero" class="searchable">
+        <h2>2. Regra Global desde a Fase 0</h2>
+        <div class="callout success">
+          <strong>Regra máxima:</strong> tudo que estiver dentro do controle da plataforma deve ser funcional de verdade desde a Fase 0.
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <h4>Proibido</h4>
+            <ul>
+              <li>Mock como entrega final.</li>
+              <li>Placeholder como runtime principal.</li>
+              <li>Simulação apresentada como funcionalidade pronta.</li>
+              <li>Fake success.</li>
+              <li>Candidatura marcada como enviada sem envio real.</li>
+              <li>Integração externa falsa.</li>
+              <li>IA inventando experiência.</li>
+              <li>Scraping proibido, burla de login ou captcha.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Estados honestos permitidos</h4>
+            <ul>
+              <li><code>external_integration_not_configured</code></li>
+              <li><code>official_api_required</code></li>
+              <li><code>requires_manual_action</code></li>
+              <li><code>waiting_human_approval</code></li>
+              <li><code>manual_apply_required</code></li>
+              <li><code>oauth_required</code></li>
+              <li><code>provider_not_configured</code></li>
+              <li><code>human_review_required</code></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="arquitetura" class="searchable">
+        <h2>3. Arquitetura Alvo</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <h4>Apps</h4>
+            <pre>apps/web              Dashboard principal
+apps/api              API real do produto
+apps/worker           Motor autônomo 24h
+apps/chrome-extension Browser Copilot
+apps/webhook-receiver Webhooks futuros
+apps/admin            Painel admin futuro</pre>
+          </div>
+          <div class="card">
+            <h4>Packages</h4>
+            <pre>packages/config
+packages/logger
+packages/contracts
+packages/database
+packages/domain
+packages/scoring
+packages/ai
+packages/documents
+packages/calendar
+packages/job-sources
+packages/notifications
+packages/queue
+packages/browser-extension
+packages/analytics
+packages/security
+packages/testing</pre>
+          </div>
+        </div>
+        <h3>Stack técnica</h3>
+        <div class="pill-list">
+          <span class="pill">Node.js 24</span><span class="pill">pnpm 9.15.9</span><span class="pill">TypeScript strict</span>
+          <span class="pill">Turborepo</span><span class="pill">Next.js App Router</span><span class="pill">PostgreSQL</span>
+          <span class="pill">Prisma</span><span class="pill">Zod</span><span class="pill">node:test</span>
+          <span class="pill">BullMQ</span><span class="pill">Redis</span><span class="pill">Chrome Manifest V3</span>
+        </div>
+      </section>
+
+      <section id="ferramentas" class="searchable">
+        <h2>4. Ferramentas do Produto</h2>
+        <div class="grid grid-3">
+          <div class="card"><h4>Chrome Extension</h4><p>Captura vagas diretamente no navegador, envia para API real, mostra score e permite ações aprovadas.</p></div>
+          <div class="card"><h4>Worker 24h</h4><p>Motor backend com filas, retries, deduplicação, análise e alertas. Não depende da extensão ficar viva.</p></div>
+          <div class="card"><h4>Resume-as-Code Studio</h4><p>Currículo modular com blocos, tags, versões, histórias STAR e exportações.</p></div>
+          <div class="card"><h4>ATS Checker</h4><p>Valida parseabilidade, palavras-chave, estrutura e risco de rejeição por sistemas ATS.</p></div>
+          <div class="card"><h4>Company Intelligence</h4><p>Pesquisa e consolida dados de empresa, maturidade, cultura, red flags e risco.</p></div>
+          <div class="card"><h4>Red Flag Detector</h4><p>Identifica sinais de vaga caótica, risco de burnout, salário nebuloso e escopo mal definido.</p></div>
+          <div class="card"><h4>Salary Intelligence</h4><p>Compara CLT/PJ, pretensão mínima, faixa salarial e poder de negociação.</p></div>
+          <div class="card"><h4>Interview Simulator</h4><p>Gera perguntas, respostas, histórias STAR e roteiro com base na vaga e no currículo real.</p></div>
+          <div class="card"><h4>Negotiation Coach</h4><p>Cria estratégias e respostas para negociação salarial e contraproposta.</p></div>
+          <div class="card"><h4>Networking CRM</h4><p>Gerencia recrutadores, headhunters, gestores, contatos e follow-ups.</p></div>
+          <div class="card"><h4>Evidence Vault</h4><p>Guarda provas de candidatura: URL, snapshot, currículo enviado, carta, data e status.</p></div>
+          <div class="card"><h4>Analytics Lab</h4><p>Mede conversão por fonte, currículo, abordagem, etapa, tempo e A/B testing.</p></div>
+        </div>
+      </section>
+
+      <section id="governanca" class="searchable">
+        <h2>5. Governança de Execução e Validação</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <h4>IA Executora</h4>
+            <ul>
+              <li>Executa itens do checklist.</li>
+              <li>Cria e altera arquivos.</li>
+              <li>Roda comandos de evidência.</li>
+              <li>Marca itens como executados.</li>
+              <li>Não pode validar a própria entrega.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>IA Validadora</h4>
+            <ul>
+              <li>Não executa alterações.</li>
+              <li>Confere evidências.</li>
+              <li>Roda validação independente.</li>
+              <li>Marca itens como validados ou reprovados.</li>
+              <li>Devolve correções para a IA Executora.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout warning">
+          Antes de executar qualquer item, a IA Executora deve verificar se existe validação pendente que bloqueia o próximo passo.
+        </div>
+      </section>
+
+      <section id="roadmap" class="searchable">
+        <h2>6. Roadmap Técnico do Zero — Fase 0 à Fase 15</h2>
+        <p>Todos os status estão como <strong>A INICIAR</strong>. Este documento não considera nenhuma fase previamente concluída.</p>
+      </section>
+
+      <!-- PHASES -->
+      <div id="phases"></div>
+
+      <section id="criterios" class="searchable">
+        <h2>7. Critérios Globais de Conclusão do Projeto</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <h4>Produto concluído quando existir</h4>
+            <ol>
+              <li>Perfil real cadastrado.</li>
+              <li>Currículo real e modular.</li>
+              <li>Chrome Extension funcional.</li>
+              <li>Radar seguro de vagas.</li>
+              <li>Worker 24h real.</li>
+              <li>Banco e API reais.</li>
+              <li>UI consumindo API real.</li>
+              <li>Scoring e relatórios reais.</li>
+              <li>IA real com guardrails.</li>
+              <li>CRM com SLA e pipeline.</li>
+              <li>Telegram Bot oficial.</li>
+              <li>Calendário interno e externo oficial.</li>
+              <li>Analytics e A/B testing.</li>
+              <li>Auth, auditoria, backup e deploy.</li>
+            </ol>
+          </div>
+          <div class="card">
+            <h4>Produto não pode concluir se houver</h4>
+            <ul>
+              <li>Sucesso falso.</li>
+              <li>Mock como implementação principal.</li>
+              <li>Candidatura externa sem aprovação.</li>
+              <li>Scraping proibido.</li>
+              <li>IA inventando experiência.</li>
+              <li>Dados sensíveis em logs.</li>
+              <li>Fase validada pela mesma IA que executou.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">
+        Roadmap Master do Zero — Job Match OS / Career CRM Agent Marks Manager • Documento base para execução por IA Executora e validação externa.
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const phases = [
+      {
+        n: 0,
+        title: "Blueprint real, escopo e critérios de verdade",
+        objective: "Definir a visão real do produto, módulos, limites, critérios de aceite, política anti-fake e roadmap completo.",
+        why: "Sem esta fase, o projeto vira código solto. Ela garante alinhamento, escopo e decisões aplicáveis antes da implementação.",
+        items: [
+          ["Visão do produto", "Evitar que o produto vire um CRUD de vagas", "Produto definido como Job Match OS", "Reescrever se a dor e o diferencial não estiverem claros"],
+          ["Política anti-fake", "Impedir simulação apresentada como funcional", "Regra de verdade desde a Fase 0", "Qualquer fake_success é FAIL"],
+          ["Fontes e automação segura", "Evitar risco legal e técnico", "Fontes classificadas por modo permitido", "Fonte sem permissão vira official_api_required"],
+          ["Roadmap e DoD", "Definir quando uma fase está pronta", "Cada fase com itens, DoD e erro", "Fase sem DoD não pode iniciar"],
+          ["Governança executor/validador", "Separar quem faz de quem aprova", "Execução e validação independentes", "Se a mesma IA validar, FAIL"]
+        ],
+        dod: ["Blueprint completo", "Política anti-fake", "Roadmap 0–15", "DoD por fase", "Checklist mestre criado", "Validação pendente por agente externo"]
+      },
+      {
+        n: 1,
+        title: "Monorepo real e validação técnica",
+        objective: "Criar a fundação técnica real com apps, packages, TypeScript strict, pnpm, Turbo, ESLint, Prettier e node:test.",
+        why: "O produto precisa crescer com separação clara entre web, API, worker, extensão e pacotes compartilhados.",
+        items: [
+          ["pnpm workspace", "Gerenciar múltiplos apps/packages", "pnpm install funcional", "Corrigir workspace/lockfile"],
+          ["Turborepo", "Orquestrar validações", "build/typecheck/lint/test em pacotes", "Corrigir dependsOn e outputs"],
+          ["TypeScript strict", "Evitar erros silenciosos", "typecheck limpo", "Corrigir tipos, não relaxar strict"],
+          ["ESLint/Prettier", "Padronizar qualidade", "lint e format:check OK", "Corrigir fonte do erro"],
+          ["Apps base", "Separar web/api/worker", "Apps compilando", "Não criar resposta fake"],
+          ["Packages base", "Separar domínio técnico", "Pacotes importáveis", "Sem mock como runtime final"]
+        ],
+        dod: ["pnpm install", "pnpm format:check", "pnpm typecheck", "pnpm lint", "pnpm test", "pnpm build", "pnpm validate", "git status limpo"]
+      },
+      {
+        n: 2,
+        title: "Banco, contratos e modelos reais",
+        objective: "Criar Prisma schema, contratos Zod, enums, tipos e regras seguras do domínio.",
+        why: "Antes da UI e automação, o sistema precisa representar corretamente candidato, vaga, empresa, fonte, análise, candidatura e auditoria.",
+        items: [
+          ["Prisma schema", "Modelar banco real", "Models e relações corretas", "Corrigir relações órfãs"],
+          ["Zod contracts", "Validar entrada externa", "Schemas e types exportados", "any genérico é FAIL"],
+          ["JobSource policy", "Evitar automação indevida", "allowsAutoApply=false por padrão", "Default inseguro é FAIL"],
+          ["ApplicationProcess", "Controlar candidatura real", "requiresHumanApproval=true", "Aplicação automática sem regra é FAIL"],
+          ["AuditLog", "Rastreabilidade", "Ações relevantes modeladas", "Ausência de auditoria é WARN/FAIL"]
+        ],
+        dod: ["Schema criado", "Contratos criados", "Defaults seguros", "Testes de contratos", "pnpm validate OK"]
+      },
+      {
+        n: 3,
+        title: "Backend real, Prisma e correção de mocks",
+        objective: "Implementar backend real com Prisma/PostgreSQL, API persistente, serviços de domínio, auditoria, scoring e relatórios reais.",
+        why: "Converte a fundação em produto backend operável, sem mocks como runtime principal.",
+        items: [
+          ["Prisma Client", "Conectar runtime ao banco", "Repositórios Prisma", "DATABASE_URL ausente vira erro real"],
+          ["Serviços de domínio", "Centralizar regras", "Candidate/Job/Analysis services", "Regra espalhada em rota deve refatorar"],
+          ["API persistente", "Operar dados reais", "CRUD e fluxos reais", "Resposta fixa é FAIL"],
+          ["Scoring determinístico", "Score explicável sem IA falsa", "Pesos claros por critério", "Número aleatório/fixo é FAIL"],
+          ["Relatórios e drafts", "Gerar materiais reais", "Conteúdo baseado nos dados", "Texto genérico é FAIL"],
+          ["Calendário interno", "Agenda própria real", "Eventos persistidos", "Fingir Google é FAIL"],
+          ["Auditoria persistida", "Rastrear ações", "AuditLog no banco", "Ação crítica sem audit é FAIL"]
+        ],
+        dod: ["API real", "Banco real", "Repositórios Prisma", "Auditoria persistida", "Relatórios reais", "Sem fake success", "pnpm validate OK"]
+      },
+      {
+        n: 4,
+        title: "UI real e fluxo visual operacional",
+        objective: "Criar dashboard real conectado ao backend para operar o sistema sem terminal.",
+        why: "Backend sem UI não vira produto utilizável por uma pessoa não técnica.",
+        items: [
+          ["App Shell", "Base visual", "Sidebar/Header/Layout", "Responsividade quebrada deve corrigir"],
+          ["Dashboard", "Visão operacional", "Métricas via API", "Métrica mockada é FAIL"],
+          ["CRUDs principais", "Operar candidato/currículo/empresa/vaga", "Formulários reais", "localStorage como runtime é FAIL"],
+          ["Análise e relatório", "Rodar fluxo visual", "Score e HTML reais", "Score visual falso é FAIL"],
+          ["Candidatura/calendário/auditoria", "Operar pipeline", "Status e logs reais", "Status sem evidência é FAIL"]
+        ],
+        dod: ["UI consome API real", "Dados persistem", "Erros visíveis", "Loading/empty states", "Fluxo completo operável", "pnpm validate OK"]
+      },
+      {
+        n: 5,
+        title: "Autenticação, segurança e permissões",
+        objective: "Proteger dados pessoais e identificar atores reais em cada ação.",
+        why: "O sistema armazena PII, currículo, salário, histórico profissional e dados sensíveis.",
+        items: [
+          ["User/Auth", "Identidade e acesso", "Login/logout/sessão", "Senha em texto puro é FAIL"],
+          ["Middleware", "Proteger API", "Rotas privadas bloqueadas", "Rota privada pública é FAIL"],
+          ["Permissões", "Evitar ações indevidas", "RBAC/escopos", "Bypass é FAIL"],
+          ["Rate limit", "Evitar abuso", "Limite por usuário/IP", "Brute-force livre é FAIL"],
+          ["LGPD", "Privacidade", "Minimização e exclusão", "PII em log é FAIL crítico"]
+        ],
+        dod: ["Login funciona", "API protegida", "UI protegida", "Audit actor real", "Dados sensíveis protegidos", "pnpm validate OK"]
+      },
+      {
+        n: 6,
+        title: "Resume-as-Code Studio",
+        objective: "Criar currículo modular, versionado, exportável e validado contra invenções.",
+        why: "Currículos genéricos performam mal. O sistema precisa montar versões por vaga com base em fatos reais.",
+        items: [
+          ["ExperienceBlock", "Modularizar histórico", "Blocos reutilizáveis", "Bloco sem origem real deve sinalizar"],
+          ["Tags/skills", "Selecionar por contexto", "Tags normalizadas", "Duplicidade deve normalizar"],
+          ["STAR stories", "Preparar entrevista", "Histórias completas", "História incompleta vira WARN"],
+          ["Versionamento", "Preservar histórico", "ResumeVersion", "Sobrescrever versão antiga é FAIL"],
+          ["Exportações", "Gerar materiais", "HTML/PDF/Markdown", "PDF não parseável é erro"],
+          ["ATS Checker", "Avaliar compatibilidade ATS", "Relatório ATS", "Template quebrado deve bloquear exportação"]
+        ],
+        dod: ["Currículo modular", "Versões preservadas", "Exportação profissional", "ATS checker", "Nada inventado", "pnpm validate OK"]
+      },
+      {
+        n: 7,
+        title: "Chrome Extension Capture",
+        objective: "Criar extensão Chrome Manifest V3 para capturar e analisar vagas no navegador.",
+        why: "O usuário encontra vagas navegando; a extensão reduz atrito e transforma a página em oportunidade no CRM.",
+        items: [
+          ["Manifest V3", "Base da extensão", "Extensão instalável", "Permissão excessiva deve revisar"],
+          ["Content script", "Ler página ativa", "Extração de texto visível", "Site bloqueado vira captura manual"],
+          ["Detector de vaga", "Identificar páginas relevantes", "Título/empresa/local/URL", "Não detectou: pedir seleção manual"],
+          ["Side panel/popup", "Operação rápida", "Salvar/analisar/ver score", "Usuário sem login: pedir auth"],
+          ["API client", "Enviar para backend", "Vaga salva no banco", "API fora: pending_sync"]
+        ],
+        dod: ["Extensão captura vaga", "API salva", "Dedup roda", "Análise real", "Sem burla de site", "pnpm validate OK"]
+      },
+      {
+        n: 8,
+        title: "Radar de vagas, OCR e ingestão segura",
+        objective: "Criar entrada real de oportunidades por canais permitidos: manual, e-mail autorizado, RSS, API oficial, PDF e OCR.",
+        why: "O topo do funil precisa ser alimentado com vagas reais sem violar termos ou fingir integrações.",
+        items: [
+          ["Importação manual/texto/URL", "Caminho universal", "Vaga normalizada", "Texto vazio retorna 400"],
+          ["Upload PDF/imagem", "Capturar vagas não estruturadas", "Texto extraído", "Ilegível vira erro claro"],
+          ["OCR", "Ler prints", "Texto e confiança", "Baixa confiança vira review_required"],
+          ["E-mail/RSS/API oficial", "Canais permitidos", "Importação autorizada", "Sem token vira not_configured"],
+          ["Deduplicação/fingerprint", "Evitar lixo métrico", "Duplicatas fundidas", "Falso positivo permite separar"]
+        ],
+        dod: ["Vaga real entra", "OCR funciona", "Dedup funciona", "Sem scraping proibido", "Erros rastreados", "pnpm validate OK"]
+      },
+      {
+        n: 9,
+        title: "Filas, Redis, workers e operação 24h real",
+        objective: "Criar motor autônomo de execução contínua no backend com BullMQ/Redis.",
+        why: "A extensão não garante processamento 24h; OCR, IA, ingestão e relatórios devem rodar em workers.",
+        items: [
+          ["Redis/BullMQ", "Infra de filas", "Queues reais", "Redis fora: degraded mode"],
+          ["Worker", "Processar tarefas", "Worker separado da API", "Crash deve logar e reiniciar"],
+          ["Retry/backoff", "Resiliência", "Tentativas controladas", "Excedeu: dead-letter"],
+          ["Scheduler", "Operação periódica", "Jobs recorrentes", "Falha de cron gera audit/log"],
+          ["Rate limit", "Evitar bloqueios", "Limites por fonte/provedor", "Limite excedido pausa fonte"]
+        ],
+        dod: ["API não trava", "Worker processa fila", "Retry/dead-letter", "Job logs", "Operação 24h backend", "pnpm validate OK"]
+      },
+      {
+        n: 10,
+        title: "IA real multiagente",
+        objective: "Implementar agentes reais com APIs oficiais, Structured Outputs, Zod, guardrails e auditoria.",
+        why: "A IA melhora análise, estratégia e geração textual, mas precisa ser governada para não inventar experiência.",
+        items: [
+          ["Provider oficial", "IA real", "OpenAI/Anthropic/etc.", "Chave ausente: external_ai_not_configured"],
+          ["Structured Outputs/Zod", "Validar saídas", "JSON confiável", "Payload inválido rejeita/retry"],
+          ["Agente Coletor", "Extrair vaga", "Dados limpos", "Texto ruim vira review_required"],
+          ["Agente Analista", "Analisar aderência", "Score/riscos", "Contradição vai ao Validador"],
+          ["Agente Validador", "Bloquear alucinação", "Sem experiência inventada", "Violação é FAIL"],
+          ["Agente Estrategista", "Narrativa e abordagem", "Posicionamento realista", "Exagero rebaixa tom"],
+          ["Cost/prompt logs", "Governança", "Tokens e prompts auditáveis", "PII deve mascarar"]
+        ],
+        dod: ["IA real configurável", "Saídas validadas", "Nada inventado", "Custo rastreado", "Prompt auditável", "pnpm validate OK"]
+      },
+      {
+        n: 11,
+        title: "CRM avançado, SLA e candidatura assistida",
+        objective: "Criar pipeline profissional com Kanban, SLA, follow-up, histórico, aprovações e evidence vault.",
+        why: "Sem CRM, o candidato perde follow-up, esquece oportunidades e não aprende com o funil.",
+        items: [
+          ["Kanban drag-and-drop", "Operar funil", "Transições reais", "Status inválido deve bloquear"],
+          ["SLA por etapa", "Evitar esquecimento", "Alertas de atraso", "Sem data: fallback ou WARN"],
+          ["Follow-up draft", "Manter contato", "Texto como draft", "Envio sem aprovação é FAIL"],
+          ["Evidence Vault", "Provar candidatura", "URL/snapshot/documentos", "Sem evidência não marcar enviado"],
+          ["Motivos de perda", "Aprendizado", "Classificação estruturada", "Perda sem motivo pede revisão"]
+        ],
+        dod: ["Kanban operacional", "SLA alerta", "Drafts de follow-up", "Evidence vault", "Aprovação humana", "pnpm validate OK"]
+      },
+      {
+        n: 12,
+        title: "Telegram Command Center",
+        objective: "Permitir operação tática pelo celular com Telegram Bot oficial e webhooks seguros.",
+        why: "Vaga boa exige velocidade; o candidato precisa aprovar ações sem abrir o dashboard.",
+        items: [
+          ["Telegram Bot API", "Canal remoto", "Bot recebe/envia", "Token ausente: provider_not_configured"],
+          ["Webhook seguro", "Receber ações", "Assinatura/segredo", "Webhook inválido: 401"],
+          ["Alertas de match", "Aviso rápido", "Mensagem com score", "Falha de envio: retry"],
+          ["Inline buttons", "Aprovar/descartar/ver", "Ações auditadas", "Ação crítica sem confirmação bloqueia"],
+          ["Relatório/PDF", "Entregar artefato", "Arquivo/link enviado", "Falha gera erro claro"]
+        ],
+        dod: ["Bot funciona", "Webhook seguro", "Aprovação remota", "Relatórios enviados", "Sem sucesso falso", "pnpm validate OK"]
+      },
+      {
+        n: 13,
+        title: "Calendário externo, notificações e produtividade",
+        objective: "Integrar calendário interno, .ics, Google Calendar OAuth e lembretes de preparação/follow-up.",
+        why: "Entrevistas e próximos passos precisam entrar na rotina do candidato com contexto completo.",
+        items: [
+          ["Calendário interno avançado", "Agenda própria", "Eventos e lembretes", "Data inválida retorna 400"],
+          ["Export .ics", "Fallback sem OAuth", "Arquivo padrão", "Campo ausente bloqueia"],
+          ["Google Calendar OAuth", "Integração oficial", "Evento externo criado", "OAuth ausente: external_calendar_not_configured"],
+          ["Preparação/Follow-up", "Bloquear tempo", "Eventos automáticos internos", "Falha externa mantém interno"],
+          ["Notification center", "Alertas multicanal", "Histórico de envio", "Provider falhou gera retry"]
+        ],
+        dod: ["Calendário interno", ".ics", "Google OAuth quando configurado", "Lembretes", "Sem fingir sync", "pnpm validate OK"]
+      },
+      {
+        n: 14,
+        title: "Analytics, A/B testing e inteligência de mercado",
+        objective: "Criar laboratório de conversão, métricas de funil, A/B de currículos, salary intelligence e company intelligence.",
+        why: "A busca de emprego deve ser otimizada por dados reais, não por achismo.",
+        items: [
+          ["Conversion dashboard", "Medir funil", "CV→entrevista→proposta", "Dado incompleto sinaliza"],
+          ["Source analytics", "Saber fonte que funciona", "Conversão por origem", "Fonte indefinida: unknown"],
+          ["A/B Resume Testing", "Testar versões", "Resultado por currículo", "Amostra pequena: baixa confiança"],
+          ["Salary Intelligence", "Negociação", "CLT/PJ/faixas", "Sem dado: estimate_required"],
+          ["Company/Red Flag analytics", "Risco e atratividade", "Score de empresa", "Fonte conflitante mostra divergência"]
+        ],
+        dod: ["Métricas reais", "A/B tracking", "Salary intelligence", "Company intelligence", "Red flags", "pnpm validate OK"]
+      },
+      {
+        n: 15,
+        title: "Deploy, observabilidade, hardening e go-live",
+        objective: "Colocar o produto em produção com CI/CD, backup, logs, métricas, segurança e runbook.",
+        why: "Produto só gera valor real quando opera de forma confiável, segura e monitorável.",
+        items: [
+          ["Deploy", "Ambiente real", "Produção rodando", "Falha: rollback"],
+          ["CI/CD", "Proteger main", "Pipeline automático", "Teste falhou bloqueia merge"],
+          ["Backup", "Proteger dados", "Backup periódico", "Falha gera alerta"],
+          ["Observabilidade", "Diagnóstico", "Logs/métricas/traces", "Erro sem log é FAIL"],
+          ["Security hardening", "Produção segura", "Secrets, headers, LGPD", "PII em log é FAIL crítico"],
+          ["Runbook", "Operação", "Procedimentos de incidente", "Sem runbook não go-live"]
+        ],
+        dod: ["Produção no ar", "CI/CD OK", "Backup OK", "Logs/métricas", "Security hardening", "Go-live checklist aprovado"]
+      }
+    ];
+
+    function phaseHtml(phase) {
+      const rows = phase.items.map(([item, why, expected, error]) => `
+        <tr>
+          <td><strong>${item}</strong></td>
+          <td>${why}</td>
+          <td>${expected}</td>
+          <td>${error}</td>
+        </tr>
+      `).join("");
+      const dod = phase.dod.map(x => `<li>${x}</li>`).join("");
+      return `
+        <article class="phase searchable" id="fase-${phase.n}">
+          <div class="phase-header">
+            <div class="phase-num">F${phase.n}</div>
+            <div>
+              <h3>Fase ${phase.n} — ${phase.title}</h3>
+              <p>${phase.objective}</p>
+            </div>
+            <div class="phase-status">A INICIAR</div>
+          </div>
+          <div class="phase-body">
+            <div class="callout"><strong>Por que esta fase existe?</strong><br>${phase.why}</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Por quê</th>
+                  <th>Resultado esperado</th>
+                  <th>Tratativa de erro</th>
+                </tr>
+              </thead>
+              <tbody>${rows}</tbody>
+            </table>
+            <h4>Definition of Done</h4>
+            <ul>${dod}</ul>
+            <h4>Governança da fase</h4>
+            <ul>
+              <li>IA Executora pode marcar itens como executados.</li>
+              <li>IA Executora não pode marcar itens como validados.</li>
+              <li>IA Validadora não pode executar alterações.</li>
+              <li>Antes de executar um item, verificar se há validação obrigatória anterior pendente.</li>
+              <li>Toda evidência deve conter comando, arquivo, resultado esperado, resultado obtido e status.</li>
+            </ul>
+          </div>
+        </article>
+      `;
+    }
+
+    document.getElementById("phases").innerHTML = phases.map(phaseHtml).join("");
+
+    const search = document.getElementById("search");
+    search.addEventListener("input", () => {
+      const q = search.value.trim().toLowerCase();
+      document.querySelectorAll(".searchable").forEach(el => {
+        const text = el.textContent.toLowerCase();
+        el.style.display = !q || text.includes(q) ? "" : "none";
+      });
+    });
+  </script>
+</body>
+</html>
