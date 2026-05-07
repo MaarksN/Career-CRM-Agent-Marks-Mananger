@@ -1,0 +1,43 @@
+{
+  "phase": "0",
+  "executedBy": "Jules",
+  "validationStatus": "PENDING_EXTERNAL_VALIDATION",
+  "items": [
+    {
+      "id": "P0-01",
+      "evidence": "Arquivo docs/00-executive-summary.md criado com a visão e regras."
+    },
+    {
+      "id": "P0-02",
+      "evidence": "Arquivo docs/17-no-fake-success-policy.md criado para cobrir a regra."
+    },
+    {
+      "id": "P0-03",
+      "evidence": "Arquivo docs/03-domain-model.md criado descrevendo as entidades do sistema."
+    },
+    {
+      "id": "P0-04",
+      "evidence": "Arquivo docs/04-job-sources-scope.md criado classificando fontes."
+    },
+    {
+      "id": "P0-05",
+      "evidence": "Arquivo docs/05-safe-automation-policy.md criado descrevendo auto apply."
+    },
+    {
+      "id": "P0-06",
+      "evidence": "Arquivo docs/02-architecture.md definindo apps/packages."
+    },
+    {
+      "id": "P0-07",
+      "evidence": "Arquivo docs/13-acceptance-criteria.md com o DoD."
+    },
+    {
+      "id": "P0-08",
+      "evidence": "Arquivo docs/10-data-privacy-and-security.md e docs/16-error-handling-and-validation-policy.md estabelecendo as tratativas para riscos."
+    },
+    {
+      "id": "P0-09",
+      "evidence": "Arquivos .ops/phase-0/ criados, incluindo phase-0-checklist.md e phase-0-final-report.md"
+    }
+  ]
+}
