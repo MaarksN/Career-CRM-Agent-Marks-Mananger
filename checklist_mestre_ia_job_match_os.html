@@ -2051,14 +2051,38 @@ git status --short</pre>
     }
 
     function updateSummary() {
-      const allKeys = [];
-      phases.forEach(p => p.tasks.forEach((_, i) => allKeys.push(taskKey(p.id, i))));
-      const total = allKeys.length;
-      const pre = allKeys.filter(k => ensureItem(k).precheck).length;
-      const exec = allKeys.filter(k => ensureItem(k).executed).length;
-      const val = allKeys.filter(k => ensureItem(k).validated).length;
-      const fail = allKeys.filter(k => ensureItem(k).status === "FAIL").length;
-      const warn = allKeys.filter(k => ensureItem(k).status === "WARN").length;
+      let total = 0, pre = 0, exec = 0, val = 0, fail = 0, warn = 0;
+
+      phases.forEach(phase => {
+        let pExecuted = 0, pValidated = 0, pFails = 0;
+        const keysLen = phase.tasks.length;
+
+        phase.tasks.forEach((_, i) => {
+          const k = taskKey(phase.id, i);
+          const item = ensureItem(k);
+
+          total++;
+          if (item.precheck) pre++;
+          if (item.executed) {
+            exec++;
+            pExecuted++;
+          }
+          if (item.validated) {
+            val++;
+            pValidated++;
+          }
+          if (item.status === "FAIL") {
+            fail++;
+            pFails++;
+          }
+          if (item.status === "WARN") warn++;
+        });
+
+        const el = document.getElementById(`stats-${phase.id}`);
+        if (el) {
+          el.textContent = `${pValidated}/${keysLen} validados • ${pExecuted}/${keysLen} executados • FAIL ${pFails}`;
+        }
+      });
 
       document.getElementById("summaryStats").innerHTML = `
         <div class="stat"><span class="num">${total}</span><span class="label">Itens totais</span></div>
@@ -2067,17 +2091,6 @@ git status --short</pre>
         <div class="stat"><span class="num">${val}</span><span class="label">Validados</span></div>
         <div class="stat"><span class="num">${fail}/${warn}</span><span class="label">FAIL / WARN</span></div>
       `;
-
-      phases.forEach(phase => {
-        const keys = phase.tasks.map((_, i) => taskKey(phase.id, i));
-        const executed = keys.filter(k => ensureItem(k).executed).length;
-        const validated = keys.filter(k => ensureItem(k).validated).length;
-        const fails = keys.filter(k => ensureItem(k).status === "FAIL").length;
-        const el = document.getElementById(`stats-${phase.id}`);
-        if (el) {
-          el.textContent = `${validated}/${keys.length} validados • ${executed}/${keys.length} executados • FAIL ${fails}`;
-        }
-      });
     }
 
     function togglePhase(phaseId) {
