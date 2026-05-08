@@ -1,0 +1,33 @@
+{
+  "name": "job-match-os",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=24 <25",
+    "pnpm": ">=9.15.9 <10"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "validate": "pnpm format:check && pnpm typecheck && pnpm lint && pnpm test && pnpm build",
+    "clean": "turbo run clean"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@next/eslint-plugin-next": "16.2.6",
+    "@types/node": "25.6.2",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "eslint": "10.0.1",
+    "prettier": "3.8.3",
+    "turbo": "2.9.10",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.59.2"
+  }
+}
