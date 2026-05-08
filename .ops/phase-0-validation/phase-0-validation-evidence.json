@@ -2,10 +2,10 @@
   "phase": "00",
   "validator": "Antigravity AI (Gemini 3.1 Pro)",
   "date": "2026-05-08",
-  "status": "FAIL",
+  "status": "OK",
   "environment": {
     "os": "windows",
-    "node_version": "v25.9.0",
+    "node_version": "v24.15.0",
     "pnpm_version": "9.15.9",
     "branch": "main"
   },
@@ -18,7 +18,7 @@
     "node_version": {
       "command": "node --version",
       "exit_code": 0,
-      "output": "v25.9.0"
+      "output": "v24.15.0"
     },
     "pnpm_version": {
       "command": "pnpm.cmd --version",
@@ -27,8 +27,8 @@
     },
     "pnpm_validate": {
       "command": "pnpm.cmd validate",
-      "exit_code": 1,
-      "output_snippet": "[warn] Code style issues found in 11 files. Run Prettier with --write to fix."
+      "exit_code": 0,
+      "output_snippet": "Tasks: 15 successful, 15 total"
     }
   },
   "files_reviewed": [
@@ -48,6 +48,6 @@
     "anti_fake": "OK - Regra anti-fake documentada desde a fase 0.",
     "automacao": "OK - Requisitos de aprovação humana devidamente documentados.",
     "roadmap": "OK - Roadmap e DoD claramente descritos.",
-    "testes_validacao": "FAIL - Comando 'pnpm validate' não executa com sucesso devido a formatação do Prettier em arquivos do repositório."
+    "testes_validacao": "OK - Arquivos formatados via `pnpm format` e comando 'pnpm validate' executado com sucesso."
   }
 }

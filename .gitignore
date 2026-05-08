@@ -9,3 +9,6 @@ coverage/
 .env.*
 !.env.example
 *.tsbuildinfo
+.fnm/
+fnm.zip
+node-v24.zip

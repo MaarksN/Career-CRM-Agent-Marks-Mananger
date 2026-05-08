@@ -1821,7 +1821,7 @@ git status --short</pre
 
       let state = {
         role: "executor",
-        agentName: "Jules",
+        agentName: "Codex",
         items: {
           "P0-01": {
             precheck: true,
@@ -1938,6 +1938,149 @@ git status --short</pre
             validatedAt: "",
             evidence:
               ".ops/master-checklist e .ops/phase-0 atualizados; correcao Antigravity V00.09 executada em 2026-05-08 com pnpm format, pnpm install e pnpm validate. Resultado: pnpm validate OK. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P1-01": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING_EXTERNAL_VALIDATION",
+            executor: "Codex",
+            validator: "",
+            executedAt: "2026-05-08T00:51",
+            validatedAt: "",
+            evidence:
+              "Criar pnpm workspace. Arquivo/comando: package.json, pnpm-workspace.yaml. Esperado: pnpm install funcionando em todos os workspaces. Obtido: Workspace apps/* e packages/* criado; pnpm install OK com WARN ambiental de Node 25. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P1-02": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING_EXTERNAL_VALIDATION",
+            executor: "Codex",
+            validator: "",
+            executedAt: "2026-05-08T00:51",
+            validatedAt: "",
+            evidence:
+              "Configurar Turborepo. Arquivo/comando: turbo.json. Esperado: turbo run funcionando com dependsOn correto. Obtido: turbo.json criado com build/typecheck/lint/test/clean e test dependendo de build e ^build. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P1-03": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING_EXTERNAL_VALIDATION",
+            executor: "Codex",
+            validator: "",
+            executedAt: "2026-05-08T00:51",
+            validatedAt: "",
+            evidence:
+              "Configurar TypeScript strict. Arquivo/comando: tsconfig.base.json. Esperado: strict true e typecheck OK. Obtido: TypeScript strict configurado; pnpm typecheck OK em 15 workspaces. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P1-04": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING_EXTERNAL_VALIDATION",
+            executor: "Codex",
+            validator: "",
+            executedAt: "2026-05-08T00:51",
+            validatedAt: "",
+            evidence:
+              "Configurar ESLint. Arquivo/comando: eslint.config.js. Esperado: lint OK em todos os packages. Obtido: ESLint flat config real; pnpm lint OK em 15 workspaces. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P1-05": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING_EXTERNAL_VALIDATION",
+            executor: "Codex",
+            validator: "",
+            executedAt: "2026-05-08T00:51",
+            validatedAt: "",
+            evidence:
+              "Configurar Prettier. Arquivo/comando: .prettierrc, .prettierignore. Esperado: format:check OK. Obtido: Prettier configurado; pnpm format e pnpm format:check OK. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P1-06": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING_EXTERNAL_VALIDATION",
+            executor: "Codex",
+            validator: "",
+            executedAt: "2026-05-08T00:51",
+            validatedAt: "",
+            evidence:
+              "Criar apps/web. Arquivo/comando: apps/web. Esperado: Next.js buildando. Obtido: App Next.js minimo criado; pnpm build OK com rota / estatica. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P1-07": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING_EXTERNAL_VALIDATION",
+            executor: "Codex",
+            validator: "",
+            executedAt: "2026-05-08T00:51",
+            validatedAt: "",
+            evidence:
+              "Criar apps/api. Arquivo/comando: apps/api/src/index.ts, apps/api/src/index.test.ts. Esperado: Health/ready/version funcionais. Obtido: API HTTP real criada; teste node:test de GET /health OK. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P1-08": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING_EXTERNAL_VALIDATION",
+            executor: "Codex",
+            validator: "",
+            executedAt: "2026-05-08T00:51",
+            validatedAt: "",
+            evidence:
+              "Criar apps/worker. Arquivo/comando: apps/worker/src/index.ts, apps/worker/src/index.test.ts. Esperado: Worker minimo honesto. Obtido: runOnce() retorna queue_not_configured e declara 24h futuro; teste OK. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P1-09": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING_EXTERNAL_VALIDATION",
+            executor: "Codex",
+            validator: "",
+            executedAt: "2026-05-08T00:51",
+            validatedAt: "",
+            evidence:
+              "Criar packages base. Arquivo/comando: packages/*. Esperado: Packages base reais e compilaveis. Obtido: 12 packages obrigatorios criados; todos buildam; scoring e job-sources tem testes reais. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P1-10": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING_EXTERNAL_VALIDATION",
+            executor: "Codex",
+            validator: "",
+            executedAt: "2026-05-08T00:51",
+            validatedAt: "",
+            evidence:
+              "Criar scripts validate. Arquivo/comando: package.json. Esperado: pnpm validate funcional. Obtido: Script validate executa format:check, typecheck, lint, test e build; pnpm validate OK. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P1-11": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING_EXTERNAL_VALIDATION",
+            executor: "Codex",
+            validator: "",
+            executedAt: "2026-05-08T00:51",
+            validatedAt: "",
+            evidence:
+              "Ignorar artefatos. Arquivo/comando: .gitignore, .prettierignore. Esperado: Artefatos nao versionados. Obtido: Ignores obrigatorios criados; node_modules/dist/.next/.turbo/tsbuildinfo aparecem ignorados. Validacao: PENDING_EXTERNAL_VALIDATION.",
             validationEvidence: "PENDING_EXTERNAL_VALIDATION"
           }
         }
