@@ -1965,17 +1965,18 @@ git status --short</pre>
       render();
     }
 
+    function abortWithAlert(message) {
+      alert(message);
+      render();
+    }
+
     function setExecuted(key, checked) {
       const item = ensureItem(key);
       if (checked && !item.precheck) {
-        alert("Antes de executar, marque o Pré-check. A IA deve verificar dependências e validações anteriores primeiro.");
-        render();
-        return;
+        return abortWithAlert("Antes de executar, marque o Pré-check. A IA deve verificar dependências e validações anteriores primeiro.");
       }
       if (!roleCanExecute()) {
-        alert("Este modo não pode executar itens.");
-        render();
-        return;
+        return abortWithAlert("Este modo não pode executar itens.");
       }
       item.executed = checked;
       if (checked) {
@@ -1991,22 +1992,16 @@ git status --short</pre>
     function setValidated(key, checked) {
       const item = ensureItem(key);
       if (!roleCanValidate()) {
-        alert("Este modo não pode validar itens.");
-        render();
-        return;
+        return abortWithAlert("Este modo não pode validar itens.");
       }
       if (checked && !item.executed) {
-        alert("Não é permitido validar item não executado.");
-        render();
-        return;
+        return abortWithAlert("Não é permitido validar item não executado.");
       }
       const currentName = state.agentName || "";
       const validator = item.validator || currentName;
       const executor = item.executor || "";
       if (checked && executor && validator && normalizeName(executor) === normalizeName(validator)) {
-        alert("Quem executou não pode validar. Informe um validador diferente do executor.");
-        render();
-        return;
+        return abortWithAlert("Quem executou não pode validar. Informe um validador diferente do executor.");
       }
       item.validated = checked;
       if (checked) {
