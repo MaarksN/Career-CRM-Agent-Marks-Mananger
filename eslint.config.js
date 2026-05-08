@@ -22,13 +22,21 @@ export default tseslint.config(
   {
     ignores: [
       "node_modules/**",
+      "**/node_modules/**",
       ".pnpm-store/**",
+      "**/.pnpm-store/**",
       ".turbo/**",
+      "**/.turbo/**",
       ".next/**",
+      "**/.next/**",
       "dist/**",
+      "**/dist/**",
       "build/**",
+      "**/build/**",
       "coverage/**",
+      "**/coverage/**",
       "*.tsbuildinfo",
+      "**/*.tsbuildinfo",
       "pnpm-lock.yaml"
     ]
   },

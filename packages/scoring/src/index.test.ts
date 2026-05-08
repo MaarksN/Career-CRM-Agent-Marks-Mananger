@@ -1,11 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import {
-  calculateCompatibilityBand,
-  calculateTemperatureBand,
-  normalizeScore
-} from "./index.js";
+import { calculateCompatibilityBand, calculateTemperatureBand, normalizeScore } from "./index.js";
 
 test("normalizeScore clamps values to a zero-to-one-hundred scale", () => {
   assert.equal(normalizeScore(-10), 0);

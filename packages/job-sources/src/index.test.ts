@@ -8,6 +8,12 @@ test("initial job source catalog never enables auto apply or scraping", () => {
 
   assert.ok(catalog.length >= 1);
   assert.equal(assertSafeJobSourceCatalog(catalog), true);
-  assert.equal(catalog.some((source) => source.autoApplyEnabled), false);
-  assert.equal(catalog.some((source) => source.scrapingAllowed), false);
+  assert.equal(
+    catalog.some((source) => source.autoApplyEnabled),
+    false
+  );
+  assert.equal(
+    catalog.some((source) => source.scrapingAllowed),
+    false
+  );
 });

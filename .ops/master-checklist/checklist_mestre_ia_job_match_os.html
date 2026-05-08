@@ -1,468 +1,610 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Checklist Mestre IA — Job Match OS / Career CRM Agent Marks Manager</title>
-  <style>
-    :root {
-      --bg: #0b1020;
-      --panel: #111831;
-      --panel-2: #151f3d;
-      --text: #ecf2ff;
-      --muted: #9fb0d0;
-      --line: rgba(255,255,255,.12);
-      --accent: #78a6ff;
-      --green: #5ee28c;
-      --yellow: #ffd166;
-      --red: #ff6b6b;
-      --blue: #66e0ff;
-      --purple: #c084fc;
-      --orange: #ffb86b;
-      --shadow: 0 18px 60px rgba(0,0,0,.35);
-      --radius: 18px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checklist Mestre IA — Job Match OS / Career CRM Agent Marks Manager</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --panel: #111831;
+        --panel-2: #151f3d;
+        --text: #ecf2ff;
+        --muted: #9fb0d0;
+        --line: rgba(255, 255, 255, 0.12);
+        --accent: #78a6ff;
+        --green: #5ee28c;
+        --yellow: #ffd166;
+        --red: #ff6b6b;
+        --blue: #66e0ff;
+        --purple: #c084fc;
+        --orange: #ffb86b;
+        --shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+        --radius: 18px;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        --sans:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
 
-    * { box-sizing: border-box; }
+      * {
+        box-sizing: border-box;
+      }
 
-    body {
-      margin: 0;
-      font-family: var(--sans);
-      background:
-        radial-gradient(circle at 10% 5%, rgba(120, 166, 255, .25), transparent 28rem),
-        radial-gradient(circle at 90% 20%, rgba(192, 132, 252, .18), transparent 30rem),
-        radial-gradient(circle at 50% 90%, rgba(94, 226, 140, .10), transparent 28rem),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.45;
-    }
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        background:
+          radial-gradient(circle at 10% 5%, rgba(120, 166, 255, 0.25), transparent 28rem),
+          radial-gradient(circle at 90% 20%, rgba(192, 132, 252, 0.18), transparent 30rem),
+          radial-gradient(circle at 50% 90%, rgba(94, 226, 140, 0.1), transparent 28rem), var(--bg);
+        color: var(--text);
+        line-height: 1.45;
+      }
 
-    header {
-      padding: 36px 28px 20px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(11, 16, 32, .78);
-      backdrop-filter: blur(18px);
-      position: sticky;
-      top: 0;
-      z-index: 20;
-    }
+      header {
+        padding: 36px 28px 20px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(11, 16, 32, 0.78);
+        backdrop-filter: blur(18px);
+        position: sticky;
+        top: 0;
+        z-index: 20;
+      }
 
-    h1, h2, h3 { margin: 0; }
-    h1 { font-size: clamp(28px, 4vw, 46px); line-height: 1.05; letter-spacing: -.04em; }
-    h2 { font-size: 26px; letter-spacing: -.02em; margin-bottom: 10px; }
-    h3 { font-size: 18px; letter-spacing: -.01em; }
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+      }
+      h1 {
+        font-size: clamp(28px, 4vw, 46px);
+        line-height: 1.05;
+        letter-spacing: -0.04em;
+      }
+      h2 {
+        font-size: 26px;
+        letter-spacing: -0.02em;
+        margin-bottom: 10px;
+      }
+      h3 {
+        font-size: 18px;
+        letter-spacing: -0.01em;
+      }
 
-    .subtitle {
-      color: var(--muted);
-      margin-top: 12px;
-      max-width: 1180px;
-      font-size: 16px;
-    }
+      .subtitle {
+        color: var(--muted);
+        margin-top: 12px;
+        max-width: 1180px;
+        font-size: 16px;
+      }
 
-    .page {
-      max-width: 1480px;
-      margin: 0 auto;
-      padding: 24px 20px 80px;
-    }
+      .page {
+        max-width: 1480px;
+        margin: 0 auto;
+        padding: 24px 20px 80px;
+      }
 
-    .grid {
-      display: grid;
-      gap: 16px;
-    }
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
 
-    .grid-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
 
-    .grid-2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
 
-    @media (max-width: 1100px) {
-      .grid-3, .grid-2 { grid-template-columns: 1fr; }
-      header { position: static; }
-    }
+      @media (max-width: 1100px) {
+        .grid-3,
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+        header {
+          position: static;
+        }
+      }
 
-    .card {
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 18px;
-    }
+      .card {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 18px;
+      }
 
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      margin-top: 18px;
-    }
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        margin-top: 18px;
+      }
 
-    .toolbar input,
-    .toolbar select,
-    .toolbar button,
-    textarea,
-    input[type="text"],
-    input[type="datetime-local"],
-    select {
-      background: rgba(255,255,255,.08);
-      color: var(--text);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 10px 12px;
-      font: inherit;
-      outline: none;
-    }
+      .toolbar input,
+      .toolbar select,
+      .toolbar button,
+      textarea,
+      input[type="text"],
+      input[type="datetime-local"],
+      select {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 10px 12px;
+        font: inherit;
+        outline: none;
+      }
 
-    .toolbar input::placeholder, textarea::placeholder, input::placeholder { color: rgba(236,242,255,.45); }
+      .toolbar input::placeholder,
+      textarea::placeholder,
+      input::placeholder {
+        color: rgba(236, 242, 255, 0.45);
+      }
 
-    button {
-      cursor: pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-    }
+      button {
+        cursor: pointer;
+        transition:
+          transform 0.12s ease,
+          background 0.12s ease,
+          border-color 0.12s ease;
+      }
 
-    button:hover { transform: translateY(-1px); border-color: rgba(120,166,255,.65); }
+      button:hover {
+        transform: translateY(-1px);
+        border-color: rgba(120, 166, 255, 0.65);
+      }
 
-    .btn-primary { background: rgba(120,166,255,.22) !important; }
-    .btn-danger { background: rgba(255,107,107,.16) !important; }
-    .btn-good { background: rgba(94,226,140,.16) !important; }
+      .btn-primary {
+        background: rgba(120, 166, 255, 0.22) !important;
+      }
+      .btn-danger {
+        background: rgba(255, 107, 107, 0.16) !important;
+      }
+      .btn-good {
+        background: rgba(94, 226, 140, 0.16) !important;
+      }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 5px 10px;
-      color: var(--muted);
-      background: rgba(255,255,255,.05);
-      font-size: 12px;
-      white-space: nowrap;
-    }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 5px 10px;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.05);
+        font-size: 12px;
+        white-space: nowrap;
+      }
 
-    .pill.good { color: var(--green); border-color: rgba(94,226,140,.35); }
-    .pill.warn { color: var(--yellow); border-color: rgba(255,209,102,.35); }
-    .pill.fail { color: var(--red); border-color: rgba(255,107,107,.35); }
-    .pill.info { color: var(--blue); border-color: rgba(102,224,255,.35); }
+      .pill.good {
+        color: var(--green);
+        border-color: rgba(94, 226, 140, 0.35);
+      }
+      .pill.warn {
+        color: var(--yellow);
+        border-color: rgba(255, 209, 102, 0.35);
+      }
+      .pill.fail {
+        color: var(--red);
+        border-color: rgba(255, 107, 107, 0.35);
+      }
+      .pill.info {
+        color: var(--blue);
+        border-color: rgba(102, 224, 255, 0.35);
+      }
 
-    .rules ul { margin: 10px 0 0; padding-left: 20px; color: var(--muted); }
-    .rules strong { color: var(--text); }
+      .rules ul {
+        margin: 10px 0 0;
+        padding-left: 20px;
+        color: var(--muted);
+      }
+      .rules strong {
+        color: var(--text);
+      }
 
-    .notice {
-      border-left: 4px solid var(--yellow);
-      background: rgba(255, 209, 102, .08);
-      padding: 14px 16px;
-      border-radius: 14px;
-      color: #ffe7a3;
-    }
+      .notice {
+        border-left: 4px solid var(--yellow);
+        background: rgba(255, 209, 102, 0.08);
+        padding: 14px 16px;
+        border-radius: 14px;
+        color: #ffe7a3;
+      }
 
-    .danger {
-      border-left-color: var(--red);
-      background: rgba(255, 107, 107, .08);
-      color: #ffc2c2;
-    }
+      .danger {
+        border-left-color: var(--red);
+        background: rgba(255, 107, 107, 0.08);
+        color: #ffc2c2;
+      }
 
-    .success {
-      border-left-color: var(--green);
-      background: rgba(94, 226, 140, .08);
-      color: #baf8cd;
-    }
+      .success {
+        border-left-color: var(--green);
+        background: rgba(94, 226, 140, 0.08);
+        color: #baf8cd;
+      }
 
-    .phase {
-      margin-top: 18px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(12,18,36,.74);
-    }
+      .phase {
+        margin-top: 18px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(12, 18, 36, 0.74);
+      }
 
-    .phase-header {
-      padding: 18px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px;
-      align-items: center;
-      background: linear-gradient(90deg, rgba(120,166,255,.16), rgba(192,132,252,.12));
-      border-bottom: 1px solid var(--line);
-    }
+      .phase-header {
+        padding: 18px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+        align-items: center;
+        background: linear-gradient(90deg, rgba(120, 166, 255, 0.16), rgba(192, 132, 252, 0.12));
+        border-bottom: 1px solid var(--line);
+      }
 
-    .phase-meta {
-      color: var(--muted);
-      margin-top: 6px;
-      max-width: 1080px;
-    }
+      .phase-meta {
+        color: var(--muted);
+        margin-top: 6px;
+        max-width: 1080px;
+      }
 
-    .phase-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
+      .phase-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
 
-    th, td {
-      border-bottom: 1px solid var(--line);
-      padding: 10px;
-      vertical-align: top;
-    }
+      th,
+      td {
+        border-bottom: 1px solid var(--line);
+        padding: 10px;
+        vertical-align: top;
+      }
 
-    th {
-      color: #cfe0ff;
-      text-align: left;
-      background: rgba(255,255,255,.05);
-      position: sticky;
-      top: 0;
-      z-index: 5;
-    }
+      th {
+        color: #cfe0ff;
+        text-align: left;
+        background: rgba(255, 255, 255, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 5;
+      }
 
-    td:nth-child(1) { width: 64px; color: var(--muted); font-family: var(--mono); }
-    td:nth-child(2) { min-width: 260px; }
-    td:nth-child(3), td:nth-child(4), td:nth-child(5) { color: var(--muted); min-width: 220px; }
-    td:nth-child(6), td:nth-child(7), td:nth-child(8) { width: 115px; text-align: center; }
-    td:nth-child(9) { min-width: 300px; }
+      td:nth-child(1) {
+        width: 64px;
+        color: var(--muted);
+        font-family: var(--mono);
+      }
+      td:nth-child(2) {
+        min-width: 260px;
+      }
+      td:nth-child(3),
+      td:nth-child(4),
+      td:nth-child(5) {
+        color: var(--muted);
+        min-width: 220px;
+      }
+      td:nth-child(6),
+      td:nth-child(7),
+      td:nth-child(8) {
+        width: 115px;
+        text-align: center;
+      }
+      td:nth-child(9) {
+        min-width: 300px;
+      }
 
-    .task-title { font-weight: 700; color: var(--text); }
-    .task-id { font-family: var(--mono); color: var(--accent); font-size: 12px; }
+      .task-title {
+        font-weight: 700;
+        color: var(--text);
+      }
+      .task-id {
+        font-family: var(--mono);
+        color: var(--accent);
+        font-size: 12px;
+      }
 
-    .checks {
-      display: grid;
-      gap: 8px;
-      justify-items: center;
-    }
+      .checks {
+        display: grid;
+        gap: 8px;
+        justify-items: center;
+      }
 
-    .checks label {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--muted);
-      font-size: 12px;
-    }
+      .checks label {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--muted);
+        font-size: 12px;
+      }
 
-    input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      accent-color: var(--accent);
-      cursor: pointer;
-    }
+      input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--accent);
+        cursor: pointer;
+      }
 
-    textarea.evidence {
-      width: 100%;
-      min-height: 90px;
-      resize: vertical;
-      font-family: var(--mono);
-      font-size: 12px;
-    }
+      textarea.evidence {
+        width: 100%;
+        min-height: 90px;
+        resize: vertical;
+        font-family: var(--mono);
+        font-size: 12px;
+      }
 
-    .evidence-grid {
-      display: grid;
-      gap: 8px;
-    }
+      .evidence-grid {
+        display: grid;
+        gap: 8px;
+      }
 
-    .mini {
-      font-size: 12px;
-      color: var(--muted);
-    }
+      .mini {
+        font-size: 12px;
+        color: var(--muted);
+      }
 
-    .status-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      display: inline-block;
-      background: var(--muted);
-    }
+      .status-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        display: inline-block;
+        background: var(--muted);
+      }
 
-    .status-dot.ok { background: var(--green); }
-    .status-dot.warn { background: var(--yellow); }
-    .status-dot.fail { background: var(--red); }
-    .status-dot.skip { background: var(--blue); }
+      .status-dot.ok {
+        background: var(--green);
+      }
+      .status-dot.warn {
+        background: var(--yellow);
+      }
+      .status-dot.fail {
+        background: var(--red);
+      }
+      .status-dot.skip {
+        background: var(--blue);
+      }
 
-    details {
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 12px 14px;
-    }
+      details {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 12px 14px;
+      }
 
-    summary {
-      cursor: pointer;
-      font-weight: 700;
-    }
+      summary {
+        cursor: pointer;
+        font-weight: 700;
+      }
 
-    code, pre {
-      font-family: var(--mono);
-    }
+      code,
+      pre {
+        font-family: var(--mono);
+      }
 
-    pre {
-      overflow: auto;
-      background: rgba(0,0,0,.25);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 14px;
-      color: #dbe7ff;
-    }
+      pre {
+        overflow: auto;
+        background: rgba(0, 0, 0, 0.25);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 14px;
+        color: #dbe7ff;
+      }
 
-    .footer {
-      margin-top: 30px;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-    }
+      .footer {
+        margin-top: 30px;
+        color: var(--muted);
+        text-align: center;
+        font-size: 13px;
+      }
 
-    .blocked {
-      opacity: .55;
-      pointer-events: none;
-    }
+      .blocked {
+        opacity: 0.55;
+        pointer-events: none;
+      }
 
-    .role-banner {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-      align-items: center;
-    }
+      .role-banner {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+        align-items: center;
+      }
 
-    .summary-stats {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 10px;
-    }
+      .summary-stats {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 10px;
+      }
 
-    @media (max-width: 900px) {
-      .summary-stats { grid-template-columns: 1fr 1fr; }
-      table { font-size: 12px; }
-      th, td { padding: 8px; }
-    }
+      @media (max-width: 900px) {
+        .summary-stats {
+          grid-template-columns: 1fr 1fr;
+        }
+        table {
+          font-size: 12px;
+        }
+        th,
+        td {
+          padding: 8px;
+        }
+      }
 
-    .stat {
-      padding: 14px;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.05);
-    }
+      .stat {
+        padding: 14px;
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.05);
+      }
 
-    .stat .num {
-      display: block;
-      font-size: 26px;
-      font-weight: 800;
-      letter-spacing: -.04em;
-    }
+      .stat .num {
+        display: block;
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
 
-    .stat .label {
-      color: var(--muted);
-      font-size: 12px;
-    }
+      .stat .label {
+        color: var(--muted);
+        font-size: 12px;
+      }
 
-    .print-note { display: none; }
+      .print-note {
+        display: none;
+      }
 
-    @media print {
-      body { background: white; color: #111827; }
-      header { position: static; background: white; border-bottom: 1px solid #ddd; }
-      .card, .phase, details { box-shadow: none; background: white; border-color: #ddd; }
-      .toolbar, .phase-actions, button { display: none !important; }
-      .pill, .notice { color: #111827; border-color: #ddd; background: #f8fafc; }
-      th { position: static; color: #111827; background: #f3f4f6; }
-      td, th { border-color: #ddd; }
-      textarea, input, select { border: 1px solid #ccc; color: #111827; background: white; }
-      .print-note { display: block; margin-top: 8px; color: #444; }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Checklist Mestre IA — Job Match OS / Career CRM</h1>
-    <p class="subtitle">
-      Checklist operacional em HTML para execução e validação das fases do projeto.
-      Cada item possui pré-validação obrigatória, evidência, status de execução e status de validação.
-      <strong>Quem executa não valida. Quem valida não executa.</strong>
-    </p>
+      @media print {
+        body {
+          background: white;
+          color: #111827;
+        }
+        header {
+          position: static;
+          background: white;
+          border-bottom: 1px solid #ddd;
+        }
+        .card,
+        .phase,
+        details {
+          box-shadow: none;
+          background: white;
+          border-color: #ddd;
+        }
+        .toolbar,
+        .phase-actions,
+        button {
+          display: none !important;
+        }
+        .pill,
+        .notice {
+          color: #111827;
+          border-color: #ddd;
+          background: #f8fafc;
+        }
+        th {
+          position: static;
+          color: #111827;
+          background: #f3f4f6;
+        }
+        td,
+        th {
+          border-color: #ddd;
+        }
+        textarea,
+        input,
+        select {
+          border: 1px solid #ccc;
+          color: #111827;
+          background: white;
+        }
+        .print-note {
+          display: block;
+          margin-top: 8px;
+          color: #444;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Checklist Mestre IA — Job Match OS / Career CRM</h1>
+      <p class="subtitle">
+        Checklist operacional em HTML para execução e validação das fases do projeto. Cada item
+        possui pré-validação obrigatória, evidência, status de execução e status de validação.
+        <strong>Quem executa não valida. Quem valida não executa.</strong>
+      </p>
 
-    <div class="toolbar">
-      <label>
-        Modo da IA:
-        <select id="roleSelect">
-          <option value="executor">IA EXECUTORA — pode marcar Execução, não Validação</option>
-          <option value="validator">IA VALIDADORA — pode marcar Validação, não Execução</option>
-          <option value="auditor">IA AUDITORA — somente leitura/análise</option>
-          <option value="lead">Líder humano — revisão geral</option>
-        </select>
-      </label>
+      <div class="toolbar">
+        <label>
+          Modo da IA:
+          <select id="roleSelect">
+            <option value="executor">IA EXECUTORA — pode marcar Execução, não Validação</option>
+            <option value="validator">IA VALIDADORA — pode marcar Validação, não Execução</option>
+            <option value="auditor">IA AUDITORA — somente leitura/análise</option>
+            <option value="lead">Líder humano — revisão geral</option>
+          </select>
+        </label>
 
-      <input id="agentName" type="text" placeholder="Nome/ID da IA ou responsável" />
-      <input id="filterInput" type="text" placeholder="Filtrar por fase, tarefa ou status..." />
+        <input id="agentName" type="text" placeholder="Nome/ID da IA ou responsável" />
+        <input id="filterInput" type="text" placeholder="Filtrar por fase, tarefa ou status..." />
 
-      <button class="btn-primary" onclick="saveAll()">Salvar progresso</button>
-      <button onclick="exportJson()">Exportar JSON</button>
-      <button onclick="window.print()">Imprimir/PDF</button>
-      <button class="btn-danger" onclick="resetProgress()">Limpar progresso local</button>
-    </div>
-
-    <div class="role-banner" id="roleBanner"></div>
-    <div class="print-note">Documento impresso/exportado do Checklist Mestre IA.</div>
-  </header>
-
-  <main class="page">
-    <section class="grid grid-3">
-      <div class="card rules">
-        <h2>Regra de Separação</h2>
-        <div class="notice danger">
-          A IA que executar um item <strong>não pode validar</strong> esse mesmo item.
-          A IA que validar <strong>não pode executar</strong> esse mesmo item.
-        </div>
-        <ul>
-          <li>Executor marca apenas <strong>Pré-check</strong> e <strong>Executado</strong>.</li>
-          <li>Validador marca apenas <strong>Validado</strong>.</li>
-          <li>O nome/ID do executor deve ser diferente do validador.</li>
-          <li>Validação exige evidência mínima e status objetivo.</li>
-        </ul>
+        <button class="btn-primary" onclick="saveAll()">Salvar progresso</button>
+        <button onclick="exportJson()">Exportar JSON</button>
+        <button onclick="window.print()">Imprimir/PDF</button>
+        <button class="btn-danger" onclick="resetProgress()">Limpar progresso local</button>
       </div>
 
-      <div class="card rules">
-        <h2>Antes de Executar</h2>
-        <div class="notice">
-          Antes de executar qualquer item, a IA deve verificar se há algo que precisa ser validado antes.
+      <div class="role-banner" id="roleBanner"></div>
+      <div class="print-note">Documento impresso/exportado do Checklist Mestre IA.</div>
+    </header>
+
+    <main class="page">
+      <section class="grid grid-3">
+        <div class="card rules">
+          <h2>Regra de Separação</h2>
+          <div class="notice danger">
+            A IA que executar um item <strong>não pode validar</strong> esse mesmo item. A IA que
+            validar <strong>não pode executar</strong> esse mesmo item.
+          </div>
+          <ul>
+            <li>Executor marca apenas <strong>Pré-check</strong> e <strong>Executado</strong>.</li>
+            <li>Validador marca apenas <strong>Validado</strong>.</li>
+            <li>O nome/ID do executor deve ser diferente do validador.</li>
+            <li>Validação exige evidência mínima e status objetivo.</li>
+          </ul>
         </div>
-        <ul>
-          <li>Consultar fases anteriores e relatórios <code>.ops</code>.</li>
-          <li>Verificar dependências do item.</li>
-          <li>Confirmar <code>git status --short</code>.</li>
-          <li>Confirmar se não há mock/placeholder/fake success.</li>
-          <li>Confirmar se a ação externa depende de API oficial ou aprovação humana.</li>
-        </ul>
-      </div>
 
-      <div class="card rules">
-        <h2>Regra Anti-Fake</h2>
-        <div class="notice success">
-          Tudo que estiver dentro do controle da plataforma deve ser funcional de verdade desde a Fase 0.
+        <div class="card rules">
+          <h2>Antes de Executar</h2>
+          <div class="notice">
+            Antes de executar qualquer item, a IA deve verificar se há algo que precisa ser validado
+            antes.
+          </div>
+          <ul>
+            <li>Consultar fases anteriores e relatórios <code>.ops</code>.</li>
+            <li>Verificar dependências do item.</li>
+            <li>Confirmar <code>git status --short</code>.</li>
+            <li>Confirmar se não há mock/placeholder/fake success.</li>
+            <li>Confirmar se a ação externa depende de API oficial ou aprovação humana.</li>
+          </ul>
         </div>
-        <ul>
-          <li>Não aceitar mock como entrega final.</li>
-          <li>Não aceitar simulação apresentada como funcional.</li>
-          <li>Não fingir candidatura, envio, integração ou sucesso.</li>
-          <li>Integração externa não configurada deve retornar estado honesto.</li>
-        </ul>
-      </div>
-    </section>
 
-    <section class="card" style="margin-top:16px;">
-      <h2>Resumo Geral</h2>
-      <div class="summary-stats" id="summaryStats"></div>
-    </section>
+        <div class="card rules">
+          <h2>Regra Anti-Fake</h2>
+          <div class="notice success">
+            Tudo que estiver dentro do controle da plataforma deve ser funcional de verdade desde a
+            Fase 0.
+          </div>
+          <ul>
+            <li>Não aceitar mock como entrega final.</li>
+            <li>Não aceitar simulação apresentada como funcional.</li>
+            <li>Não fingir candidatura, envio, integração ou sucesso.</li>
+            <li>Integração externa não configurada deve retornar estado honesto.</li>
+          </ul>
+        </div>
+      </section>
 
-    <section class="card" style="margin-top:16px;">
-      <h2>Estados permitidos e proibidos</h2>
-      <div class="grid grid-2">
-        <div>
-          <h3>Estados honestos permitidos</h3>
-          <pre>external_integration_not_configured
+      <section class="card" style="margin-top: 16px">
+        <h2>Resumo Geral</h2>
+        <div class="summary-stats" id="summaryStats"></div>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h2>Estados permitidos e proibidos</h2>
+        <div class="grid grid-2">
+          <div>
+            <h3>Estados honestos permitidos</h3>
+            <pre>
+external_integration_not_configured
 official_api_required
 requires_manual_action
 waiting_human_approval
@@ -471,30 +613,34 @@ oauth_required
 provider_not_configured
 human_review_required
 review_required
-degraded_mode</pre>
-        </div>
-        <div>
-          <h3>Estados proibidos</h3>
-          <pre>fake_success
+degraded_mode</pre
+            >
+          </div>
+          <div>
+            <h3>Estados proibidos</h3>
+            <pre>
+fake_success
 mock_sent
 simulated_apply
 placeholder_success
 auto_applied_without_permission
 applied_without_evidence
 integration_done_without_provider
-ai_claim_without_source</pre>
+ai_claim_without_source</pre
+            >
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="phases"></section>
+      <section id="phases"></section>
 
-    <section class="card" style="margin-top:22px;">
-      <h2>Checklist global de validação final de cada fase</h2>
-      <div class="grid grid-2">
-        <div>
-          <h3>Comandos obrigatórios</h3>
-          <pre>node --version
+      <section class="card" style="margin-top: 22px">
+        <h2>Checklist global de validação final de cada fase</h2>
+        <div class="grid grid-2">
+          <div>
+            <h3>Comandos obrigatórios</h3>
+            <pre>
+node --version
 pnpm.cmd --version
 pnpm.cmd install
 pnpm.cmd format
@@ -504,11 +650,13 @@ pnpm.cmd lint
 pnpm.cmd test
 pnpm.cmd build
 pnpm.cmd validate
-git status --short</pre>
-        </div>
-        <div>
-          <h3>Critérios de aceite</h3>
-          <pre>1. Todos os itens executados têm evidência.
+git status --short</pre
+            >
+          </div>
+          <div>
+            <h3>Critérios de aceite</h3>
+            <pre>
+1. Todos os itens executados têm evidência.
 2. Validador diferente do executor.
 3. Sem mocks como runtime principal.
 4. Sem sucesso falso.
@@ -517,1351 +665,1433 @@ git status --short</pre>
 7. pnpm validate OK.
 8. git status limpo.
 9. Commit claro.
-10. Push feito ou bloqueio documentado.</pre>
+10. Push feito ou bloqueio documentado.</pre
+            >
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <p class="footer">
-      Checklist Mestre IA — Job Match OS / Career CRM Agent Marks Manager.
-      Progresso salvo localmente no navegador via localStorage.
-    </p>
-  </main>
+      <p class="footer">
+        Checklist Mestre IA — Job Match OS / Career CRM Agent Marks Manager. Progresso salvo
+        localmente no navegador via localStorage.
+      </p>
+    </main>
 
-  <script>
-    const phases = [
-  {
-    "id": "P0",
-    "title": "Fase 0 — Blueprint real, escopo e critérios de verdade",
-    "goal": "Transformar a visão do Job Match OS em decisões reais, rastreáveis e aplicáveis nas próximas fases.",
-    "why": "Sem blueprint decisório, o projeto vira código desconectado. Esta fase define limites, regras anti-fake, escopo, segurança e Definition of Done.",
-    "tasks": [
-      [
-        "Definir visão do produto Job Match OS",
-        "Garante que o produto não seja apenas um CRUD de vagas, mas um sistema operacional de carreira.",
-        "Documento de visão com problema, proposta de valor, módulos e público-alvo.",
-        "Se ficar genérico, reescrever até explicar claramente a dor, o diferencial e o usuário."
-      ],
-      [
-        "Definir regra anti-fake desde a Fase 0",
-        "Impede mocks, placeholders e sucesso falso como entrega final.",
-        "Política registrada: tudo interno deve ser real dentro do escopo da fase.",
-        "Qualquer item com fake_success, mock_sent ou simulated_apply deve ser FAIL."
-      ],
-      [
-        "Mapear módulos do sistema",
-        "Organiza Resume-as-Code, radar 24h, IA, CRM, extensão, calendário e analytics.",
-        "Lista de módulos com objetivo, entrada, saída e dependências.",
-        "Se um módulo não tiver dono/fase, classificar como futuro ou remover."
-      ],
-      [
-        "Classificar fontes de vagas",
-        "Evita scraping proibido e risco operacional.",
-        "Fontes categorizadas por manual, RSS, API oficial, OAuth, e-mail autorizado ou official_api_required.",
-        "Fonte sem permissão clara vira official_api_required."
-      ],
-      [
-        "Definir política de candidatura segura",
-        "Impede candidatura automática indevida.",
-        "Auto apply bloqueado por padrão e aprovação humana obrigatória.",
-        "Se qualquer fluxo permitir envio sem aprovação, bloquear."
-      ],
-      [
-        "Definir arquitetura alvo",
-        "Evita retrabalho estrutural.",
-        "Monorepo, apps, packages, banco, workers, extensão e integrações definidos.",
-        "Se arquitetura não suportar worker 24h, Chrome Extension ou auditoria, revisar."
-      ],
-      [
-        "Definir Definition of Done por fase",
-        "Cria critério objetivo de aceite.",
-        "Cada fase tem DoD técnico e funcional.",
-        "Fase sem DoD não pode ser considerada pronta."
-      ],
-      [
-        "Criar matriz de riscos",
-        "Antecipa riscos legais, técnicos e de produto.",
-        "Riscos com mitigação, severidade e responsável.",
-        "Risco sem mitigação vira WARN ou FAIL."
-      ],
-      [
-        "Criar documentos operacionais .ops",
-        "Permite auditoria posterior.",
-        "Checklist, evidência e relatório final da fase.",
-        "Se não houver evidência, fase não pode ser validada."
-      ]
-    ]
-  },
-  {
-    "id": "P1",
-    "title": "Fase 1 — Monorepo real e validação técnica",
-    "goal": "Criar a fundação técnica real que instala, compila, testa e valida.",
-    "why": "O produto precisa crescer com apps, packages, API, worker, web e extensão sem virar um repositório caótico.",
-    "tasks": [
-      [
-        "Criar pnpm workspace",
-        "Permite organizar múltiplos apps e packages.",
-        "pnpm install funcionando em todos os workspaces.",
-        "Se lockfile falhar, corrigir lock e workspace sem ignorar erro."
-      ],
-      [
-        "Configurar Turborepo",
-        "Executa build/typecheck/lint/test em ordem.",
-        "turbo run funcionando com dependsOn correto.",
-        "Se testes rodarem antes do build, ajustar turbo.json."
-      ],
-      [
-        "Configurar TypeScript strict",
-        "Evita erro silencioso.",
-        "strict true e typecheck OK.",
-        "Corrigir tipos; nunca relaxar strict para passar."
-      ],
-      [
-        "Configurar ESLint",
-        "Padroniza qualidade e segurança.",
-        "lint OK em todos os packages.",
-        "Corrigir código; não desabilitar regra global sem motivo técnico."
-      ],
-      [
-        "Configurar Prettier",
-        "Evita ruído de formatação.",
-        "format:check OK.",
-        "Rodar format e commitar alterações."
-      ],
-      [
-        "Criar apps/web",
-        "Base real do frontend.",
-        "Next.js buildando.",
-        "Se build quebrar, corrigir dependência/config."
-      ],
-      [
-        "Criar apps/api",
-        "Base real do backend.",
-        "Health/ready/version funcionais.",
-        "Se endpoint responder mock enganoso, corrigir."
-      ],
-      [
-        "Criar apps/worker",
-        "Base para processamento 24h futuro.",
-        "Worker compila e testa.",
-        "Se ainda não processa jobs, declarar estrutura real e honesta."
-      ],
-      [
-        "Criar packages base",
-        "Separa responsabilidades.",
-        "config/logger/contracts/database/etc. compilam.",
-        "Package vazio sem função deve ser documentado ou removido."
-      ],
-      [
-        "Criar scripts validate",
-        "Garante gate único.",
-        "pnpm validate executa format, typecheck, lint, test e build.",
-        "Se validate não cobre algo essencial, corrigir scripts."
-      ],
-      [
-        "Ignorar artefatos",
-        "Evita versionar lixo de build.",
-        ".gitignore cobre dist, .next, .turbo, *.tsbuildinfo.",
-        "Se artefato aparecer no git, remover do controle."
-      ]
-    ]
-  },
-  {
-    "id": "P2",
-    "title": "Fase 2 — Banco, contratos e modelos reais",
-    "goal": "Criar schema Prisma, contratos Zod, tipos e regras reais do domínio.",
-    "why": "Antes de tela e automação, o sistema precisa representar corretamente candidato, currículo, empresa, vaga, fonte, análise, candidatura e auditoria.",
-    "tasks": [
-      [
-        "Criar Prisma schema",
-        "Define o banco real do produto.",
-        "Models, relações e enums coerentes.",
-        "Relação quebrada ou órfã deve ser corrigida antes de avançar."
-      ],
-      [
-        "Criar CandidateProfile",
-        "Representa o candidato como entidade central.",
-        "Perfil persistível e validável.",
-        "Campos críticos vazios devem ser rejeitados."
-      ],
-      [
-        "Criar ResumeDocument",
-        "Guarda currículo base e versões.",
-        "Currículos persistidos com versão e conteúdo.",
-        "Currículo vazio ou sem candidato deve falhar."
-      ],
-      [
-        "Criar Company",
-        "Permite associar vaga a empresa.",
-        "Empresas persistíveis.",
-        "Duplicidade deve ser registrada como risco para dedup futuro."
-      ],
-      [
-        "Criar JobSource",
-        "Controla origem e política da vaga.",
-        "allowsScraping=false, allowsAutoApply=false, requiresHumanApproval=true por padrão.",
-        "Se default permitir automação perigosa, FAIL."
-      ],
-      [
-        "Criar JobOpportunity",
-        "Representa vaga real.",
-        "Vaga com título, descrição, status, fonte e empresa quando disponível.",
-        "Descrição vazia deve retornar erro."
-      ],
-      [
-        "Criar CompatibilityAnalysis",
-        "Registra análise e scores.",
-        "Scores e justificativas persistíveis.",
-        "Score sem base em dados deve ser FAIL."
-      ],
-      [
-        "Criar CompatibilityReport",
-        "Guarda relatório gerado.",
-        "HTML/Markdown com dados estruturados.",
-        "Relatório genérico sem dados reais é FAIL."
-      ],
-      [
-        "Criar ApplicationProcess",
-        "Controla candidatura.",
-        "Status real e aprovação humana.",
-        "Não permitir applied sem evidência ou ação manual."
-      ],
-      [
-        "Criar CalendarEvent",
-        "Base do calendário interno.",
-        "Eventos internos persistíveis.",
-        "Não fingir Google Calendar."
-      ],
-      [
-        "Criar AuditLog",
-        "Rastreia ações relevantes.",
-        "Ações auditáveis persistíveis.",
-        "Ação crítica sem audit vira WARN/FAIL."
-      ],
-      [
-        "Criar contratos Zod",
-        "Valida entradas e saídas.",
-        "Schemas e types exportados.",
-        "Uso de any ou schema frouxo deve ser corrigido."
-      ],
-      [
-        "Criar testes node:test",
-        "Prova contratos e defaults.",
-        "Testes para Zod, scoring e fontes.",
-        "Não remover testes para passar."
-      ]
-    ]
-  },
-  {
-    "id": "P3",
-    "title": "Fase 3 — Backend real, Prisma e correção de mocks",
-    "goal": "Converter a base para backend real e substituir mocks internos por implementação funcional.",
-    "why": "A plataforma precisa persistir, consultar, auditar e operar dados reais.",
-    "tasks": [
-      [
-        "Auditar mocks anteriores",
-        "Identifica placeholder/noop/in-memory runtime.",
-        "mock-correction-report.md com status por arquivo.",
-        "Mock interno como runtime principal deve ser FAIL."
-      ],
-      [
-        "Implementar Prisma Client",
-        "Conecta aplicação ao banco real.",
-        "Cliente isolado e configurado.",
-        "DATABASE_URL ausente deve gerar erro real, não sucesso falso."
-      ],
-      [
-        "Criar repositórios Prisma",
-        "Persistência real.",
-        "CRUD via Prisma para entidades principais.",
-        "Map/in-memory só pode existir para teste unitário."
-      ],
-      [
-        "Criar serviços de domínio",
-        "Centraliza regras.",
-        "CandidateService, JobService, AnalysisService etc.",
-        "Regra crítica em rota deve ser refatorada."
-      ],
-      [
-        "Criar API persistente",
-        "Opera dados reais.",
-        "Endpoints criam/listam/buscam dados.",
-        "Resposta fixa ou mockada é FAIL."
-      ],
-      [
-        "Persistir auditoria",
-        "Garante rastreabilidade.",
-        "AuditLog salvo em ações relevantes.",
-        "Ação crítica sem audit deve falhar validação."
-      ],
-      [
-        "Persistir calendário interno",
-        "Agenda real da plataforma.",
-        "CalendarEvent interno real.",
-        "Google ausente deve ser external_calendar_not_configured."
-      ],
-      [
-        "Implementar scoring determinístico",
-        "Compatibilidade real sem IA falsa.",
-        "Score por pesos e dados reais.",
-        "Número aleatório ou fixo é FAIL."
-      ],
-      [
-        "Gerar relatórios HTML reais",
-        "Materializa análise.",
-        "Relatório com candidato, vaga, empresa, score e ações.",
-        "Relatório genérico é FAIL."
-      ],
-      [
-        "Gerar drafts reais",
-        "Apoia comunicação sem enviar.",
-        "Resposta, carta e ajuste com dados reais.",
-        "Envio automático sem aprovação é FAIL."
-      ],
-      [
-        "Controlar candidatura segura",
-        "Evita fake apply.",
-        "Status persistidos e human approval.",
-        "Marcar aplicada sem evidência é FAIL."
-      ],
-      [
-        "Documentar estados externos",
-        "Evita sucesso falso.",
-        "official_api_required/external_integration_not_configured etc.",
-        "fake_success deve ser FAIL."
-      ]
-    ]
-  },
-  {
-    "id": "P4",
-    "title": "Fase 4 — UI real e fluxo visual operacional",
-    "goal": "Criar dashboard real conectado ao backend real.",
-    "why": "Backend sem UI não é produto operável por pessoa não técnica.",
-    "tasks": [
-      [
-        "Criar App Shell",
-        "Base de navegação.",
-        "Sidebar, header, layout responsivo.",
-        "Tela quebrada em desktop/mobile deve ser corrigida."
-      ],
-      [
-        "Criar Dashboard",
-        "Visão executiva.",
-        "Cards reais de vagas, matches, candidaturas e alertas.",
-        "Métrica mockada é FAIL."
-      ],
-      [
-        "Criar tela de Candidatos",
-        "Operar perfil.",
-        "CRUD via API real.",
-        "Salvar em localStorage é FAIL."
-      ],
-      [
-        "Criar tela de Currículos",
-        "Operar documentos.",
-        "Cadastro/listagem/detalhe via API.",
-        "Não persistir é FAIL."
-      ],
-      [
-        "Criar tela de Empresas",
-        "Gerenciar contas-alvo.",
-        "CRUD real.",
-        "Duplicidade sem aviso vira WARN."
-      ],
-      [
-        "Criar tela de Fontes",
-        "Exibir políticas.",
-        "Fontes com integrationMode e regras.",
-        "Fonte fingindo integração é FAIL."
-      ],
-      [
-        "Criar tela de Vagas",
-        "Operar oportunidades.",
-        "Cadastrar/listar/detalhar vaga.",
-        "Vaga sem persistência é FAIL."
-      ],
-      [
-        "Criar tela de Análise",
-        "Rodar compatibilidade.",
-        "Botão chama API real e mostra score.",
-        "Score mockado é FAIL."
-      ],
-      [
-        "Criar visualizador de Relatório",
-        "Mostrar HTML real.",
-        "Renderização segura do relatório.",
-        "HTML genérico é FAIL."
-      ],
-      [
-        "Criar tela de Drafts",
-        "Revisar textos gerados.",
-        "Drafts reais com status.",
-        "Enviar sem aprovação é FAIL."
-      ],
-      [
-        "Criar tela de Candidaturas",
-        "Controlar pipeline básico.",
-        "Status e ações seguras.",
-        "Marcar aplicada sem confirmação é FAIL."
-      ],
-      [
-        "Criar tela de Calendário",
-        "Ver agenda interna.",
-        "Eventos internos reais.",
-        "Fingir Google Calendar é FAIL."
-      ],
-      [
-        "Criar tela de Auditoria",
-        "Transparência.",
-        "Lista audit log real.",
-        "Ação ausente exige investigação."
-      ],
-      [
-        "Implementar error/loading/empty states",
-        "UX confiável.",
-        "Erros 400/404/500 claros.",
-        "Tela branca ou erro engolido é FAIL."
-      ]
-    ]
-  },
-  {
-    "id": "P5",
-    "title": "Fase 5 — Autenticação, segurança e permissões",
-    "goal": "Proteger dados sensíveis e identificar ações.",
-    "why": "O sistema armazena dados profissionais, salariais, documentos e histórico de candidatura.",
-    "tasks": [
-      [
-        "Criar User",
-        "Identidade real.",
-        "Usuário persistido.",
-        "Ação privada sem usuário deve bloquear."
-      ],
-      [
-        "Implementar login",
-        "Entrada segura.",
-        "Sessão criada com credenciais válidas.",
-        "Credencial inválida retorna 401."
-      ],
-      [
-        "Implementar logout",
-        "Encerrar sessão.",
-        "Token/cookie invalidado.",
-        "Sessão ativa após logout é FAIL."
-      ],
-      [
-        "Hash de senha",
-        "Protege credenciais.",
-        "bcrypt/argon2.",
-        "Senha em texto puro é FAIL crítico."
-      ],
-      [
-        "Criar sessões",
-        "Controla acesso.",
-        "Sessão expira.",
-        "Token sem expiração é FAIL."
-      ],
-      [
-        "Middleware auth API",
-        "Protege dados.",
-        "Rotas privadas exigem login.",
-        "Vazamento de rota privada é FAIL."
-      ],
-      [
-        "Proteção UI",
-        "Bloqueia telas privadas.",
-        "Redirect para login.",
-        "Tela privada aberta sem auth é FAIL."
-      ],
-      [
-        "Rate limit",
-        "Evita abuso.",
-        "Limites por IP/usuário.",
-        "Brute-force livre é FAIL."
-      ],
-      [
-        "Audit actor real",
-        "Rastreia ações.",
-        "audit.actorId preenchido.",
-        "Audit anônimo indevido é FAIL."
-      ],
-      [
-        "Regras LGPD",
-        "Privacidade.",
-        "Minimização, exportação e exclusão de dados.",
-        "PII sensível em log é FAIL crítico."
-      ]
-    ]
-  },
-  {
-    "id": "P6",
-    "title": "Fase 6 — Resume-as-Code Studio e exportações",
-    "goal": "Criar currículo modular real, versionado e exportável.",
-    "why": "Currículo estático não compete bem; a plataforma deve montar variações honestas e contextuais.",
-    "tasks": [
-      [
-        "Criar ExperienceBlock",
-        "Modulariza histórico.",
-        "Blocos reutilizáveis persistidos.",
-        "Bloco sem origem real deve ser review_required."
-      ],
-      [
-        "Criar SkillTag",
-        "Classifica competências.",
-        "Tags por skill/setor/impacto.",
-        "Tag duplicada deve ser normalizada."
-      ],
-      [
-        "Criar Achievement",
-        "Evidencia impacto.",
-        "Conquistas quantificáveis.",
-        "Métrica ausente vira WARN, não invenção."
-      ],
-      [
-        "Criar StarStory",
-        "Prepara entrevista.",
-        "Histórias Situação/Tarefa/Ação/Resultado.",
-        "História incompleta marcada como incomplete."
-      ],
-      [
-        "Criar ResumeVersion",
-        "Preserva histórico.",
-        "Versões imutáveis.",
-        "Sobrescrever versão antiga é FAIL."
-      ],
-      [
-        "Criar templates",
-        "Padroniza saída.",
-        "Templates ATS-safe.",
-        "Template que quebra ATS deve ser bloqueado."
-      ],
-      [
-        "Exportar HTML",
-        "Visualização web.",
-        "HTML renderizado com dados reais.",
-        "Campo ausente mostra aviso."
-      ],
-      [
-        "Exportar PDF",
-        "Documento final.",
-        "PDF profissional e parseável.",
-        "Falha no PDF retorna erro real."
-      ],
-      [
-        "Comparar versões",
-        "Mede evolução.",
-        "Diff entre currículos.",
-        "Versão inexistente retorna 404."
-      ],
-      [
-        "Anti-alucinação",
-        "Preserva ética.",
-        "Somente blocos reais usados.",
-        "Experiência inventada é bloqueada."
-      ],
-      [
-        "ATS Compatibility Checker",
-        "Avalia parseabilidade.",
-        "Score ATS e recomendações.",
-        "PDF não parseável gera alerta vermelho."
-      ]
-    ]
-  },
-  {
-    "id": "P7",
-    "title": "Fase 7 — Chrome Extension Capture",
-    "goal": "Criar extensão Chrome para capturar e analisar vagas no navegador.",
-    "why": "O usuário encontra vagas navegando; a extensão transforma o navegador em cockpit de captura.",
-    "tasks": [
-      [
-        "Criar apps/chrome-extension",
-        "Separa extensão do web app.",
-        "App MV3 buildável.",
-        "Build quebrado bloqueia fase."
-      ],
-      [
-        "Criar manifest.json MV3",
-        "Define permissões e entradas.",
-        "Manifest válido e mínimo.",
-        "Permissão ampla sem justificativa é WARN/FAIL."
-      ],
-      [
-        "Criar content script",
-        "Lê página ativa.",
-        "Script injeta somente com interação/activeTab.",
-        "Acesso indiscriminado é FAIL."
-      ],
-      [
-        "Criar detector de vaga",
-        "Identifica páginas relevantes.",
-        "Detector retorna confiança.",
-        "Se baixa confiança, pedir seleção manual."
-      ],
-      [
-        "Criar extrator de texto",
-        "Captura conteúdo visível.",
-        "Título, empresa, local, descrição e URL.",
-        "Texto insuficiente vira manual_review_required."
-      ],
-      [
-        "Criar dom sanitizer",
-        "Evita enviar lixo/sensível.",
-        "Conteúdo limpo e limitado.",
-        "Coletar dados desnecessários é WARN."
-      ],
-      [
-        "Criar side panel",
-        "Mostra análise no navegador.",
-        "Score, riscos e ações.",
-        "Score estático é FAIL."
-      ],
-      [
-        "Criar popup",
-        "Ações rápidas.",
-        "Salvar/analisar/ver status.",
-        "Ação sem auth pede login."
-      ],
-      [
-        "Criar API client",
-        "Comunica com backend.",
-        "Envio seguro para API real.",
-        "API fora salva pending_sync e mostra erro."
-      ],
-      [
-        "Criar auth da extensão",
-        "Identifica usuário.",
-        "Token seguro no storage.",
-        "Token em texto exposto indevido é FAIL."
-      ],
-      [
-        "Detectar duplicidade",
-        "Evita CRM sujo.",
-        "Alerta se vaga existe.",
-        "Duplicata ignorada vira WARN."
-      ],
-      [
-        "Auditar captura",
-        "Rastreia origem.",
-        "Audit log job.captured_from_extension.",
-        "Sem audit em captura é FAIL."
-      ]
-    ]
-  },
-  {
-    "id": "P8",
-    "title": "Fase 8 — Radar de vagas, OCR e ingestão segura",
-    "goal": "Criar entrada real de oportunidades por canais permitidos.",
-    "why": "O funil precisa ser alimentado por vagas reais sem violar termos ou fingir automação.",
-    "tasks": [
-      [
-        "Importação manual",
-        "Caminho universal.",
-        "Usuário cola texto e salva vaga.",
-        "Texto vazio retorna 400."
-      ],
-      [
-        "Importação por URL manual",
-        "Rastreia origem.",
-        "URL salva e classificada.",
-        "Não buscar site sem permissão."
-      ],
-      [
-        "Upload PDF",
-        "Captura vaga em arquivo.",
-        "Texto extraído e revisável.",
-        "PDF ilegível retorna erro claro."
-      ],
-      [
-        "Upload imagem",
-        "Usa prints.",
-        "Imagem enviada para OCR.",
-        "Falha OCR pede revisão manual."
-      ],
-      [
-        "OCR",
-        "Extrai texto de imagem/PDF.",
-        "Texto normalizado com confidence.",
-        "Baixa confiança vira review_required."
-      ],
-      [
-        "Parser de e-mail autorizado",
-        "Lê alertas permitidos.",
-        "Vagas de e-mail com OAuth/IMAP/API.",
-        "Sem OAuth retorna external_integration_not_configured."
-      ],
-      [
-        "RSS permitido",
-        "Ingestão limpa.",
-        "Feed processado com rate limit.",
-        "RSS quebrado gera erro rastreável."
-      ],
-      [
-        "API oficial",
-        "Integração legal.",
-        "Dados importados por token válido.",
-        "Token ausente retorna provider_not_configured."
-      ],
-      [
-        "Deduplicação",
-        "Evita lixo métrico.",
-        "Vagas iguais fundidas ou sinalizadas.",
-        "Falso positivo permite desfazer merge."
-      ],
-      [
-        "Fingerprint semântico",
-        "Detecta duplicatas com variações.",
-        "Hash por empresa+cargo+local+texto.",
-        "Campo ausente usa fallback."
-      ],
-      [
-        "Normalização",
-        "Padroniza vaga.",
-        "Campos consistentes.",
-        "Campo ausente marcado unknown."
-      ]
-    ]
-  },
-  {
-    "id": "P9",
-    "title": "Fase 9 — Filas, Redis, workers e 24h real",
-    "goal": "Criar motor autônomo 24h no backend/servidor.",
-    "why": "Chrome Extension não garante execução contínua; OCR, IA e ingestão precisam de workers persistentes.",
-    "tasks": [
-      [
-        "Configurar Redis",
-        "Infra de filas.",
-        "Redis via Docker/serviço.",
-        "Redis fora coloca worker em degraded mode."
-      ],
-      [
-        "Configurar BullMQ",
-        "Gerencia jobs.",
-        "Queues reais.",
-        "Job falho deve ter retry."
-      ],
-      [
-        "Criar queue package",
-        "Isola filas.",
-        "Contratos de jobs.",
-        "Payload sem schema é FAIL."
-      ],
-      [
-        "Criar worker real",
-        "Processa fora da API.",
-        "Worker separado.",
-        "Worker crasha gera log e restart."
-      ],
-      [
-        "Criar scheduler",
-        "Execução periódica.",
-        "Jobs recorrentes.",
-        "Cron falho gera audit/log."
-      ],
-      [
-        "Retry e backoff",
-        "Resiliência.",
-        "Tentativas controladas.",
-        "Erro permanente vai para dead-letter."
-      ],
-      [
-        "Dead-letter queue",
-        "Diagnóstico.",
-        "Jobs falhos rastreáveis.",
-        "DLQ crescendo gera alerta."
-      ],
-      [
-        "Rate limiting",
-        "Evita bloqueio.",
-        "Limite por fonte/provedor.",
-        "Excesso pausa fonte."
-      ],
-      [
-        "Job logs",
-        "Observabilidade.",
-        "Histórico de execução.",
-        "PII nos logs é FAIL."
-      ],
-      [
-        "Healthcheck worker",
-        "Operação 24h.",
-        "Status API/worker/Redis.",
-        "Indisponível retorna degraded."
-      ],
-      [
-        "Operação autônoma",
-        "Trabalha sem UI aberta.",
-        "Ingestão/análise/notificação rodam no backend.",
-        "Não atribuir 24h à extensão."
-      ]
-    ]
-  },
-  {
-    "id": "P10",
-    "title": "Fase 10 — IA real multiagente",
-    "goal": "Implementar agentes reais com provedores oficiais, validação e guardrails.",
-    "why": "IA aumenta qualidade, mas precisa ser auditável e impedida de inventar experiência.",
-    "tasks": [
-      [
-        "Configurar provider oficial",
-        "Usa IA real.",
-        "OpenAI/Anthropic/etc. por config.",
-        "Chave ausente retorna external_ai_not_configured."
-      ],
-      [
-        "Structured Outputs",
-        "Reduz payload inválido.",
-        "JSON estruturado.",
-        "Payload inválido rejeitado ou retry."
-      ],
-      [
-        "Zod validation",
-        "Firewall técnico.",
-        "Saída validada antes de salvar.",
-        "Falha Zod não persiste."
-      ],
-      [
-        "Agente Coletor",
-        "Extrai vaga.",
-        "JSON limpo com requisitos.",
-        "Texto ruim vira review_required."
-      ],
-      [
-        "Agente Analista",
-        "Avalia aderência.",
-        "Score/riscos/atratividade.",
-        "Contradição vai ao validador."
-      ],
-      [
-        "Agente Validador",
-        "Protege verdade.",
-        "Bloqueia invenção.",
-        "Experiência não comprovada vira FAIL."
-      ],
-      [
-        "Agente Estrategista",
-        "Define narrativa.",
-        "Posicionamento e tom.",
-        "Exagero deve ser rebaixado."
-      ],
-      [
-        "Prompt logs",
-        "Auditoria.",
-        "Prompts/respostas com PII mascarada.",
-        "PII sensível em log é FAIL."
-      ],
-      [
-        "Cost tracking",
-        "Controla gasto.",
-        "Tokens/custo por execução.",
-        "Limite excedido pausa job."
-      ],
-      [
-        "Guardrails",
-        "Segurança.",
-        "Regras anti-fake.",
-        "Violação bloqueia output."
-      ],
-      [
-        "Human review",
-        "Controle final.",
-        "Saídas sensíveis exigem aprovação.",
-        "Envio direto sem aprovação é FAIL."
-      ]
-    ]
-  },
-  {
-    "id": "P11",
-    "title": "Fase 11 — CRM avançado, SLA e candidatura assistida",
-    "goal": "Criar pipeline profissional de candidatura e relacionamento.",
-    "why": "Sem CRM o candidato perde follow-up, não mede conversão e não sabe onde o funil trava.",
-    "tasks": [
-      [
-        "Kanban drag-and-drop",
-        "Operar funil.",
-        "Mudança de status persistida.",
-        "Status inválido bloqueado."
-      ],
-      [
-        "SLA por etapa",
-        "Evita esquecimento.",
-        "Alertas por atraso.",
-        "Data ausente usa fallback ou review."
-      ],
-      [
-        "Follow-up draft",
-        "Mantém contato.",
-        "Texto em draft.",
-        "Envio sem aprovação é FAIL."
-      ],
-      [
-        "Motivo de perda",
-        "Aprendizado.",
-        "Registro estruturado.",
-        "Perda sem motivo pede classificação."
-      ],
-      [
-        "Pipeline history",
-        "Rastreabilidade.",
-        "Histórico de transições.",
-        "Transição sem audit é FAIL."
-      ],
-      [
-        "Aprovação humana",
-        "Segurança.",
-        "Ações externas exigem OK.",
-        "Bypass é FAIL."
-      ],
-      [
-        "Próxima ação",
-        "Guia operação.",
-        "Ação recomendada.",
-        "Dados insuficientes mostra definir manualmente."
-      ],
-      [
-        "Evidence Vault",
-        "Prova de candidatura.",
-        "Snapshot, URL, currículo, carta e data.",
-        "Sem evidência não marcar como enviada."
-      ],
-      [
-        "Networking CRM",
-        "Relacionamento.",
-        "Recrutadores, contatos e histórico.",
-        "Sem canal permitido não enviar."
-      ],
-      [
-        "Opportunity ranking",
-        "Prioriza foco.",
-        "Ranking por score, salário, risco e timing.",
-        "Dados faltantes sinalizam baixa confiança."
-      ]
-    ]
-  },
-  {
-    "id": "P12",
-    "title": "Fase 12 — Telegram Command Center",
-    "goal": "Permitir operação tática pelo celular.",
-    "why": "Vagas boas exigem velocidade; Telegram permite aprovação e comando remoto.",
-    "tasks": [
-      [
-        "Configurar Telegram Bot API",
-        "Canal oficial.",
-        "Bot com token configurável.",
-        "Token ausente provider_not_configured."
-      ],
-      [
-        "Criar webhook seguro",
-        "Recebe ações.",
-        "Validação de segredo/assinatura.",
-        "Webhook inválido retorna 401."
-      ],
-      [
-        "Enviar match alert",
-        "Avisa oportunidades críticas.",
-        "Mensagem com score e resumo.",
-        "Falha de envio vai para retry."
-      ],
-      [
-        "Criar inline buttons",
-        "Ações rápidas.",
-        "Aprovar, descartar, detalhes.",
-        "Ação inválida retorna erro."
-      ],
-      [
-        "Aprovar geração",
-        "Human-in-the-loop.",
-        "Aprovação auditada.",
-        "Ação crítica sem confirmação é FAIL."
-      ],
-      [
-        "Enviar relatório",
-        "Consulta rápida.",
-        "Relatório ou link seguro.",
-        "Falha gera erro real."
-      ],
-      [
-        "Enviar PDF",
-        "Artefato no celular.",
-        "PDF anexado ou link.",
-        "PDF quebrado não envia fake."
-      ],
-      [
-        "Sincronizar CRM",
-        "Mantém status consistente.",
-        "Ação no Telegram atualiza pipeline.",
-        "Divergência gera audit warning."
-      ],
-      [
-        "Autenticar comandos",
-        "Evita terceiros.",
-        "Usuário autorizado.",
-        "Usuário não autorizado bloqueado."
-      ]
-    ]
-  },
-  {
-    "id": "P13",
-    "title": "Fase 13 — Calendário externo, notificações e produtividade",
-    "goal": "Integrar agenda, lembretes e canais oficiais.",
-    "why": "Entrevistas e follow-ups precisam virar compromissos e lembretes reais.",
-    "tasks": [
-      [
-        "Calendário interno avançado",
-        "Base sempre disponível.",
-        "Eventos internos reais.",
-        "Evento inválido retorna 400."
-      ],
-      [
-        "Exportar .ics",
-        "Funciona sem OAuth.",
-        "Arquivo .ics válido.",
-        "Dados incompletos bloqueiam geração."
-      ],
-      [
-        "Google Calendar OAuth",
-        "Integração oficial.",
-        "Evento externo criado se configurado.",
-        "OAuth ausente external_calendar_not_configured."
-      ],
-      [
-        "Eventos de entrevista",
-        "Organiza agenda.",
-        "Evento com vaga, empresa e links.",
-        "Fuso inválido pede ajuste."
-      ],
-      [
-        "Bloco de preparação",
-        "Melhora performance.",
-        "Evento 1h antes.",
-        "Agenda falha mantém evento interno."
-      ],
-      [
-        "Lembrete follow-up",
-        "Evita ghosting passivo.",
-        "Lembrete pós-entrevista.",
-        "Canal ausente cria tarefa manual."
-      ],
-      [
-        "E-mail autorizado",
-        "Comunicação oficial.",
-        "OAuth/IMAP/API configurável.",
-        "Sem consentimento bloqueia."
-      ],
-      [
-        "Notification center",
-        "Centraliza alertas.",
-        "Alertas internos/externos.",
-        "Falha externa não apaga alerta interno."
-      ],
-      [
-        "Preferências de notificação",
-        "Evita spam.",
-        "Canais e horários.",
-        "Sem preferência usa padrão seguro."
-      ]
-    ]
-  },
-  {
-    "id": "P14",
-    "title": "Fase 14 — Analytics, A/B testing e inteligência de mercado",
-    "goal": "Criar laboratório de conversão e melhoria contínua.",
-    "why": "O candidato precisa saber quais fontes, currículos e estratégias geram resultado.",
-    "tasks": [
-      [
-        "Conversion dashboard",
-        "Mede funil.",
-        "CV→entrevista→proposta→oferta.",
-        "Dados incompletos sinalizados."
-      ],
-      [
-        "Source analytics",
-        "Compara fontes.",
-        "Conversão por LinkedIn/Gupy/etc.",
-        "Fonte unknown classificada."
-      ],
-      [
-        "Resume A/B testing",
-        "Testa versões.",
-        "Resultado por hash/versão.",
-        "Amostra baixa não escolhe vencedor."
-      ],
-      [
-        "Salary intelligence",
-        "Negociação.",
-        "Faixa, CLT/PJ, hard stop.",
-        "Salário ausente estimate_required."
-      ],
-      [
-        "Company intelligence",
-        "Contexto.",
-        "Empresa, risco, maturidade.",
-        "Fonte conflitante mostra divergência."
-      ],
-      [
-        "Red flag analytics",
-        "Risco de burnout/caos.",
-        "Score de risco.",
-        "Descrição curta = unknown."
-      ],
-      [
-        "Time-to-stage",
-        "Gargalo.",
-        "Tempo médio por etapa.",
-        "Datas faltantes excluídas."
-      ],
-      [
-        "Forecast de pipeline",
-        "Planejamento.",
-        "Probabilidade por estágio.",
-        "Baixa confiança se dados poucos."
-      ],
-      [
-        "Export analytics",
-        "Compartilhar análise.",
-        "CSV/HTML/PDF.",
-        "Falha de export retorna erro real."
-      ],
-      [
-        "Alertas analíticos",
-        "Ação proativa.",
-        "Queda de conversão/atrasos.",
-        "Sem base estatística = WARN."
-      ]
-    ]
-  },
-  {
-    "id": "P15",
-    "title": "Fase 15 — Deploy, observabilidade, hardening e go-live",
-    "goal": "Colocar o produto em produção com segurança e operação diária.",
-    "why": "Produto só entrega valor real quando roda estável, monitorado e com backup.",
-    "tasks": [
-      [
-        "Configurar deploy",
-        "Rodar fora da máquina local.",
-        "Ambiente de produção.",
-        "Falha de deploy exige rollback."
-      ],
-      [
-        "Configurar CI/CD",
-        "Protege main.",
-        "Pipeline automático.",
-        "Teste falhou bloqueia merge."
-      ],
-      [
-        "Configurar backup",
-        "Protege dados.",
-        "Backup periódico testado.",
-        "Backup falhou gera alerta."
-      ],
-      [
-        "Logs estruturados",
-        "Diagnóstico.",
-        "Logs com requestId/actor sem PII indevida.",
-        "PII sensível em log é FAIL."
-      ],
-      [
-        "Métricas",
-        "Operação.",
-        "API, worker, jobs, erros.",
-        "Erro sem métrica crítica vira WARN."
-      ],
-      [
-        "Error tracking",
-        "Captura falhas.",
-        "Erro rastreável.",
-        "Erro sem contexto precisa correção."
-      ],
-      [
-        "Secrets management",
-        "Segurança.",
-        "Segredos fora do Git.",
-        "Segredo versionado é FAIL crítico."
-      ],
-      [
-        "Hardening LGPD",
-        "Compliance.",
-        "Export/delete/consentimento.",
-        "Pedido LGPD sem atendimento é FAIL."
-      ],
-      [
-        "Runbook operacional",
-        "Operação 24h.",
-        "Procedimentos de incidentes.",
-        "Incidente sem runbook vira WARN."
-      ],
-      [
-        "Checklist go-live",
-        "Controle final.",
-        "Todos gates OK.",
-        "Item crítico FAIL bloqueia go-live."
-      ],
-      [
-        "Teste de restauração",
-        "Backup útil.",
-        "Restore validado.",
-        "Backup sem restore testado é WARN/FAIL."
-      ]
-    ]
-  }
-];
-    const STORAGE_KEY = "job-match-os-master-checklist-v2";
+    <script>
+      const phases = [
+        {
+          id: "P0",
+          title: "Fase 0 — Blueprint real, escopo e critérios de verdade",
+          goal: "Transformar a visão do Job Match OS em decisões reais, rastreáveis e aplicáveis nas próximas fases.",
+          why: "Sem blueprint decisório, o projeto vira código desconectado. Esta fase define limites, regras anti-fake, escopo, segurança e Definition of Done.",
+          tasks: [
+            [
+              "Definir visão do produto Job Match OS",
+              "Garante que o produto não seja apenas um CRUD de vagas, mas um sistema operacional de carreira.",
+              "Documento de visão com problema, proposta de valor, módulos e público-alvo.",
+              "Se ficar genérico, reescrever até explicar claramente a dor, o diferencial e o usuário."
+            ],
+            [
+              "Definir regra anti-fake desde a Fase 0",
+              "Impede mocks, placeholders e sucesso falso como entrega final.",
+              "Política registrada: tudo interno deve ser real dentro do escopo da fase.",
+              "Qualquer item com fake_success, mock_sent ou simulated_apply deve ser FAIL."
+            ],
+            [
+              "Mapear módulos do sistema",
+              "Organiza Resume-as-Code, radar 24h, IA, CRM, extensão, calendário e analytics.",
+              "Lista de módulos com objetivo, entrada, saída e dependências.",
+              "Se um módulo não tiver dono/fase, classificar como futuro ou remover."
+            ],
+            [
+              "Classificar fontes de vagas",
+              "Evita scraping proibido e risco operacional.",
+              "Fontes categorizadas por manual, RSS, API oficial, OAuth, e-mail autorizado ou official_api_required.",
+              "Fonte sem permissão clara vira official_api_required."
+            ],
+            [
+              "Definir política de candidatura segura",
+              "Impede candidatura automática indevida.",
+              "Auto apply bloqueado por padrão e aprovação humana obrigatória.",
+              "Se qualquer fluxo permitir envio sem aprovação, bloquear."
+            ],
+            [
+              "Definir arquitetura alvo",
+              "Evita retrabalho estrutural.",
+              "Monorepo, apps, packages, banco, workers, extensão e integrações definidos.",
+              "Se arquitetura não suportar worker 24h, Chrome Extension ou auditoria, revisar."
+            ],
+            [
+              "Definir Definition of Done por fase",
+              "Cria critério objetivo de aceite.",
+              "Cada fase tem DoD técnico e funcional.",
+              "Fase sem DoD não pode ser considerada pronta."
+            ],
+            [
+              "Criar matriz de riscos",
+              "Antecipa riscos legais, técnicos e de produto.",
+              "Riscos com mitigação, severidade e responsável.",
+              "Risco sem mitigação vira WARN ou FAIL."
+            ],
+            [
+              "Criar documentos operacionais .ops",
+              "Permite auditoria posterior.",
+              "Checklist, evidência e relatório final da fase.",
+              "Se não houver evidência, fase não pode ser validada."
+            ]
+          ]
+        },
+        {
+          id: "P1",
+          title: "Fase 1 — Monorepo real e validação técnica",
+          goal: "Criar a fundação técnica real que instala, compila, testa e valida.",
+          why: "O produto precisa crescer com apps, packages, API, worker, web e extensão sem virar um repositório caótico.",
+          tasks: [
+            [
+              "Criar pnpm workspace",
+              "Permite organizar múltiplos apps e packages.",
+              "pnpm install funcionando em todos os workspaces.",
+              "Se lockfile falhar, corrigir lock e workspace sem ignorar erro."
+            ],
+            [
+              "Configurar Turborepo",
+              "Executa build/typecheck/lint/test em ordem.",
+              "turbo run funcionando com dependsOn correto.",
+              "Se testes rodarem antes do build, ajustar turbo.json."
+            ],
+            [
+              "Configurar TypeScript strict",
+              "Evita erro silencioso.",
+              "strict true e typecheck OK.",
+              "Corrigir tipos; nunca relaxar strict para passar."
+            ],
+            [
+              "Configurar ESLint",
+              "Padroniza qualidade e segurança.",
+              "lint OK em todos os packages.",
+              "Corrigir código; não desabilitar regra global sem motivo técnico."
+            ],
+            [
+              "Configurar Prettier",
+              "Evita ruído de formatação.",
+              "format:check OK.",
+              "Rodar format e commitar alterações."
+            ],
+            [
+              "Criar apps/web",
+              "Base real do frontend.",
+              "Next.js buildando.",
+              "Se build quebrar, corrigir dependência/config."
+            ],
+            [
+              "Criar apps/api",
+              "Base real do backend.",
+              "Health/ready/version funcionais.",
+              "Se endpoint responder mock enganoso, corrigir."
+            ],
+            [
+              "Criar apps/worker",
+              "Base para processamento 24h futuro.",
+              "Worker compila e testa.",
+              "Se ainda não processa jobs, declarar estrutura real e honesta."
+            ],
+            [
+              "Criar packages base",
+              "Separa responsabilidades.",
+              "config/logger/contracts/database/etc. compilam.",
+              "Package vazio sem função deve ser documentado ou removido."
+            ],
+            [
+              "Criar scripts validate",
+              "Garante gate único.",
+              "pnpm validate executa format, typecheck, lint, test e build.",
+              "Se validate não cobre algo essencial, corrigir scripts."
+            ],
+            [
+              "Ignorar artefatos",
+              "Evita versionar lixo de build.",
+              ".gitignore cobre dist, .next, .turbo, *.tsbuildinfo.",
+              "Se artefato aparecer no git, remover do controle."
+            ]
+          ]
+        },
+        {
+          id: "P2",
+          title: "Fase 2 — Banco, contratos e modelos reais",
+          goal: "Criar schema Prisma, contratos Zod, tipos e regras reais do domínio.",
+          why: "Antes de tela e automação, o sistema precisa representar corretamente candidato, currículo, empresa, vaga, fonte, análise, candidatura e auditoria.",
+          tasks: [
+            [
+              "Criar Prisma schema",
+              "Define o banco real do produto.",
+              "Models, relações e enums coerentes.",
+              "Relação quebrada ou órfã deve ser corrigida antes de avançar."
+            ],
+            [
+              "Criar CandidateProfile",
+              "Representa o candidato como entidade central.",
+              "Perfil persistível e validável.",
+              "Campos críticos vazios devem ser rejeitados."
+            ],
+            [
+              "Criar ResumeDocument",
+              "Guarda currículo base e versões.",
+              "Currículos persistidos com versão e conteúdo.",
+              "Currículo vazio ou sem candidato deve falhar."
+            ],
+            [
+              "Criar Company",
+              "Permite associar vaga a empresa.",
+              "Empresas persistíveis.",
+              "Duplicidade deve ser registrada como risco para dedup futuro."
+            ],
+            [
+              "Criar JobSource",
+              "Controla origem e política da vaga.",
+              "allowsScraping=false, allowsAutoApply=false, requiresHumanApproval=true por padrão.",
+              "Se default permitir automação perigosa, FAIL."
+            ],
+            [
+              "Criar JobOpportunity",
+              "Representa vaga real.",
+              "Vaga com título, descrição, status, fonte e empresa quando disponível.",
+              "Descrição vazia deve retornar erro."
+            ],
+            [
+              "Criar CompatibilityAnalysis",
+              "Registra análise e scores.",
+              "Scores e justificativas persistíveis.",
+              "Score sem base em dados deve ser FAIL."
+            ],
+            [
+              "Criar CompatibilityReport",
+              "Guarda relatório gerado.",
+              "HTML/Markdown com dados estruturados.",
+              "Relatório genérico sem dados reais é FAIL."
+            ],
+            [
+              "Criar ApplicationProcess",
+              "Controla candidatura.",
+              "Status real e aprovação humana.",
+              "Não permitir applied sem evidência ou ação manual."
+            ],
+            [
+              "Criar CalendarEvent",
+              "Base do calendário interno.",
+              "Eventos internos persistíveis.",
+              "Não fingir Google Calendar."
+            ],
+            [
+              "Criar AuditLog",
+              "Rastreia ações relevantes.",
+              "Ações auditáveis persistíveis.",
+              "Ação crítica sem audit vira WARN/FAIL."
+            ],
+            [
+              "Criar contratos Zod",
+              "Valida entradas e saídas.",
+              "Schemas e types exportados.",
+              "Uso de any ou schema frouxo deve ser corrigido."
+            ],
+            [
+              "Criar testes node:test",
+              "Prova contratos e defaults.",
+              "Testes para Zod, scoring e fontes.",
+              "Não remover testes para passar."
+            ]
+          ]
+        },
+        {
+          id: "P3",
+          title: "Fase 3 — Backend real, Prisma e correção de mocks",
+          goal: "Converter a base para backend real e substituir mocks internos por implementação funcional.",
+          why: "A plataforma precisa persistir, consultar, auditar e operar dados reais.",
+          tasks: [
+            [
+              "Auditar mocks anteriores",
+              "Identifica placeholder/noop/in-memory runtime.",
+              "mock-correction-report.md com status por arquivo.",
+              "Mock interno como runtime principal deve ser FAIL."
+            ],
+            [
+              "Implementar Prisma Client",
+              "Conecta aplicação ao banco real.",
+              "Cliente isolado e configurado.",
+              "DATABASE_URL ausente deve gerar erro real, não sucesso falso."
+            ],
+            [
+              "Criar repositórios Prisma",
+              "Persistência real.",
+              "CRUD via Prisma para entidades principais.",
+              "Map/in-memory só pode existir para teste unitário."
+            ],
+            [
+              "Criar serviços de domínio",
+              "Centraliza regras.",
+              "CandidateService, JobService, AnalysisService etc.",
+              "Regra crítica em rota deve ser refatorada."
+            ],
+            [
+              "Criar API persistente",
+              "Opera dados reais.",
+              "Endpoints criam/listam/buscam dados.",
+              "Resposta fixa ou mockada é FAIL."
+            ],
+            [
+              "Persistir auditoria",
+              "Garante rastreabilidade.",
+              "AuditLog salvo em ações relevantes.",
+              "Ação crítica sem audit deve falhar validação."
+            ],
+            [
+              "Persistir calendário interno",
+              "Agenda real da plataforma.",
+              "CalendarEvent interno real.",
+              "Google ausente deve ser external_calendar_not_configured."
+            ],
+            [
+              "Implementar scoring determinístico",
+              "Compatibilidade real sem IA falsa.",
+              "Score por pesos e dados reais.",
+              "Número aleatório ou fixo é FAIL."
+            ],
+            [
+              "Gerar relatórios HTML reais",
+              "Materializa análise.",
+              "Relatório com candidato, vaga, empresa, score e ações.",
+              "Relatório genérico é FAIL."
+            ],
+            [
+              "Gerar drafts reais",
+              "Apoia comunicação sem enviar.",
+              "Resposta, carta e ajuste com dados reais.",
+              "Envio automático sem aprovação é FAIL."
+            ],
+            [
+              "Controlar candidatura segura",
+              "Evita fake apply.",
+              "Status persistidos e human approval.",
+              "Marcar aplicada sem evidência é FAIL."
+            ],
+            [
+              "Documentar estados externos",
+              "Evita sucesso falso.",
+              "official_api_required/external_integration_not_configured etc.",
+              "fake_success deve ser FAIL."
+            ]
+          ]
+        },
+        {
+          id: "P4",
+          title: "Fase 4 — UI real e fluxo visual operacional",
+          goal: "Criar dashboard real conectado ao backend real.",
+          why: "Backend sem UI não é produto operável por pessoa não técnica.",
+          tasks: [
+            [
+              "Criar App Shell",
+              "Base de navegação.",
+              "Sidebar, header, layout responsivo.",
+              "Tela quebrada em desktop/mobile deve ser corrigida."
+            ],
+            [
+              "Criar Dashboard",
+              "Visão executiva.",
+              "Cards reais de vagas, matches, candidaturas e alertas.",
+              "Métrica mockada é FAIL."
+            ],
+            [
+              "Criar tela de Candidatos",
+              "Operar perfil.",
+              "CRUD via API real.",
+              "Salvar em localStorage é FAIL."
+            ],
+            [
+              "Criar tela de Currículos",
+              "Operar documentos.",
+              "Cadastro/listagem/detalhe via API.",
+              "Não persistir é FAIL."
+            ],
+            [
+              "Criar tela de Empresas",
+              "Gerenciar contas-alvo.",
+              "CRUD real.",
+              "Duplicidade sem aviso vira WARN."
+            ],
+            [
+              "Criar tela de Fontes",
+              "Exibir políticas.",
+              "Fontes com integrationMode e regras.",
+              "Fonte fingindo integração é FAIL."
+            ],
+            [
+              "Criar tela de Vagas",
+              "Operar oportunidades.",
+              "Cadastrar/listar/detalhar vaga.",
+              "Vaga sem persistência é FAIL."
+            ],
+            [
+              "Criar tela de Análise",
+              "Rodar compatibilidade.",
+              "Botão chama API real e mostra score.",
+              "Score mockado é FAIL."
+            ],
+            [
+              "Criar visualizador de Relatório",
+              "Mostrar HTML real.",
+              "Renderização segura do relatório.",
+              "HTML genérico é FAIL."
+            ],
+            [
+              "Criar tela de Drafts",
+              "Revisar textos gerados.",
+              "Drafts reais com status.",
+              "Enviar sem aprovação é FAIL."
+            ],
+            [
+              "Criar tela de Candidaturas",
+              "Controlar pipeline básico.",
+              "Status e ações seguras.",
+              "Marcar aplicada sem confirmação é FAIL."
+            ],
+            [
+              "Criar tela de Calendário",
+              "Ver agenda interna.",
+              "Eventos internos reais.",
+              "Fingir Google Calendar é FAIL."
+            ],
+            [
+              "Criar tela de Auditoria",
+              "Transparência.",
+              "Lista audit log real.",
+              "Ação ausente exige investigação."
+            ],
+            [
+              "Implementar error/loading/empty states",
+              "UX confiável.",
+              "Erros 400/404/500 claros.",
+              "Tela branca ou erro engolido é FAIL."
+            ]
+          ]
+        },
+        {
+          id: "P5",
+          title: "Fase 5 — Autenticação, segurança e permissões",
+          goal: "Proteger dados sensíveis e identificar ações.",
+          why: "O sistema armazena dados profissionais, salariais, documentos e histórico de candidatura.",
+          tasks: [
+            [
+              "Criar User",
+              "Identidade real.",
+              "Usuário persistido.",
+              "Ação privada sem usuário deve bloquear."
+            ],
+            [
+              "Implementar login",
+              "Entrada segura.",
+              "Sessão criada com credenciais válidas.",
+              "Credencial inválida retorna 401."
+            ],
+            [
+              "Implementar logout",
+              "Encerrar sessão.",
+              "Token/cookie invalidado.",
+              "Sessão ativa após logout é FAIL."
+            ],
+            [
+              "Hash de senha",
+              "Protege credenciais.",
+              "bcrypt/argon2.",
+              "Senha em texto puro é FAIL crítico."
+            ],
+            ["Criar sessões", "Controla acesso.", "Sessão expira.", "Token sem expiração é FAIL."],
+            [
+              "Middleware auth API",
+              "Protege dados.",
+              "Rotas privadas exigem login.",
+              "Vazamento de rota privada é FAIL."
+            ],
+            [
+              "Proteção UI",
+              "Bloqueia telas privadas.",
+              "Redirect para login.",
+              "Tela privada aberta sem auth é FAIL."
+            ],
+            ["Rate limit", "Evita abuso.", "Limites por IP/usuário.", "Brute-force livre é FAIL."],
+            [
+              "Audit actor real",
+              "Rastreia ações.",
+              "audit.actorId preenchido.",
+              "Audit anônimo indevido é FAIL."
+            ],
+            [
+              "Regras LGPD",
+              "Privacidade.",
+              "Minimização, exportação e exclusão de dados.",
+              "PII sensível em log é FAIL crítico."
+            ]
+          ]
+        },
+        {
+          id: "P6",
+          title: "Fase 6 — Resume-as-Code Studio e exportações",
+          goal: "Criar currículo modular real, versionado e exportável.",
+          why: "Currículo estático não compete bem; a plataforma deve montar variações honestas e contextuais.",
+          tasks: [
+            [
+              "Criar ExperienceBlock",
+              "Modulariza histórico.",
+              "Blocos reutilizáveis persistidos.",
+              "Bloco sem origem real deve ser review_required."
+            ],
+            [
+              "Criar SkillTag",
+              "Classifica competências.",
+              "Tags por skill/setor/impacto.",
+              "Tag duplicada deve ser normalizada."
+            ],
+            [
+              "Criar Achievement",
+              "Evidencia impacto.",
+              "Conquistas quantificáveis.",
+              "Métrica ausente vira WARN, não invenção."
+            ],
+            [
+              "Criar StarStory",
+              "Prepara entrevista.",
+              "Histórias Situação/Tarefa/Ação/Resultado.",
+              "História incompleta marcada como incomplete."
+            ],
+            [
+              "Criar ResumeVersion",
+              "Preserva histórico.",
+              "Versões imutáveis.",
+              "Sobrescrever versão antiga é FAIL."
+            ],
+            [
+              "Criar templates",
+              "Padroniza saída.",
+              "Templates ATS-safe.",
+              "Template que quebra ATS deve ser bloqueado."
+            ],
+            [
+              "Exportar HTML",
+              "Visualização web.",
+              "HTML renderizado com dados reais.",
+              "Campo ausente mostra aviso."
+            ],
+            [
+              "Exportar PDF",
+              "Documento final.",
+              "PDF profissional e parseável.",
+              "Falha no PDF retorna erro real."
+            ],
+            [
+              "Comparar versões",
+              "Mede evolução.",
+              "Diff entre currículos.",
+              "Versão inexistente retorna 404."
+            ],
+            [
+              "Anti-alucinação",
+              "Preserva ética.",
+              "Somente blocos reais usados.",
+              "Experiência inventada é bloqueada."
+            ],
+            [
+              "ATS Compatibility Checker",
+              "Avalia parseabilidade.",
+              "Score ATS e recomendações.",
+              "PDF não parseável gera alerta vermelho."
+            ]
+          ]
+        },
+        {
+          id: "P7",
+          title: "Fase 7 — Chrome Extension Capture",
+          goal: "Criar extensão Chrome para capturar e analisar vagas no navegador.",
+          why: "O usuário encontra vagas navegando; a extensão transforma o navegador em cockpit de captura.",
+          tasks: [
+            [
+              "Criar apps/chrome-extension",
+              "Separa extensão do web app.",
+              "App MV3 buildável.",
+              "Build quebrado bloqueia fase."
+            ],
+            [
+              "Criar manifest.json MV3",
+              "Define permissões e entradas.",
+              "Manifest válido e mínimo.",
+              "Permissão ampla sem justificativa é WARN/FAIL."
+            ],
+            [
+              "Criar content script",
+              "Lê página ativa.",
+              "Script injeta somente com interação/activeTab.",
+              "Acesso indiscriminado é FAIL."
+            ],
+            [
+              "Criar detector de vaga",
+              "Identifica páginas relevantes.",
+              "Detector retorna confiança.",
+              "Se baixa confiança, pedir seleção manual."
+            ],
+            [
+              "Criar extrator de texto",
+              "Captura conteúdo visível.",
+              "Título, empresa, local, descrição e URL.",
+              "Texto insuficiente vira manual_review_required."
+            ],
+            [
+              "Criar dom sanitizer",
+              "Evita enviar lixo/sensível.",
+              "Conteúdo limpo e limitado.",
+              "Coletar dados desnecessários é WARN."
+            ],
+            [
+              "Criar side panel",
+              "Mostra análise no navegador.",
+              "Score, riscos e ações.",
+              "Score estático é FAIL."
+            ],
+            [
+              "Criar popup",
+              "Ações rápidas.",
+              "Salvar/analisar/ver status.",
+              "Ação sem auth pede login."
+            ],
+            [
+              "Criar API client",
+              "Comunica com backend.",
+              "Envio seguro para API real.",
+              "API fora salva pending_sync e mostra erro."
+            ],
+            [
+              "Criar auth da extensão",
+              "Identifica usuário.",
+              "Token seguro no storage.",
+              "Token em texto exposto indevido é FAIL."
+            ],
+            [
+              "Detectar duplicidade",
+              "Evita CRM sujo.",
+              "Alerta se vaga existe.",
+              "Duplicata ignorada vira WARN."
+            ],
+            [
+              "Auditar captura",
+              "Rastreia origem.",
+              "Audit log job.captured_from_extension.",
+              "Sem audit em captura é FAIL."
+            ]
+          ]
+        },
+        {
+          id: "P8",
+          title: "Fase 8 — Radar de vagas, OCR e ingestão segura",
+          goal: "Criar entrada real de oportunidades por canais permitidos.",
+          why: "O funil precisa ser alimentado por vagas reais sem violar termos ou fingir automação.",
+          tasks: [
+            [
+              "Importação manual",
+              "Caminho universal.",
+              "Usuário cola texto e salva vaga.",
+              "Texto vazio retorna 400."
+            ],
+            [
+              "Importação por URL manual",
+              "Rastreia origem.",
+              "URL salva e classificada.",
+              "Não buscar site sem permissão."
+            ],
+            [
+              "Upload PDF",
+              "Captura vaga em arquivo.",
+              "Texto extraído e revisável.",
+              "PDF ilegível retorna erro claro."
+            ],
+            [
+              "Upload imagem",
+              "Usa prints.",
+              "Imagem enviada para OCR.",
+              "Falha OCR pede revisão manual."
+            ],
+            [
+              "OCR",
+              "Extrai texto de imagem/PDF.",
+              "Texto normalizado com confidence.",
+              "Baixa confiança vira review_required."
+            ],
+            [
+              "Parser de e-mail autorizado",
+              "Lê alertas permitidos.",
+              "Vagas de e-mail com OAuth/IMAP/API.",
+              "Sem OAuth retorna external_integration_not_configured."
+            ],
+            [
+              "RSS permitido",
+              "Ingestão limpa.",
+              "Feed processado com rate limit.",
+              "RSS quebrado gera erro rastreável."
+            ],
+            [
+              "API oficial",
+              "Integração legal.",
+              "Dados importados por token válido.",
+              "Token ausente retorna provider_not_configured."
+            ],
+            [
+              "Deduplicação",
+              "Evita lixo métrico.",
+              "Vagas iguais fundidas ou sinalizadas.",
+              "Falso positivo permite desfazer merge."
+            ],
+            [
+              "Fingerprint semântico",
+              "Detecta duplicatas com variações.",
+              "Hash por empresa+cargo+local+texto.",
+              "Campo ausente usa fallback."
+            ],
+            [
+              "Normalização",
+              "Padroniza vaga.",
+              "Campos consistentes.",
+              "Campo ausente marcado unknown."
+            ]
+          ]
+        },
+        {
+          id: "P9",
+          title: "Fase 9 — Filas, Redis, workers e 24h real",
+          goal: "Criar motor autônomo 24h no backend/servidor.",
+          why: "Chrome Extension não garante execução contínua; OCR, IA e ingestão precisam de workers persistentes.",
+          tasks: [
+            [
+              "Configurar Redis",
+              "Infra de filas.",
+              "Redis via Docker/serviço.",
+              "Redis fora coloca worker em degraded mode."
+            ],
+            ["Configurar BullMQ", "Gerencia jobs.", "Queues reais.", "Job falho deve ter retry."],
+            [
+              "Criar queue package",
+              "Isola filas.",
+              "Contratos de jobs.",
+              "Payload sem schema é FAIL."
+            ],
+            [
+              "Criar worker real",
+              "Processa fora da API.",
+              "Worker separado.",
+              "Worker crasha gera log e restart."
+            ],
+            [
+              "Criar scheduler",
+              "Execução periódica.",
+              "Jobs recorrentes.",
+              "Cron falho gera audit/log."
+            ],
+            [
+              "Retry e backoff",
+              "Resiliência.",
+              "Tentativas controladas.",
+              "Erro permanente vai para dead-letter."
+            ],
+            [
+              "Dead-letter queue",
+              "Diagnóstico.",
+              "Jobs falhos rastreáveis.",
+              "DLQ crescendo gera alerta."
+            ],
+            [
+              "Rate limiting",
+              "Evita bloqueio.",
+              "Limite por fonte/provedor.",
+              "Excesso pausa fonte."
+            ],
+            ["Job logs", "Observabilidade.", "Histórico de execução.", "PII nos logs é FAIL."],
+            [
+              "Healthcheck worker",
+              "Operação 24h.",
+              "Status API/worker/Redis.",
+              "Indisponível retorna degraded."
+            ],
+            [
+              "Operação autônoma",
+              "Trabalha sem UI aberta.",
+              "Ingestão/análise/notificação rodam no backend.",
+              "Não atribuir 24h à extensão."
+            ]
+          ]
+        },
+        {
+          id: "P10",
+          title: "Fase 10 — IA real multiagente",
+          goal: "Implementar agentes reais com provedores oficiais, validação e guardrails.",
+          why: "IA aumenta qualidade, mas precisa ser auditável e impedida de inventar experiência.",
+          tasks: [
+            [
+              "Configurar provider oficial",
+              "Usa IA real.",
+              "OpenAI/Anthropic/etc. por config.",
+              "Chave ausente retorna external_ai_not_configured."
+            ],
+            [
+              "Structured Outputs",
+              "Reduz payload inválido.",
+              "JSON estruturado.",
+              "Payload inválido rejeitado ou retry."
+            ],
+            [
+              "Zod validation",
+              "Firewall técnico.",
+              "Saída validada antes de salvar.",
+              "Falha Zod não persiste."
+            ],
+            [
+              "Agente Coletor",
+              "Extrai vaga.",
+              "JSON limpo com requisitos.",
+              "Texto ruim vira review_required."
+            ],
+            [
+              "Agente Analista",
+              "Avalia aderência.",
+              "Score/riscos/atratividade.",
+              "Contradição vai ao validador."
+            ],
+            [
+              "Agente Validador",
+              "Protege verdade.",
+              "Bloqueia invenção.",
+              "Experiência não comprovada vira FAIL."
+            ],
+            [
+              "Agente Estrategista",
+              "Define narrativa.",
+              "Posicionamento e tom.",
+              "Exagero deve ser rebaixado."
+            ],
+            [
+              "Prompt logs",
+              "Auditoria.",
+              "Prompts/respostas com PII mascarada.",
+              "PII sensível em log é FAIL."
+            ],
+            [
+              "Cost tracking",
+              "Controla gasto.",
+              "Tokens/custo por execução.",
+              "Limite excedido pausa job."
+            ],
+            ["Guardrails", "Segurança.", "Regras anti-fake.", "Violação bloqueia output."],
+            [
+              "Human review",
+              "Controle final.",
+              "Saídas sensíveis exigem aprovação.",
+              "Envio direto sem aprovação é FAIL."
+            ]
+          ]
+        },
+        {
+          id: "P11",
+          title: "Fase 11 — CRM avançado, SLA e candidatura assistida",
+          goal: "Criar pipeline profissional de candidatura e relacionamento.",
+          why: "Sem CRM o candidato perde follow-up, não mede conversão e não sabe onde o funil trava.",
+          tasks: [
+            [
+              "Kanban drag-and-drop",
+              "Operar funil.",
+              "Mudança de status persistida.",
+              "Status inválido bloqueado."
+            ],
+            [
+              "SLA por etapa",
+              "Evita esquecimento.",
+              "Alertas por atraso.",
+              "Data ausente usa fallback ou review."
+            ],
+            [
+              "Follow-up draft",
+              "Mantém contato.",
+              "Texto em draft.",
+              "Envio sem aprovação é FAIL."
+            ],
+            [
+              "Motivo de perda",
+              "Aprendizado.",
+              "Registro estruturado.",
+              "Perda sem motivo pede classificação."
+            ],
+            [
+              "Pipeline history",
+              "Rastreabilidade.",
+              "Histórico de transições.",
+              "Transição sem audit é FAIL."
+            ],
+            ["Aprovação humana", "Segurança.", "Ações externas exigem OK.", "Bypass é FAIL."],
+            [
+              "Próxima ação",
+              "Guia operação.",
+              "Ação recomendada.",
+              "Dados insuficientes mostra definir manualmente."
+            ],
+            [
+              "Evidence Vault",
+              "Prova de candidatura.",
+              "Snapshot, URL, currículo, carta e data.",
+              "Sem evidência não marcar como enviada."
+            ],
+            [
+              "Networking CRM",
+              "Relacionamento.",
+              "Recrutadores, contatos e histórico.",
+              "Sem canal permitido não enviar."
+            ],
+            [
+              "Opportunity ranking",
+              "Prioriza foco.",
+              "Ranking por score, salário, risco e timing.",
+              "Dados faltantes sinalizam baixa confiança."
+            ]
+          ]
+        },
+        {
+          id: "P12",
+          title: "Fase 12 — Telegram Command Center",
+          goal: "Permitir operação tática pelo celular.",
+          why: "Vagas boas exigem velocidade; Telegram permite aprovação e comando remoto.",
+          tasks: [
+            [
+              "Configurar Telegram Bot API",
+              "Canal oficial.",
+              "Bot com token configurável.",
+              "Token ausente provider_not_configured."
+            ],
+            [
+              "Criar webhook seguro",
+              "Recebe ações.",
+              "Validação de segredo/assinatura.",
+              "Webhook inválido retorna 401."
+            ],
+            [
+              "Enviar match alert",
+              "Avisa oportunidades críticas.",
+              "Mensagem com score e resumo.",
+              "Falha de envio vai para retry."
+            ],
+            [
+              "Criar inline buttons",
+              "Ações rápidas.",
+              "Aprovar, descartar, detalhes.",
+              "Ação inválida retorna erro."
+            ],
+            [
+              "Aprovar geração",
+              "Human-in-the-loop.",
+              "Aprovação auditada.",
+              "Ação crítica sem confirmação é FAIL."
+            ],
+            [
+              "Enviar relatório",
+              "Consulta rápida.",
+              "Relatório ou link seguro.",
+              "Falha gera erro real."
+            ],
+            [
+              "Enviar PDF",
+              "Artefato no celular.",
+              "PDF anexado ou link.",
+              "PDF quebrado não envia fake."
+            ],
+            [
+              "Sincronizar CRM",
+              "Mantém status consistente.",
+              "Ação no Telegram atualiza pipeline.",
+              "Divergência gera audit warning."
+            ],
+            [
+              "Autenticar comandos",
+              "Evita terceiros.",
+              "Usuário autorizado.",
+              "Usuário não autorizado bloqueado."
+            ]
+          ]
+        },
+        {
+          id: "P13",
+          title: "Fase 13 — Calendário externo, notificações e produtividade",
+          goal: "Integrar agenda, lembretes e canais oficiais.",
+          why: "Entrevistas e follow-ups precisam virar compromissos e lembretes reais.",
+          tasks: [
+            [
+              "Calendário interno avançado",
+              "Base sempre disponível.",
+              "Eventos internos reais.",
+              "Evento inválido retorna 400."
+            ],
+            [
+              "Exportar .ics",
+              "Funciona sem OAuth.",
+              "Arquivo .ics válido.",
+              "Dados incompletos bloqueiam geração."
+            ],
+            [
+              "Google Calendar OAuth",
+              "Integração oficial.",
+              "Evento externo criado se configurado.",
+              "OAuth ausente external_calendar_not_configured."
+            ],
+            [
+              "Eventos de entrevista",
+              "Organiza agenda.",
+              "Evento com vaga, empresa e links.",
+              "Fuso inválido pede ajuste."
+            ],
+            [
+              "Bloco de preparação",
+              "Melhora performance.",
+              "Evento 1h antes.",
+              "Agenda falha mantém evento interno."
+            ],
+            [
+              "Lembrete follow-up",
+              "Evita ghosting passivo.",
+              "Lembrete pós-entrevista.",
+              "Canal ausente cria tarefa manual."
+            ],
+            [
+              "E-mail autorizado",
+              "Comunicação oficial.",
+              "OAuth/IMAP/API configurável.",
+              "Sem consentimento bloqueia."
+            ],
+            [
+              "Notification center",
+              "Centraliza alertas.",
+              "Alertas internos/externos.",
+              "Falha externa não apaga alerta interno."
+            ],
+            [
+              "Preferências de notificação",
+              "Evita spam.",
+              "Canais e horários.",
+              "Sem preferência usa padrão seguro."
+            ]
+          ]
+        },
+        {
+          id: "P14",
+          title: "Fase 14 — Analytics, A/B testing e inteligência de mercado",
+          goal: "Criar laboratório de conversão e melhoria contínua.",
+          why: "O candidato precisa saber quais fontes, currículos e estratégias geram resultado.",
+          tasks: [
+            [
+              "Conversion dashboard",
+              "Mede funil.",
+              "CV→entrevista→proposta→oferta.",
+              "Dados incompletos sinalizados."
+            ],
+            [
+              "Source analytics",
+              "Compara fontes.",
+              "Conversão por LinkedIn/Gupy/etc.",
+              "Fonte unknown classificada."
+            ],
+            [
+              "Resume A/B testing",
+              "Testa versões.",
+              "Resultado por hash/versão.",
+              "Amostra baixa não escolhe vencedor."
+            ],
+            [
+              "Salary intelligence",
+              "Negociação.",
+              "Faixa, CLT/PJ, hard stop.",
+              "Salário ausente estimate_required."
+            ],
+            [
+              "Company intelligence",
+              "Contexto.",
+              "Empresa, risco, maturidade.",
+              "Fonte conflitante mostra divergência."
+            ],
+            [
+              "Red flag analytics",
+              "Risco de burnout/caos.",
+              "Score de risco.",
+              "Descrição curta = unknown."
+            ],
+            ["Time-to-stage", "Gargalo.", "Tempo médio por etapa.", "Datas faltantes excluídas."],
+            [
+              "Forecast de pipeline",
+              "Planejamento.",
+              "Probabilidade por estágio.",
+              "Baixa confiança se dados poucos."
+            ],
+            [
+              "Export analytics",
+              "Compartilhar análise.",
+              "CSV/HTML/PDF.",
+              "Falha de export retorna erro real."
+            ],
+            [
+              "Alertas analíticos",
+              "Ação proativa.",
+              "Queda de conversão/atrasos.",
+              "Sem base estatística = WARN."
+            ]
+          ]
+        },
+        {
+          id: "P15",
+          title: "Fase 15 — Deploy, observabilidade, hardening e go-live",
+          goal: "Colocar o produto em produção com segurança e operação diária.",
+          why: "Produto só entrega valor real quando roda estável, monitorado e com backup.",
+          tasks: [
+            [
+              "Configurar deploy",
+              "Rodar fora da máquina local.",
+              "Ambiente de produção.",
+              "Falha de deploy exige rollback."
+            ],
+            [
+              "Configurar CI/CD",
+              "Protege main.",
+              "Pipeline automático.",
+              "Teste falhou bloqueia merge."
+            ],
+            [
+              "Configurar backup",
+              "Protege dados.",
+              "Backup periódico testado.",
+              "Backup falhou gera alerta."
+            ],
+            [
+              "Logs estruturados",
+              "Diagnóstico.",
+              "Logs com requestId/actor sem PII indevida.",
+              "PII sensível em log é FAIL."
+            ],
+            [
+              "Métricas",
+              "Operação.",
+              "API, worker, jobs, erros.",
+              "Erro sem métrica crítica vira WARN."
+            ],
+            [
+              "Error tracking",
+              "Captura falhas.",
+              "Erro rastreável.",
+              "Erro sem contexto precisa correção."
+            ],
+            [
+              "Secrets management",
+              "Segurança.",
+              "Segredos fora do Git.",
+              "Segredo versionado é FAIL crítico."
+            ],
+            [
+              "Hardening LGPD",
+              "Compliance.",
+              "Export/delete/consentimento.",
+              "Pedido LGPD sem atendimento é FAIL."
+            ],
+            [
+              "Runbook operacional",
+              "Operação 24h.",
+              "Procedimentos de incidentes.",
+              "Incidente sem runbook vira WARN."
+            ],
+            [
+              "Checklist go-live",
+              "Controle final.",
+              "Todos gates OK.",
+              "Item crítico FAIL bloqueia go-live."
+            ],
+            [
+              "Teste de restauração",
+              "Backup útil.",
+              "Restore validado.",
+              "Backup sem restore testado é WARN/FAIL."
+            ]
+          ]
+        }
+      ];
+      const STORAGE_KEY = "job-match-os-master-checklist-v2";
 
-    let state = {
-      role: "executor",
-      agentName: "Jules",
-      items: {
-        "P0-01": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules / Codex", "validator": "", "executedAt": "2026-05-07T23:46", "validatedAt": "", "evidence": "README.md, docs/00-executive-summary.md e docs/01-product-blueprint.md atualizados com visao real, problema, publico-alvo, vagas como leads, candidaturas como pipeline e Resume-as-Code. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.", "validationEvidence": "PENDING_EXTERNAL_VALIDATION" },
-        "P0-02": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules / Codex", "validator": "", "executedAt": "2026-05-07T23:46", "validatedAt": "", "evidence": "README.md, docs/16-error-handling-and-validation-policy.md e docs/17-no-fake-success-policy.md atualizados com regra anti-fake e estados honestos. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.", "validationEvidence": "PENDING_EXTERNAL_VALIDATION" },
-        "P0-03": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules / Codex", "validator": "", "executedAt": "2026-05-07T23:46", "validatedAt": "", "evidence": "docs/03-domain-model.md atualizado com mapa de modulos, objetivo, entrada, saida e dependencias. Corrige WARN externo anterior. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.", "validationEvidence": "PENDING_EXTERNAL_VALIDATION" },
-        "P0-04": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules / Codex", "validator": "", "executedAt": "2026-05-07T23:46", "validatedAt": "", "evidence": "docs/04-job-sources-scope.md atualizado com fontes por API oficial, OAuth, webhook, RSS permitido, e-mail autorizado, manual, extensao assistida e official_api_required. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.", "validationEvidence": "PENDING_EXTERNAL_VALIDATION" },
-        "P0-05": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules / Codex", "validator": "", "executedAt": "2026-05-07T23:46", "validatedAt": "", "evidence": "docs/05-safe-automation-policy.md e docs/07-career-crm-workflows.md atualizados com auto apply bloqueado por padrao e aprovacao humana. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.", "validationEvidence": "PENDING_EXTERNAL_VALIDATION" },
-        "P0-06": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules / Codex", "validator": "", "executedAt": "2026-05-07T23:46", "validatedAt": "", "evidence": "docs/02-architecture.md, docs/14-chrome-extension-scope.md e docs/15-autonomous-24h-operation.md atualizados com arquitetura alvo, worker/backend 24h e extensao assistida. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.", "validationEvidence": "PENDING_EXTERNAL_VALIDATION" },
-        "P0-07": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules / Codex", "validator": "", "executedAt": "2026-05-07T23:46", "validatedAt": "", "evidence": "docs/11-roadmap-master.md, docs/12-phase-plan.md e docs/13-acceptance-criteria.md atualizados com roadmap P0-P15 e DoD por fase. Corrige WARN externo anterior. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.", "validationEvidence": "PENDING_EXTERNAL_VALIDATION" },
-        "P0-08": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules / Codex", "validator": "", "executedAt": "2026-05-07T23:46", "validatedAt": "", "evidence": "docs/10-data-privacy-and-security.md atualizado com matriz de riscos R-01 a R-10, mitigacao, severidade e responsavel. Corrige FAIL externo anterior. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.", "validationEvidence": "PENDING_EXTERNAL_VALIDATION" },
-        "P0-09": { "precheck": true, "executed": true, "validated": false, "status": "PENDING", "executor": "Jules / Codex", "validator": "", "executedAt": "2026-05-07T23:46", "validatedAt": "", "evidence": ".ops/master-checklist e .ops/phase-0 atualizados; Test-Path .\\package.json retornou False; pnpm install/format/validate registrados como SKIP justificado. Corrige FAIL externo anterior. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.", "validationEvidence": "PENDING_EXTERNAL_VALIDATION" }
-      }
-    };
+      let state = {
+        role: "executor",
+        agentName: "Jules",
+        items: {
+          "P0-01": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING",
+            executor: "Jules / Codex",
+            validator: "",
+            executedAt: "2026-05-07T23:46",
+            validatedAt: "",
+            evidence:
+              "README.md, docs/00-executive-summary.md e docs/01-product-blueprint.md atualizados com visao real, problema, publico-alvo, vagas como leads, candidaturas como pipeline e Resume-as-Code. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P0-02": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING",
+            executor: "Jules / Codex",
+            validator: "",
+            executedAt: "2026-05-07T23:46",
+            validatedAt: "",
+            evidence:
+              "README.md, docs/16-error-handling-and-validation-policy.md e docs/17-no-fake-success-policy.md atualizados com regra anti-fake e estados honestos. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P0-03": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING",
+            executor: "Jules / Codex",
+            validator: "",
+            executedAt: "2026-05-07T23:46",
+            validatedAt: "",
+            evidence:
+              "docs/03-domain-model.md atualizado com mapa de modulos, objetivo, entrada, saida e dependencias. Corrige WARN externo anterior. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P0-04": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING",
+            executor: "Jules / Codex",
+            validator: "",
+            executedAt: "2026-05-07T23:46",
+            validatedAt: "",
+            evidence:
+              "docs/04-job-sources-scope.md atualizado com fontes por API oficial, OAuth, webhook, RSS permitido, e-mail autorizado, manual, extensao assistida e official_api_required. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P0-05": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING",
+            executor: "Jules / Codex",
+            validator: "",
+            executedAt: "2026-05-07T23:46",
+            validatedAt: "",
+            evidence:
+              "docs/05-safe-automation-policy.md e docs/07-career-crm-workflows.md atualizados com auto apply bloqueado por padrao e aprovacao humana. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P0-06": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING",
+            executor: "Jules / Codex",
+            validator: "",
+            executedAt: "2026-05-07T23:46",
+            validatedAt: "",
+            evidence:
+              "docs/02-architecture.md, docs/14-chrome-extension-scope.md e docs/15-autonomous-24h-operation.md atualizados com arquitetura alvo, worker/backend 24h e extensao assistida. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P0-07": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING",
+            executor: "Jules / Codex",
+            validator: "",
+            executedAt: "2026-05-07T23:46",
+            validatedAt: "",
+            evidence:
+              "docs/11-roadmap-master.md, docs/12-phase-plan.md e docs/13-acceptance-criteria.md atualizados com roadmap P0-P15 e DoD por fase. Corrige WARN externo anterior. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P0-08": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING",
+            executor: "Jules / Codex",
+            validator: "",
+            executedAt: "2026-05-07T23:46",
+            validatedAt: "",
+            evidence:
+              "docs/10-data-privacy-and-security.md atualizado com matriz de riscos R-01 a R-10, mitigacao, severidade e responsavel. Corrige FAIL externo anterior. Resultado: OK. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          },
+          "P0-09": {
+            precheck: true,
+            executed: true,
+            validated: false,
+            status: "PENDING",
+            executor: "Jules / Codex",
+            validator: "",
+            executedAt: "2026-05-07T23:46",
+            validatedAt: "",
+            evidence:
+              ".ops/master-checklist e .ops/phase-0 atualizados; correcao Antigravity V00.09 executada em 2026-05-08 com pnpm format, pnpm install e pnpm validate. Resultado: pnpm validate OK. Validacao: PENDING_EXTERNAL_VALIDATION.",
+            validationEvidence: "PENDING_EXTERNAL_VALIDATION"
+          }
+        }
+      };
 
-    function taskKey(phaseId, taskIndex) {
-      return `${phaseId}-${String(taskIndex + 1).padStart(2, "0")}`;
-    }
-
-    function loadState() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (raw) state = { ...state, ...JSON.parse(raw) };
-      } catch (error) {
-        console.warn("Falha ao carregar progresso:", error);
-      }
-      document.getElementById("roleSelect").value = state.role || "executor";
-      document.getElementById("agentName").value = state.agentName || "";
-    }
-
-    function saveAll() {
-      state.role = document.getElementById("roleSelect").value;
-      state.agentName = document.getElementById("agentName").value.trim();
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state, null, 2));
-      updateSummary();
-      updateRoleBanner();
-      alert("Progresso salvo localmente.");
-    }
-
-    function exportJson() {
-      saveAll();
-      const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "job-match-os-checklist-progress.json";
-      a.click();
-      URL.revokeObjectURL(url);
-    }
-
-    function resetProgress() {
-      if (!confirm("Tem certeza que deseja limpar o progresso salvo neste navegador?")) return;
-      localStorage.removeItem(STORAGE_KEY);
-      state = { role: "executor", agentName: "", items: {} };
-      render();
-    }
-
-    function ensureItem(key) {
-      if (!state.items[key]) {
-        state.items[key] = {
-          precheck: false,
-          executed: false,
-          validated: false,
-          status: "PENDING",
-          executor: "",
-          validator: "",
-          executedAt: "",
-          validatedAt: "",
-          evidence: "",
-          validationEvidence: ""
-        };
-      }
-      return state.items[key];
-    }
-
-    function statusPill(status) {
-      const normalized = (status || "PENDING").toLowerCase();
-      const cls = normalized === "ok" ? "good" :
-        normalized === "warn" ? "warn" :
-        normalized === "fail" ? "fail" :
-        normalized === "skip" ? "info" : "";
-      return `<span class="pill ${cls}"><span class="status-dot ${normalized}"></span>${status || "PENDING"}</span>`;
-    }
-
-    function roleCanExecute() {
-      return state.role === "executor" || state.role === "lead";
-    }
-
-    function roleCanValidate() {
-      return state.role === "validator" || state.role === "lead";
-    }
-
-    function updateRoleBanner() {
-      const banner = document.getElementById("roleBanner");
-      const role = document.getElementById("roleSelect").value;
-      state.role = role;
-      const name = document.getElementById("agentName").value.trim();
-      state.agentName = name;
-
-      let text = "";
-      let cls = "info";
-      if (role === "executor") {
-        text = "Modo EXECUTOR: pode fazer pré-check e marcar Executado. Não pode marcar Validado.";
-        cls = "warn";
-      } else if (role === "validator") {
-        text = "Modo VALIDADOR: pode marcar Validado. Não pode marcar Executado.";
-        cls = "good";
-      } else if (role === "auditor") {
-        text = "Modo AUDITOR: somente consulta, comentários e revisão. Não altera execução/validação.";
-        cls = "info";
-      } else {
-        text = "Modo LÍDER HUMANO: revisão geral. Use com responsabilidade.";
-        cls = "fail";
+      function taskKey(phaseId, taskIndex) {
+        return `${phaseId}-${String(taskIndex + 1).padStart(2, "0")}`;
       }
 
-      banner.innerHTML = `
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) state = { ...state, ...JSON.parse(raw) };
+        } catch (error) {
+          console.warn("Falha ao carregar progresso:", error);
+        }
+        document.getElementById("roleSelect").value = state.role || "executor";
+        document.getElementById("agentName").value = state.agentName || "";
+      }
+
+      function saveAll() {
+        state.role = document.getElementById("roleSelect").value;
+        state.agentName = document.getElementById("agentName").value.trim();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state, null, 2));
+        updateSummary();
+        updateRoleBanner();
+        alert("Progresso salvo localmente.");
+      }
+
+      function exportJson() {
+        saveAll();
+        const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "job-match-os-checklist-progress.json";
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      function resetProgress() {
+        if (!confirm("Tem certeza que deseja limpar o progresso salvo neste navegador?")) return;
+        localStorage.removeItem(STORAGE_KEY);
+        state = { role: "executor", agentName: "", items: {} };
+        render();
+      }
+
+      function ensureItem(key) {
+        if (!state.items[key]) {
+          state.items[key] = {
+            precheck: false,
+            executed: false,
+            validated: false,
+            status: "PENDING",
+            executor: "",
+            validator: "",
+            executedAt: "",
+            validatedAt: "",
+            evidence: "",
+            validationEvidence: ""
+          };
+        }
+        return state.items[key];
+      }
+
+      function statusPill(status) {
+        const normalized = (status || "PENDING").toLowerCase();
+        const cls =
+          normalized === "ok"
+            ? "good"
+            : normalized === "warn"
+              ? "warn"
+              : normalized === "fail"
+                ? "fail"
+                : normalized === "skip"
+                  ? "info"
+                  : "";
+        return `<span class="pill ${cls}"><span class="status-dot ${normalized}"></span>${status || "PENDING"}</span>`;
+      }
+
+      function roleCanExecute() {
+        return state.role === "executor" || state.role === "lead";
+      }
+
+      function roleCanValidate() {
+        return state.role === "validator" || state.role === "lead";
+      }
+
+      function updateRoleBanner() {
+        const banner = document.getElementById("roleBanner");
+        const role = document.getElementById("roleSelect").value;
+        state.role = role;
+        const name = document.getElementById("agentName").value.trim();
+        state.agentName = name;
+
+        let text = "";
+        let cls = "info";
+        if (role === "executor") {
+          text =
+            "Modo EXECUTOR: pode fazer pré-check e marcar Executado. Não pode marcar Validado.";
+          cls = "warn";
+        } else if (role === "validator") {
+          text = "Modo VALIDADOR: pode marcar Validado. Não pode marcar Executado.";
+          cls = "good";
+        } else if (role === "auditor") {
+          text =
+            "Modo AUDITOR: somente consulta, comentários e revisão. Não altera execução/validação.";
+          cls = "info";
+        } else {
+          text = "Modo LÍDER HUMANO: revisão geral. Use com responsabilidade.";
+          cls = "fail";
+        }
+
+        banner.innerHTML = `
         <span class="pill ${cls}">${text}</span>
         <span class="pill">Responsável atual: ${name ? escapeHtml(name) : "não informado"}</span>
       `;
-    }
+      }
 
-    function escapeHtml(value) {
-      return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
 
-    function render() {
-      loadState();
-      updateRoleBanner();
-
-      const container = document.getElementById("phases");
-      container.innerHTML = phases.map((phase) => renderPhase(phase)).join("");
-
-      document.getElementById("roleSelect").addEventListener("change", () => {
-        state.role = document.getElementById("roleSelect").value;
-        saveLight();
-        render();
-      });
-
-      document.getElementById("agentName").addEventListener("input", () => {
-        state.agentName = document.getElementById("agentName").value.trim();
-        saveLight();
+      function render() {
+        loadState();
         updateRoleBanner();
-      });
 
-      document.getElementById("filterInput").addEventListener("input", applyFilter);
-      updateSummary();
-    }
+        const container = document.getElementById("phases");
+        container.innerHTML = phases.map((phase) => renderPhase(phase)).join("");
 
-    function renderPhase(phase) {
-      const rows = phase.tasks.map((task, index) => renderTaskRow(phase, task, index)).join("");
-      return `
+        document.getElementById("roleSelect").addEventListener("change", () => {
+          state.role = document.getElementById("roleSelect").value;
+          saveLight();
+          render();
+        });
+
+        document.getElementById("agentName").addEventListener("input", () => {
+          state.agentName = document.getElementById("agentName").value.trim();
+          saveLight();
+          updateRoleBanner();
+        });
+
+        document.getElementById("filterInput").addEventListener("input", applyFilter);
+        updateSummary();
+      }
+
+      function renderPhase(phase) {
+        const rows = phase.tasks.map((task, index) => renderTaskRow(phase, task, index)).join("");
+        return `
         <article class="phase" data-phase="${phase.id}">
           <div class="phase-header">
             <div>
@@ -1896,16 +2126,16 @@ git status --short</pre>
           </div>
         </article>
       `;
-    }
+      }
 
-    function renderTaskRow(phase, task, index) {
-      const key = taskKey(phase.id, index);
-      const item = ensureItem(key);
-      const [title, why, expected, errorHandling] = task;
-      const execDisabled = roleCanExecute() ? "" : "disabled";
-      const validDisabled = roleCanValidate() ? "" : "disabled";
+      function renderTaskRow(phase, task, index) {
+        const key = taskKey(phase.id, index);
+        const item = ensureItem(key);
+        const [title, why, expected, errorHandling] = task;
+        const execDisabled = roleCanExecute() ? "" : "disabled";
+        const validDisabled = roleCanValidate() ? "" : "disabled";
 
-      return `
+        return `
         <tr data-row="${key}" data-search="${escapeHtml(`${phase.id} ${phase.title} ${title} ${why} ${expected} ${item.status}`).toLowerCase()}">
           <td>
             <div class="task-id">${key}</div>
@@ -1937,7 +2167,7 @@ git status --short</pre>
               <label><input type="checkbox" ${item.validated ? "checked" : ""} ${validDisabled}
                 onchange="setValidated('${key}', this.checked)"> Validado</label>
               <select onchange="setField('${key}', 'status', this.value)" ${validDisabled}>
-                ${["PENDING","OK","WARN","FAIL","SKIP"].map(s => `<option value="${s}" ${item.status === s ? "selected" : ""}>${s}</option>`).join("")}
+                ${["PENDING", "OK", "WARN", "FAIL", "SKIP"].map((s) => `<option value="${s}" ${item.status === s ? "selected" : ""}>${s}</option>`).join("")}
               </select>
               <input type="datetime-local" value="${item.validatedAt || ""}" ${validDisabled}
                 onchange="setField('${key}', 'validatedAt', this.value)" />
@@ -1955,112 +2185,121 @@ git status --short</pre>
           </td>
         </tr>
       `;
-    }
+      }
 
-    function setPrecheck(key, checked) {
-      const item = ensureItem(key);
-      item.precheck = checked;
-      if (checked && !item.executor) item.executor = state.agentName || "";
-      saveLight();
-      render();
-    }
-
-    function setExecuted(key, checked) {
-      const item = ensureItem(key);
-      if (checked && !item.precheck) {
-        alert("Antes de executar, marque o Pré-check. A IA deve verificar dependências e validações anteriores primeiro.");
+      function setPrecheck(key, checked) {
+        const item = ensureItem(key);
+        item.precheck = checked;
+        if (checked && !item.executor) item.executor = state.agentName || "";
+        saveLight();
         render();
-        return;
       }
-      if (!roleCanExecute()) {
-        alert("Este modo não pode executar itens.");
+
+      function setExecuted(key, checked) {
+        const item = ensureItem(key);
+        if (checked && !item.precheck) {
+          alert(
+            "Antes de executar, marque o Pré-check. A IA deve verificar dependências e validações anteriores primeiro."
+          );
+          render();
+          return;
+        }
+        if (!roleCanExecute()) {
+          alert("Este modo não pode executar itens.");
+          render();
+          return;
+        }
+        item.executed = checked;
+        if (checked) {
+          item.executor = item.executor || state.agentName || "";
+          item.executedAt = item.executedAt || currentLocalDateTime();
+        } else {
+          item.validated = false;
+        }
+        saveLight();
         render();
-        return;
       }
-      item.executed = checked;
-      if (checked) {
-        item.executor = item.executor || state.agentName || "";
-        item.executedAt = item.executedAt || currentLocalDateTime();
-      } else {
-        item.validated = false;
-      }
-      saveLight();
-      render();
-    }
 
-    function setValidated(key, checked) {
-      const item = ensureItem(key);
-      if (!roleCanValidate()) {
-        alert("Este modo não pode validar itens.");
+      function setValidated(key, checked) {
+        const item = ensureItem(key);
+        if (!roleCanValidate()) {
+          alert("Este modo não pode validar itens.");
+          render();
+          return;
+        }
+        if (checked && !item.executed) {
+          alert("Não é permitido validar item não executado.");
+          render();
+          return;
+        }
+        const currentName = state.agentName || "";
+        const validator = item.validator || currentName;
+        const executor = item.executor || "";
+        if (
+          checked &&
+          executor &&
+          validator &&
+          normalizeName(executor) === normalizeName(validator)
+        ) {
+          alert("Quem executou não pode validar. Informe um validador diferente do executor.");
+          render();
+          return;
+        }
+        item.validated = checked;
+        if (checked) {
+          item.validator = validator;
+          item.validatedAt = item.validatedAt || currentLocalDateTime();
+          if (item.status === "PENDING") item.status = "OK";
+        } else {
+          item.status = "PENDING";
+        }
+        saveLight();
         render();
-        return;
       }
-      if (checked && !item.executed) {
-        alert("Não é permitido validar item não executado.");
-        render();
-        return;
+
+      function normalizeName(value) {
+        return String(value || "")
+          .trim()
+          .toLowerCase();
       }
-      const currentName = state.agentName || "";
-      const validator = item.validator || currentName;
-      const executor = item.executor || "";
-      if (checked && executor && validator && normalizeName(executor) === normalizeName(validator)) {
-        alert("Quem executou não pode validar. Informe um validador diferente do executor.");
-        render();
-        return;
+
+      function setField(key, field, value) {
+        const item = ensureItem(key);
+        item[field] = value;
+        if (field === "status" && value !== "PENDING") {
+          item.validated = true;
+          item.validatedAt = item.validatedAt || currentLocalDateTime();
+          item.validator = item.validator || state.agentName || "";
+        }
+        saveLight();
+        updateSummary();
       }
-      item.validated = checked;
-      if (checked) {
-        item.validator = validator;
-        item.validatedAt = item.validatedAt || currentLocalDateTime();
-        if (item.status === "PENDING") item.status = "OK";
-      } else {
-        item.status = "PENDING";
+
+      function currentLocalDateTime() {
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        return now.toISOString().slice(0, 16);
       }
-      saveLight();
-      render();
-    }
 
-    function normalizeName(value) {
-      return String(value || "").trim().toLowerCase();
-    }
-
-    function setField(key, field, value) {
-      const item = ensureItem(key);
-      item[field] = value;
-      if (field === "status" && value !== "PENDING") {
-        item.validated = true;
-        item.validatedAt = item.validatedAt || currentLocalDateTime();
-        item.validator = item.validator || state.agentName || "";
+      function saveLight() {
+        state.role = document.getElementById("roleSelect")?.value || state.role;
+        state.agentName = document.getElementById("agentName")?.value?.trim() || state.agentName;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state, null, 2));
+        updateSummary();
+        updateRoleBanner();
       }
-      saveLight();
-      updateSummary();
-    }
 
-    function currentLocalDateTime() {
-      const now = new Date();
-      now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-      return now.toISOString().slice(0,16);
-    }
+      function updateSummary() {
+        const allKeys = [];
+        phases.forEach((p) => p.tasks.forEach((_, i) => allKeys.push(taskKey(p.id, i))));
+        const total = allKeys.length;
+        const pre = allKeys.filter((k) => ensureItem(k).precheck).length;
+        const exec = allKeys.filter((k) => ensureItem(k).executed).length;
+        const val = allKeys.filter((k) => ensureItem(k).validated).length;
+        const fail = allKeys.filter((k) => ensureItem(k).status === "FAIL").length;
+        const warn = allKeys.filter((k) => ensureItem(k).status === "WARN").length;
 
-    function saveLight() {
-      state.role = document.getElementById("roleSelect")?.value || state.role;
-      state.agentName = document.getElementById("agentName")?.value?.trim() || state.agentName;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state, null, 2));
-      updateSummary();
-      updateRoleBanner();
-    }
-
-    function updateSummary() {
-      const allKeys = [];
-      phases.forEach(p => p.tasks.forEach((_, i) => allKeys.push(taskKey(p.id, i))));
-      const total = allKeys.length;
-      const pre = allKeys.filter(k => ensureItem(k).precheck).length;
-      const exec = allKeys.filter(k => ensureItem(k).executed).length;
-      const val = allKeys.filter(k => ensureItem(k).validated).length;
-      const fail = allKeys.filter(k => ensureItem(k).status === "FAIL").length;
-      const warn = allKeys.filter(k => ensureItem(k).status === "WARN").length;
-
-      document.getElementById("summaryStats").innerHTML = `
+        document.getElementById("summaryStats").innerHTML = `
         <div class="stat"><span class="num">${total}</span><span class="label">Itens totais</span></div>
         <div class="stat"><span class="num">${pre}</span><span class="label">Pré-check feito</span></div>
         <div class="stat"><span class="num">${exec}</span><span class="label">Executados</span></div>
@@ -2068,34 +2307,34 @@ git status --short</pre>
         <div class="stat"><span class="num">${fail}/${warn}</span><span class="label">FAIL / WARN</span></div>
       `;
 
-      phases.forEach(phase => {
-        const keys = phase.tasks.map((_, i) => taskKey(phase.id, i));
-        const executed = keys.filter(k => ensureItem(k).executed).length;
-        const validated = keys.filter(k => ensureItem(k).validated).length;
-        const fails = keys.filter(k => ensureItem(k).status === "FAIL").length;
-        const el = document.getElementById(`stats-${phase.id}`);
-        if (el) {
-          el.textContent = `${validated}/${keys.length} validados • ${executed}/${keys.length} executados • FAIL ${fails}`;
-        }
-      });
-    }
+        phases.forEach((phase) => {
+          const keys = phase.tasks.map((_, i) => taskKey(phase.id, i));
+          const executed = keys.filter((k) => ensureItem(k).executed).length;
+          const validated = keys.filter((k) => ensureItem(k).validated).length;
+          const fails = keys.filter((k) => ensureItem(k).status === "FAIL").length;
+          const el = document.getElementById(`stats-${phase.id}`);
+          if (el) {
+            el.textContent = `${validated}/${keys.length} validados • ${executed}/${keys.length} executados • FAIL ${fails}`;
+          }
+        });
+      }
 
-    function togglePhase(phaseId) {
-      const body = document.getElementById(`body-${phaseId}`);
-      if (!body) return;
-      body.style.display = body.style.display === "none" ? "" : "none";
-    }
+      function togglePhase(phaseId) {
+        const body = document.getElementById(`body-${phaseId}`);
+        if (!body) return;
+        body.style.display = body.style.display === "none" ? "" : "none";
+      }
 
-    function applyFilter() {
-      const query = document.getElementById("filterInput").value.trim().toLowerCase();
-      const rows = document.querySelectorAll("tr[data-row]");
-      rows.forEach(row => {
-        const text = row.getAttribute("data-search") || "";
-        row.style.display = !query || text.includes(query) ? "" : "none";
-      });
-    }
+      function applyFilter() {
+        const query = document.getElementById("filterInput").value.trim().toLowerCase();
+        const rows = document.querySelectorAll("tr[data-row]");
+        rows.forEach((row) => {
+          const text = row.getAttribute("data-search") || "";
+          row.style.display = !query || text.includes(query) ? "" : "none";
+        });
+      }
 
-    render();
-  </script>
-</body>
+      render();
+    </script>
+  </body>
 </html>

@@ -2,16 +2,16 @@
 
 ## Politica geral por fonte
 
-| Classe de fonte | Permitido | Condicao | Estado quando nao configurado |
-|---|---|---|---|
-| API oficial | Sim | Chave, contrato, rate limit e termos permitidos. | `provider_not_configured` |
-| OAuth oficial | Sim | Consentimento do usuario e escopos minimos. | `oauth_required` |
-| Webhook oficial | Sim | Assinatura/segredo validado. | `external_integration_not_configured` |
-| RSS permitido | Sim | Feed publico ou autorizado, sem burlar termos. | `provider_not_configured` |
-| E-mail autorizado | Sim | Caixa conectada pelo usuario, filtros claros e consentimento. | `oauth_required` |
-| Upload/manual | Sim | Usuario fornece arquivo, texto ou link conscientemente. | `requires_manual_action` |
-| Chrome Extension | Sim, assistido | Usuario ativo, captura visivel e revisao antes de salvar. | `requires_manual_action` |
-| Scraping proibido | Nao | Nunca burlar login, paywall, captcha, robots/termos ou bloqueios. | `official_api_required` |
+| Classe de fonte   | Permitido      | Condicao                                                          | Estado quando nao configurado         |
+| ----------------- | -------------- | ----------------------------------------------------------------- | ------------------------------------- |
+| API oficial       | Sim            | Chave, contrato, rate limit e termos permitidos.                  | `provider_not_configured`             |
+| OAuth oficial     | Sim            | Consentimento do usuario e escopos minimos.                       | `oauth_required`                      |
+| Webhook oficial   | Sim            | Assinatura/segredo validado.                                      | `external_integration_not_configured` |
+| RSS permitido     | Sim            | Feed publico ou autorizado, sem burlar termos.                    | `provider_not_configured`             |
+| E-mail autorizado | Sim            | Caixa conectada pelo usuario, filtros claros e consentimento.     | `oauth_required`                      |
+| Upload/manual     | Sim            | Usuario fornece arquivo, texto ou link conscientemente.           | `requires_manual_action`              |
+| Chrome Extension  | Sim, assistido | Usuario ativo, captura visivel e revisao antes de salvar.         | `requires_manual_action`              |
+| Scraping proibido | Nao            | Nunca burlar login, paywall, captcha, robots/termos ou bloqueios. | `official_api_required`               |
 
 ## Fontes iniciais
 

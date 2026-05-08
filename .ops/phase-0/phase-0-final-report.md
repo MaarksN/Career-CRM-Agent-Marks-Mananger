@@ -44,6 +44,14 @@ A validacao externa anterior retornou `FAIL_RETURN_TO_EXECUTOR` em `.ops/phase-0
 
 `pnpm install`, `pnpm format` e `pnpm validate` foram marcados como `SKIP` porque `package.json` ainda nao existe nesta fase documental. Resultado registrado como: `SKIP - package.json ainda nao existe nesta fase documental.`
 
+## Correcao apos validacao Antigravity
+
+Em 2026-05-08, a validacao externa em `.ops/phase-0-validation/` retornou `FAIL` para `V00.09` porque, com `package.json` agora presente no repositório, `pnpm validate` falhava no `format:check`.
+
+A IA Executora reproduziu a falha, executou `pnpm format`, corrigiu o lockfile com `pnpm install` para incluir todos os workspaces e executou `pnpm validate` novamente. Resultado obtido: `pnpm validate` concluiu com exit code 0, cobrindo `format:check`, `typecheck`, `lint`, `test` e `build`.
+
+Permanece apenas WARN ambiental: Node local `v25.9.0` esta fora do engine declarado `>=24 <25`. A IA Executora nao marcou validacao final.
+
 ## Validacao
 
 A IA Executora nao validou a propria entrega. Todos os itens executados ficam com `PENDING_EXTERNAL_VALIDATION`. A Fase 1 nao deve iniciar antes da validacao externa da Fase 0.

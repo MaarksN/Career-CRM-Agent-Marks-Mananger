@@ -6,9 +6,11 @@
 **Data da Validação:** 2026-05-08
 
 ## Status Final da Validação
+
 **Decisão:** `FAIL`
 
 ## Informações do Ambiente
+
 - **Branch atual:** `main`
 - **Executor validado:** Jules / Codex (IA Executora)
 - **Validador:** Antigravity AI
@@ -16,6 +18,7 @@
 - **pnpm version:** 9.15.9
 
 ## Comandos Executados e Resultados
+
 - `git branch --show-current` -> `main`
 - `node --version` -> `v25.9.0`
 - `pnpm.cmd --version` -> `9.15.9`
@@ -24,6 +27,7 @@
 ## Avaliação dos Critérios (Itens OK / WARN / FAIL)
 
 ### Itens OK
+
 - **Visão do Produto:** Documentada de forma realista como um CRM de Carreira e não como um simples rastreador de vagas (Docs 00 e 01).
 - **Regras Anti-Fake:** Políticas claras em toda a documentação, especialmente `17-no-fake-success-policy.md`. Mocks e integrações falsas expressamente proibidas.
 - **Fontes de Vagas:** Delimitadas as fontes com escopo de permissão e proibição de scrapings agressivos sem consentimento/autorização (`04-job-sources-scope.md`).
@@ -32,15 +36,19 @@
 - **Roadmap e Citérios de Aceite:** Fases bem definidas de 0 a 15, com DoD claros (`11-roadmap-master.md`, `13-acceptance-criteria.md`).
 
 ### Itens WARN
-- **Compatibilidade de Node:** O ambiente atual possui Node `v25.9.0`, no entanto as diretrizes exigem `>=24 <25`. O comando de validação retorna um aviso constante de `Unsupported engine`. 
+
+- **Compatibilidade de Node:** O ambiente atual possui Node `v25.9.0`, no entanto as diretrizes exigem `>=24 <25`. O comando de validação retorna um aviso constante de `Unsupported engine`.
 
 ### Itens FAIL
+
 - **Obrigatoriedade de Validação de CI:** A regra estipula que, existindo um `package.json`, o comando `pnpm validate` deve rodar sem erros. O script de validação falhou na rotina de `format:check` pois foram encontradas 11 inconsistências de estilo de código pelo Prettier em arquivos `.md` e `.html` no repositório. O processo obriga a emitir `FAIL` e retornar ao executor para as devidas adequações no código/documentação.
 
 ## Conclusão e Próximos Passos
+
 **Pode avançar para a próxima fase?** Não.
 
 **Correções exigidas ao executor:**
+
 1. Rodar `pnpm format` (ou o comando equivalente via Prettier configurado no repositório) para formatar e ajustar as inconsistências nos arquivos Markdown e HTML gerados.
 2. Certificar que `pnpm validate` é executado com sucesso e limpo de erros de formatação.
 3. Se possível, alinhar o ambiente de desenvolvimento local e das dependências `package.json` para que o Node da máquina corresponda à regra estrita de ">=24 <25" a fim de silenciar os alertas de unsupported engine.

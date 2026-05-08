@@ -22,6 +22,42 @@
     "report": ".ops/phase-0/phase-0-validation-report.md",
     "returnedItems": ["P0-03", "P0-07", "P0-08", "P0-09"]
   },
+  "latestExternalValidation": {
+    "status": "FAIL_RETURN_TO_EXECUTOR",
+    "validatorAgent": "Antigravity AI (Gemini 3.1 Pro)",
+    "validatedAt": "2026-05-08",
+    "report": ".ops/phase-0-validation/phase-0-validation-final-report.md",
+    "returnedItems": ["V00.09"]
+  },
+  "latestCorrectiveExecution": {
+    "executedAt": "2026-05-08T00:50:00-03:00",
+    "executor": "Jules / Codex",
+    "scope": "Corrigir FAIL de validacao V00.09 causado por format:check e lockfile incompleto para apps/web.",
+    "commands": [
+      {
+        "command": "pnpm validate",
+        "status": "FAIL",
+        "result": "Falha reproduzida em format:check; depois de format, falha secundaria em typecheck por workspace apps/web ausente do lockfile."
+      },
+      {
+        "command": "pnpm format",
+        "status": "OK",
+        "result": "Prettier aplicou formatacao nos arquivos apontados."
+      },
+      {
+        "command": "pnpm install",
+        "status": "OK",
+        "result": "pnpm-lock.yaml atualizado para incluir todos os 16 workspaces e dependencias do apps/web."
+      },
+      {
+        "command": "pnpm validate",
+        "status": "OK",
+        "result": "format:check, typecheck, lint, test e build concluidos com exit code 0."
+      }
+    ],
+    "validationStatus": "PENDING_EXTERNAL_VALIDATION",
+    "notes": "A IA Executora nao marcou validacao final. Permanece WARN ambiental: Node local v25.9.0 fora do engine >=24 <25."
+  },
   "items": [
     {
       "id": "P0-01",
@@ -50,8 +86,14 @@
       "executed": true,
       "executedAt": "2026-05-07T23:46:00-03:00",
       "executor": "Jules / Codex",
-      "files": ["README.md", "docs/17-no-fake-success-policy.md", "docs/16-error-handling-and-validation-policy.md"],
-      "commands": ["Select-String checklist_mestre_ia_job_match_os.html -Pattern \"Regra Anti-Fake\""],
+      "files": [
+        "README.md",
+        "docs/17-no-fake-success-policy.md",
+        "docs/16-error-handling-and-validation-policy.md"
+      ],
+      "commands": [
+        "Select-String checklist_mestre_ia_job_match_os.html -Pattern \"Regra Anti-Fake\""
+      ],
       "expected": "Politica registrada impedindo mocks, placeholders e sucesso falso como entrega final.",
       "obtained": "Politica anti-fake operacional com estados honestos e exemplos de bloqueio.",
       "executionStatus": "OK",
@@ -122,7 +164,11 @@
       "executed": true,
       "executedAt": "2026-05-07T23:46:00-03:00",
       "executor": "Jules / Codex",
-      "files": ["docs/02-architecture.md", "docs/14-chrome-extension-scope.md", "docs/15-autonomous-24h-operation.md"],
+      "files": [
+        "docs/02-architecture.md",
+        "docs/14-chrome-extension-scope.md",
+        "docs/15-autonomous-24h-operation.md"
+      ],
       "commands": ["Get-Content docs/02-architecture.md"],
       "expected": "Monorepo, apps, packages, banco, workers, extensao e integracoes definidos.",
       "obtained": "Arquitetura alvo define web, api, worker, Chrome Extension, packages, banco futuro e worker 24h.",
@@ -140,7 +186,11 @@
       "executed": true,
       "executedAt": "2026-05-07T23:46:00-03:00",
       "executor": "Jules / Codex",
-      "files": ["docs/11-roadmap-master.md", "docs/12-phase-plan.md", "docs/13-acceptance-criteria.md"],
+      "files": [
+        "docs/11-roadmap-master.md",
+        "docs/12-phase-plan.md",
+        "docs/13-acceptance-criteria.md"
+      ],
       "commands": ["Get-Content docs/11-roadmap-master.md"],
       "expected": "Cada fase tem DoD tecnico e funcional.",
       "obtained": "Roadmap completo P0-P15 com resultado, entregas e Definition of Done por fase.",
@@ -191,10 +241,10 @@
         "Test-Path .\\package.json"
       ],
       "expected": "Checklist, evidencia e relatorio final da fase com SKIPs justificados.",
-      "obtained": "Arquivos .ops atualizados, datas corrigidas para 2026 e SKIP de package.json ausente registrado.",
+      "obtained": "Arquivos .ops atualizados, datas corrigidas para 2026 e, na correcao de 2026-05-08, pnpm format/install/validate executados com sucesso apos package.json passar a existir.",
       "executionStatus": "OK",
       "validationStatus": "PENDING_EXTERNAL_VALIDATION",
-      "observation": "Comandos pnpm install/format/validate foram marcados como SKIP porque package.json ainda nao existe nesta fase documental.",
+      "observation": "Historico inicial manteve SKIP por package.json ausente; correcao V00.09 registra package.json presente e pnpm validate OK.",
       "nextStep": "Validacao externa revisar .ops e liberar ou reprovar Fase 0."
     }
   ],
