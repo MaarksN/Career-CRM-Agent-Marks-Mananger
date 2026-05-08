@@ -1,13 +1,28 @@
 # 06 - Scoring Engine
 
-A análise de compatibilidade do Job Match OS deve ser determinística, rastreável e baseada em dados, nunca utilizando IA generativa sem regras (alucinação).
+## Objetivo
 
-## Processo de Scoring
-1. **Extração e Normalização:** Componentes da vaga (requisitos, linguagens, senioridade) e do currículo (`SkillTags`, `ExperienceBlocks`) são extraídos e classificados.
-2. **Avaliação por Pesos:**
-   - A comparação é feita mapeando e avaliando a presença/ausência e tempo de experiência.
-3. **Explicação:**
-   - O score final *deve* acompanhar um relatório de justificativas em HTML/Markdown (`CompatibilityReport`) detalhando exatamente *o porquê* daquele número.
-   - Não se deve inventar experiências. Se o candidato não possui a competência, a pontuação baixa com o aviso explícito de falha.
-4. **Sem Números Aleatórios:**
-   - O uso de valores chumbados, dados fixos de mocks ou chamadas vazias sem processamento real de perfil será considerado `FAIL`.
+O scoring mede aderencia entre perfil/curriculo e vaga de forma explicavel. Ele nao decide sozinho uma candidatura e nao pode inventar qualificacoes para elevar nota.
+
+## Entradas
+
+- Perfil do candidato e preferencias.
+- Blocos Resume-as-Code comprovaveis.
+- Requisitos, responsabilidades, localidade, senioridade e faixa salarial da vaga.
+- Historico de candidaturas e feedbacks quando existentes.
+
+## Saidas
+
+- Score geral.
+- Fatores positivos.
+- Lacunas e riscos.
+- Evidencias usadas no calculo.
+- Recomendacao: aplicar, revisar, descartar ou pedir acao manual.
+
+## Explicabilidade minima
+
+Cada score deve indicar quais requisitos foram atendidos, quais ficaram parcialmente atendidos e quais nao possuem evidencia no curriculo. Se a IA sugerir ajuste, a sugestao deve referenciar blocos reais do Resume-as-Code.
+
+## Politica anti-invencao
+
+Quando nao houver evidencia para uma experiencia, skill, certificacao ou resultado, a saida deve marcar lacuna. Nunca gerar texto que pareca afirmar experiencia inexistente.

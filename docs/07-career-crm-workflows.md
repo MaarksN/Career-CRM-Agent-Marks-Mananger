@@ -1,17 +1,25 @@
 # 07 - Career CRM Workflows
 
-O fluxo básico do pipeline que o usuário manipula no frontend.
+## Pipeline de vaga
 
-## Estágios (Pipeline Kanban)
+1. Capturada
+2. Triagem pendente
+3. Qualificada
+4. Descartada
+5. Preparando candidatura
+6. Aguardando aprovacao humana
+7. Aplicada manualmente ou por integracao oficial aprovada
+8. Entrevista
+9. Oferta
+10. Encerrada
 
-1. **Captured (Lead)**: Vaga capturada pela extensão ou manualmente, pendente de análise.
-2. **Analysis / Pre-Qual**: Match gerado, decidindo se vale a pena preparar currículo.
-3. **Preparation (Draft)**: O sistema recomenda a `ResumeVersion` ou ajuda a gerar um cover letter (exigindo aprovação).
-4. **Applied**: Ação efetuada (manualmente, ou via API aprovada). Exige `Evidence Vault`.
-5. **Interview / Assessment**: Teste técnico ou entrevistas, interagindo com o módulo de calendário.
-6. **Offer**: Proposta recebida e analisada.
-7. **Rejected/Lost**: Cancelada (obriga registro de "Motivo de perda").
+## Regras operacionais
 
-## Gestão de Ações
-- O sistema usa SLAs por etapa (alertas contra esquecimentos e ghostings).
-- O backend rodará schedules para verificar vagas congeladas no kanban.
+- Vaga sem fonte e politica aplicada nao entra como qualificada.
+- Candidatura sem versao de curriculo vinculada nao pode avancar para envio.
+- Envio externo sem aprovacao humana deve ser bloqueado.
+- Toda mudanca relevante de etapa gera auditoria.
+
+## Follow-up e SLA
+
+Cada candidatura pode gerar tarefas internas: revisar curriculo, pesquisar empresa, preparar resposta, acompanhar retorno e registrar feedback. Integracoes de calendario e notificacao so entram quando configuradas oficialmente nas fases futuras.

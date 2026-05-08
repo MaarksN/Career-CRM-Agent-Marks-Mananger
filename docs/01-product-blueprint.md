@@ -1,32 +1,37 @@
 # 01 - Product Blueprint
 
-O blueprint do Job Match OS define seus pilares fundamentais.
+## Visao do produto
 
-## Pilar 1: Resume-as-Code
+Job Match OS e um Career CRM orientado a decisao. Ele organiza vagas como leads, candidaturas como pipeline, curriculo como codigo versionado e automacoes como fluxos com rastreabilidade e aprovacao humana.
 
-O currículo deixa de ser um documento para se tornar uma base de dados modular:
-- Experiências como blocos (ExperienceBlocks).
-- Competências como tags (SkillTags).
-- Conquistas parametrizadas (Achievements).
-Dessa base, a plataforma compila (como um build process) versões de currículos contextualizadas e ATS-friendly.
+## O que o produto faz
 
-## Pilar 2: Career CRM (Pipeline de Vagas)
+- Centraliza oportunidades de emprego vindas de fontes permitidas.
+- Mantem um pipeline de candidatura com tarefas, prazos, status e historico.
+- Analisa compatibilidade entre perfil e vaga com score explicavel.
+- Usa Resume-as-Code para versionar experiencias, habilidades, conquistas e curriculos gerados.
+- Aciona IA apenas sobre dados fornecidos ou integracoes oficiais configuradas.
+- Registra auditoria em acoes relevantes.
 
-- Tratar vagas como "Leads".
-- Estágios claros: Descoberta, Análise, Preparação, Candidatura, Entrevista, Oferta.
-- O foco é a **gestão ativa** do candidato e não o recebimento passivo de e-mails.
+## O que o produto nao faz
 
-## Pilar 3: Operação 24h via Worker/Backend
+- Nao inventa experiencia profissional, formacao, certificacao ou habilidade.
+- Nao executa auto apply por padrao.
+- Nao faz scraping proibido.
+- Nao finge envio, login, integracao ou sucesso externo.
+- Nao usa memoria in-process como runtime principal para dados do produto.
 
-- O motor de buscas e processamento roda no backend via processos em background (Redis/BullMQ), permitindo análises assíncronas 24/7 sem depender de uma aba de navegador aberta.
+## Objetos centrais
 
-## Pilar 4: Chrome Extension como Ferramenta de Captura (Cockpit)
+- **Vaga como lead:** toda vaga tem fonte, status, evidencia de origem, politica da fonte e score.
+- **Candidatura como pipeline:** toda candidatura tem etapa, responsavel, tarefas, logs, versao de curriculo e decisao humana.
+- **Resume-as-Code:** o curriculo e composto por blocos estruturados, versionaveis e rastreaveis.
+- **Auditoria como default:** acoes relevantes geram `AuditLog` com ator, motivo, entrada, saida e resultado.
 
-- A Chrome Extension existe estritamente para capturar vagas enquanto o usuário navega na web, identificar a aderência na hora e enviar ao backend.
-- A extensão *não* é o motor principal; o worker de backend é quem processa tudo de pesado.
+## Criterios globais de aceite
 
-## Pilar 5: Política Anti-Fake (Verdade Suprema)
-
-- O sucesso é apenas sucesso verdadeiro.
-- Candidaturas não são forjadas, interações não são mockadas, integrações de APIs ocorrem ou retornam erro honesto de falta de configuração.
-- Tudo deve ser rastreado por AuditLogs.
+- Toda entrega interna deve ser funcional no escopo da fase.
+- Toda fase separa `executado` de `validado`.
+- Toda validacao final deve ser feita por agente ou pessoa diferente de quem executou.
+- Toda integracao externa sem configuracao oficial deve retornar estado honesto.
+- Toda automacao externa critica deve aguardar aprovacao humana.

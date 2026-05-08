@@ -1,12 +1,33 @@
 # 05 - Safe Automation Policy
 
-## Auto Apply
-- **Default Bloqueado**: A funcionalidade de "auto apply" é estritamente bloqueada por padrão.
-- Candidaturas automáticas *apenas* são permitidas se houver aprovação humana clara para aquela vaga específica ou regras ativas extremamente criteriosas que respeitem os termos das fontes.
+## Regra central
 
-## Aprovação Humana Obrigatória (Human-in-the-Loop)
-- Qualquer ação crítica ou modificação do ambiente externo (enviar currículos, interagir com empresas, responder contatos) requer intervenção e aprovação do usuário.
-- O sistema prepara a comunicação, gera rascunhos (Drafts) baseados no currículo e vaga, mas o "botão de enviar" exige o toque humano.
+Auto apply e bloqueado por padrao. Candidatura, envio de mensagem, envio de curriculo, edicao externa, criacao de evento externo e qualquer acao critica fora da plataforma exigem aprovacao humana previa e auditoria.
 
-## Sem Fingimentos
-- O sistema *nunca* marcará algo como "Aplicado" se não houver um `AuditLog` que mostre uma integração da API real com sucesso ou uma confirmação explícita de ação manual do usuário (com upload de evidências na `Evidence Vault`).
+## Acoes permitidas sem aprovacao extra
+
+- Criar ou editar registros internos do CRM.
+- Calcular score interno.
+- Gerar rascunho de curriculo ou mensagem sem enviar.
+- Criar tarefa interna.
+- Registrar estado honesto de integracao nao configurada.
+
+## Acoes que exigem aprovacao humana
+
+- Enviar candidatura, curriculo, mensagem ou resposta para terceiros.
+- Alterar status em sistema externo.
+- Criar evento em calendario externo.
+- Conectar conta por OAuth.
+- Rodar job recorrente que toque fonte externa.
+
+## Estados de bloqueio
+
+- `waiting_human_approval`: acao pronta, aguardando decisao humana.
+- `manual_apply_required`: plataforma so pode orientar aplicacao manual.
+- `official_api_required`: fonte exige API oficial antes de automacao.
+- `oauth_required`: usuario precisa conectar conta por OAuth.
+- `provider_not_configured`: provedor suportado, mas sem credencial/configuracao.
+
+## Auditoria obrigatoria
+
+Toda tentativa de automacao deve registrar politica aplicada, ator, dados de entrada, decisao, aprovacao exigida, resultado e erro real quando houver.

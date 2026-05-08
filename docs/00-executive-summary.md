@@ -1,18 +1,26 @@
 # 00 - Executive Summary
 
-## A Visão do Produto Job Match OS
+O Job Match OS / Career CRM Agent Marks Manager e uma plataforma para operar a carreira como um pipeline real. Vagas entram como leads, oportunidades sao qualificadas por score explicavel, candidaturas avancam por etapas auditaveis e o curriculo e mantido como Resume-as-Code para gerar versoes aderentes sem inventar experiencia.
 
-O **Job Match OS** não é apenas mais um "CRUD de vagas". Ele é um **Sistema Operacional de Carreira** focado em estruturar, potencializar e gerenciar o fluxo ponta a ponta da busca e manutenção de oportunidades profissionais.
+## Problema
 
-Trata vagas de emprego como leads em um CRM moderno, onde o usuário detém total controle do seu pipeline. A plataforma usa a abordagem de "Resume-as-Code" e alavanca IA para inteligência (como scoring de vagas e assistência na criação de materiais), mas *nunca* simula, inventa ou age de forma autônoma sem supervisão estrita (aprovação humana obrigatória).
+Buscar emprego hoje mistura abas de navegador, planilhas, e-mails, PDFs, calendarios e mensagens. Isso cria perda de contexto, follow-ups esquecidos, candidaturas repetidas, curriculos desalinhados e risco de automacoes inseguras. O produto resolve essa fragmentacao com um CRM de carreira que registra origem, decisao, score, historico e proximas acoes.
 
-## O Problema que Resolve
+## Publico-alvo
 
-1. **Gestão fragmentada:** Candidatos gerenciam vagas no Excel, Notion, pastas de currículos e e-mails de forma desconectada.
-2. **Currículos estáticos:** Enviar o mesmo PDF estático para todas as vagas diminui o fit; montar variações manualmente é doloroso e não escalável.
-3. **Métricas cegas:** Sem tracking do funil (enviado -> entrevista -> oferta), não há como saber onde a abordagem falha.
-4. **Volume insustentável vs. Qualidade:** Fazer auto-apply sem inteligência gera muito ruído, e analisar vagas profundamente demora.
+- Profissionais em busca ativa ou passiva que precisam acompanhar muitas vagas.
+- Pessoas que adaptam curriculo para diferentes perfis de vaga.
+- Candidatos que precisam de disciplina operacional: follow-up, agenda, SLA e historico.
+- Usuarios que querem IA como assistente, nao como fonte de invencao.
 
-## O Público-Alvo
+## Proposta de valor
 
-Profissionais da tecnologia e de mercados altamente competitivos (desenvolvedores, product managers, designers, tech leads, executivos) que tratam suas carreiras como negócios e necessitam de uma ferramenta de "sales pipeline" aplicada à busca de emprego e gestão de carreira.
+O sistema transforma a busca de emprego em operacao rastreavel: captura fontes permitidas, classifica oportunidades, explica compatibilidade, gera tarefas, controla candidaturas e exige aprovacao humana antes de qualquer acao externa critica.
+
+## Filosofia anti-fake
+
+Desde a Fase 0, tudo que estiver no controle da plataforma deve ser real dentro do escopo da fase. Na Fase 0, a entrega real e a documentacao decisoria, objetiva e aplicavel. Em fases tecnicas, entregas reais significam banco real, APIs reais, workers reais, validacoes reais e integracoes externas apenas por meios oficiais ou estados honestos de nao configuracao.
+
+## Limite da Fase 0
+
+Esta fase nao implementa backend, banco, Prisma, frontend, worker, BullMQ, Redis, IA real, Telegram, Google Calendar, Chrome Extension funcional, scraping ou candidatura automatica. Ela define as regras que impedem que essas implementacoes futuras sejam falsas, inseguras ou nao auditaveis.

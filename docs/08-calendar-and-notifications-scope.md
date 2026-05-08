@@ -1,17 +1,17 @@
 # 08 - Calendar and Notifications Scope
 
-A gestão de compromissos não é mockada; ela vive inicialmente no domínio do sistema e tenta integrar a partir de APIs oficiais.
+## Escopo interno
 
-## Calendário Interno
-- Entidade base: `CalendarEvent`.
-- Todo evento de entrevista, preparação e follow-up vive primeiramente no banco da plataforma.
-- Caso não haja integração externa, os eventos geram um arquivo exportável `.ics`.
+O calendario interno registra prazos, entrevistas, follow-ups, tarefas e lembretes do Career CRM. Na Fase 0, o escopo define regras; implementacao fica para fases tecnicas.
 
-## Integração Externa Limitada e Real
-- Se integrado (OAuth via Google Calendar / Outlook), o sistema cria lá.
-- Sem o OAuth habilitado, a flag retorna estado honesto: `external_calendar_not_configured`. Nunca simular chamadas bem-sucedidas para um provedor externo que não existe.
+## Integracoes externas
 
-## Notificações
-- Alertas de novas vagas, queda de SLA, follow-up recomendados são tratados pelo Worker 24h.
-- Envios vão primariamente para o *Notification Center* (UI interna).
-- Extensões como *Telegram Command Center* ou Email exigirão autorizações adequadas e seguirão o princípio de estado honesto.
+Google Calendar, Outlook, Telegram, e-mail e outros canais so podem ser usados por OAuth, API oficial, webhook seguro ou estado honesto de nao configuracao. Sem credencial oficial, a plataforma deve retornar `oauth_required`, `provider_not_configured` ou `external_integration_not_configured`.
+
+## Aprovacao humana
+
+Criar, alterar ou cancelar evento externo exige aprovacao humana quando puder afetar terceiros, enviar convite, alterar agenda compartilhada ou disparar notificacao externa.
+
+## Auditoria
+
+Eventos e notificacoes devem registrar origem, usuario, canal, payload minimo, consentimento, resultado e erro real. PII em logs deve ser minimizada.

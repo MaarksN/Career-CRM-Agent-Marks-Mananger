@@ -1,9 +1,21 @@
-# 13 - Acceptance Criteria (DoD)
+# 13 - Acceptance Criteria
 
-O *Definition of Done* Global para que uma fase seja aprovada:
+## Aceite global
 
-1. **Testes Base Passando**: Todo código tem teste cobrindo a nova funcionalidade. `pnpm validate` roda limpo (lint, format, test, build).
-2. **Evidência no Audit Log**: Todas as ações críticas da fase foram registradas num AuditLog (seja arquivo local nas Fases iniciais, ou banco nas Fases avançadas).
-3. **Estado Honesto**: O projeto pode compilar e rodar a fase *sem* gerar erros silenciosos de serviços não configurados (se falta Google Auth, ele diz explicitamente na tela/logs).
-4. **Sem Mocks ou Sucesso Falso**: Não existe nenhum "TODO" com timeout ou sucesso aleatório apenas para agradar o checklist.
-5. **Aprovação Documentada**: O relatório da fase em `.ops` documenta claramente o resultado das ações.
+- Todos os itens executados possuem evidencia objetiva.
+- Executor e validador sao pessoas/agentes diferentes.
+- Validacao final fica `PENDING_EXTERNAL_VALIDATION` ate revisao externa.
+- Nao existe mock, placeholder ou sucesso falso como entrega final.
+- Nao existe acao externa critica sem aprovacao humana.
+- Estados honestos sao usados quando integracao externa nao esta configurada.
+- Documentos `.ops` registram comandos, resultados, arquivos e proximos passos.
+- `pnpm validate` roda quando houver `package.json`; sem `package.json`, o SKIP deve ser justificado.
+- Git status, commit e push devem ser registrados com resultado real.
+
+## Definition of Done documental
+
+Uma fase documental so esta executada quando seus arquivos existem, contem decisoes aplicaveis, cobrem riscos e deixam claro o que sera implementado depois. Texto generico sem decisao operacional nao atende.
+
+## Definition of Done tecnica
+
+Uma fase tecnica so esta executada quando os comandos obrigatorios rodam contra implementacao real, os dados sao persistidos quando aplicavel, os erros sao honestos e os testes cobrem o risco da entrega.

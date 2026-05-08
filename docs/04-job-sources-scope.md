@@ -1,25 +1,25 @@
 # 04 - Job Sources Scope
 
-Como as vagas entram no sistema de forma limpa e honesta:
+## Politica geral por fonte
 
-1. **APIs Oficiais e OAuth**
-   - Importação automatizada será feita apenas através de vias oficiais (se o provedor possuir API).
-   - Se a integração externa não estiver configurada, o sistema deve apresentar estado de `provider_not_configured` ou `official_api_required`.
+| Classe de fonte | Permitido | Condicao | Estado quando nao configurado |
+|---|---|---|---|
+| API oficial | Sim | Chave, contrato, rate limit e termos permitidos. | `provider_not_configured` |
+| OAuth oficial | Sim | Consentimento do usuario e escopos minimos. | `oauth_required` |
+| Webhook oficial | Sim | Assinatura/segredo validado. | `external_integration_not_configured` |
+| RSS permitido | Sim | Feed publico ou autorizado, sem burlar termos. | `provider_not_configured` |
+| E-mail autorizado | Sim | Caixa conectada pelo usuario, filtros claros e consentimento. | `oauth_required` |
+| Upload/manual | Sim | Usuario fornece arquivo, texto ou link conscientemente. | `requires_manual_action` |
+| Chrome Extension | Sim, assistido | Usuario ativo, captura visivel e revisao antes de salvar. | `requires_manual_action` |
+| Scraping proibido | Nao | Nunca burlar login, paywall, captcha, robots/termos ou bloqueios. | `official_api_required` |
 
-2. **Extensão do Chrome**
-   - O usuário navega e "captura" a vaga ativamente clicando na extensão.
-   - Isso evita scraping em background sem permissão ou interação do usuário.
+## Fontes iniciais
 
-3. **RSS feeds permitidos**
-   - A plataforma pode consumir feeds abertos com rate limiting.
+- LinkedIn, Indeed, Glassdoor e plataformas similares: somente API/OAuth oficial quando disponivel, captura manual assistida ou estado `official_api_required`.
+- Sites de empresas: RSS, API, webhook ou captura manual; scraping automatizado fica bloqueado salvo permissao explicita e legal.
+- E-mail: ingestao futura apenas por OAuth autorizado e filtros revisaveis.
+- Planilhas/PDF/texto do usuario: permitido como upload/manual, com auditoria da origem.
 
-4. **Parsing de E-mails / Encaminhamento**
-   - O usuário pode autorizar leitura de e-mails específicos (ex: alertas de vagas) ou encaminhar manualmente vagas para um e-mail de parser.
+## Evidencia de origem
 
-5. **Upload de Documentos / Imagens (OCR)**
-   - Extração via IA a partir de PDFs ou imagens que o candidato possua.
-
-6. **Input Manual**
-   - Copiar e colar texto ou URL diretamente no CRM.
-
-Qualquer fonte sem permissão ou método não-oficial de automação vira *manual/official_api_required*.
+Toda `JobOpportunity` deve guardar fonte, metodo de captura, timestamp, usuario/ator, politica aplicada e conteudo minimo para auditoria. Fonte sem permissao clara nao vira sucesso; vira bloqueio honesto.

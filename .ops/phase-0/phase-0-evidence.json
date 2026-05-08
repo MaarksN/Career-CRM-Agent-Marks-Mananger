@@ -1,43 +1,153 @@
 {
-  "phase": "0",
-  "executedBy": "Jules",
+  "project": "Job Match OS / Career CRM Agent Marks Manager",
+  "phase": 0,
+  "phaseTitle": "Blueprint real, escopo e criterios de verdade",
+  "executedBy": "Jules / Codex acting as IA Executora",
+  "executedAt": "2026-05-07T23:46:00-03:00",
+  "executionStatus": "OK",
   "validationStatus": "PENDING_EXTERNAL_VALIDATION",
+  "validator": null,
+  "previousValidation": {
+    "status": "FAIL_RETURN_TO_EXECUTOR",
+    "validator": "Codex External Validator",
+    "validatedAt": "2026-05-07T23:42:00-03:00",
+    "report": ".ops/phase-0/phase-0-validation-report.md"
+  },
+  "checklistRead": "checklist_mestre_ia_job_match_os.html",
+  "checklistUpdated": ".ops/master-checklist/checklist_mestre_ia_job_match_os.html",
+  "requiredCommandsAtStart": [
+    { "command": "git branch --show-current", "status": "OK", "result": "main" },
+    { "command": "git status --short", "status": "OK", "result": "Existing modified .ops files and new validation report were present before correction." },
+    { "command": "node --version", "status": "OK", "result": "v25.9.0" },
+    { "command": "pnpm --version", "status": "OK", "result": "9.15.9" }
+  ],
+  "packageJson": {
+    "command": "Test-Path .\\package.json",
+    "result": false,
+    "pnpmInstall": "SKIP - package.json ainda nao existe nesta fase documental.",
+    "pnpmFormat": "SKIP - package.json ainda nao existe nesta fase documental.",
+    "pnpmValidate": "SKIP - package.json ainda nao existe nesta fase documental."
+  },
   "items": [
     {
-      "id": "P0-01",
-      "evidence": "Arquivo docs/00-executive-summary.md criado com a visão e regras."
+      "phase": 0,
+      "item": "P0-01 - Definir visao do produto Job Match OS",
+      "filesCreatedOrModified": ["README.md", "docs/00-executive-summary.md", "docs/01-product-blueprint.md"],
+      "commandsExecuted": ["Get-Content checklist_mestre_ia_job_match_os.html", "Get-Content README.md"],
+      "expected": "Documento de visao com problema, proposta de valor, modulos e publico-alvo.",
+      "obtained": "Produto definido como Job Match OS / Career CRM, com vagas como leads, candidaturas como pipeline e Resume-as-Code.",
+      "executionStatus": "OK",
+      "validationStatus": "PENDING_EXTERNAL_VALIDATION",
+      "observation": "Sem dependencia anterior.",
+      "nextStep": "Validacao externa revisar clareza da visao."
     },
     {
-      "id": "P0-02",
-      "evidence": "Arquivo docs/17-no-fake-success-policy.md criado para cobrir a regra."
+      "phase": 0,
+      "item": "P0-02 - Definir regra anti-fake desde a Fase 0",
+      "filesCreatedOrModified": ["README.md", "docs/16-error-handling-and-validation-policy.md", "docs/17-no-fake-success-policy.md"],
+      "commandsExecuted": ["Select-String checklist_mestre_ia_job_match_os.html -Pattern \"Regra Anti-Fake\""],
+      "expected": "Politica registrada: tudo interno deve ser real dentro do escopo da fase.",
+      "obtained": "Politica anti-fake registra proibicoes e estados honestos.",
+      "executionStatus": "OK",
+      "validationStatus": "PENDING_EXTERNAL_VALIDATION",
+      "observation": "Nenhum sucesso externo foi simulado.",
+      "nextStep": "Validacao externa revisar exemplos e estados."
     },
     {
-      "id": "P0-03",
-      "evidence": "Arquivo docs/03-domain-model.md criado descrevendo as entidades do sistema."
+      "phase": 0,
+      "item": "P0-03 - Mapear modulos do sistema",
+      "filesCreatedOrModified": ["docs/03-domain-model.md", "docs/02-architecture.md"],
+      "commandsExecuted": ["Get-Content docs/03-domain-model.md"],
+      "expected": "Lista de modulos com objetivo, entrada, saida e dependencias.",
+      "obtained": "Mapa de modulos criado com Career CRM, Resume-as-Code, intake, scoring, automacao segura, extensao, worker, calendario, IA e analytics.",
+      "executionStatus": "OK",
+      "validationStatus": "PENDING_EXTERNAL_VALIDATION",
+      "observation": "Corrige WARN da validacao externa anterior.",
+      "nextStep": "Validacao externa revisar tabela de modulos."
     },
     {
-      "id": "P0-04",
-      "evidence": "Arquivo docs/04-job-sources-scope.md criado classificando fontes."
+      "phase": 0,
+      "item": "P0-04 - Classificar fontes de vagas",
+      "filesCreatedOrModified": ["docs/04-job-sources-scope.md"],
+      "commandsExecuted": ["Get-Content docs/04-job-sources-scope.md"],
+      "expected": "Fontes categorizadas por manual, RSS, API oficial, OAuth, e-mail autorizado ou official_api_required.",
+      "obtained": "Fontes classificadas por politica, condicao e estado honesto quando nao configuradas.",
+      "executionStatus": "OK",
+      "validationStatus": "PENDING_EXTERNAL_VALIDATION",
+      "observation": "Scraping proibido permanece bloqueado.",
+      "nextStep": "Validacao externa revisar politica por fonte."
     },
     {
-      "id": "P0-05",
-      "evidence": "Arquivo docs/05-safe-automation-policy.md criado descrevendo auto apply."
+      "phase": 0,
+      "item": "P0-05 - Definir politica de candidatura segura",
+      "filesCreatedOrModified": ["docs/05-safe-automation-policy.md", "docs/07-career-crm-workflows.md"],
+      "commandsExecuted": ["Get-Content docs/05-safe-automation-policy.md"],
+      "expected": "Auto apply bloqueado por padrao e aprovacao humana obrigatoria.",
+      "obtained": "Acoes externas criticas exigem aprovacao humana e auditoria.",
+      "executionStatus": "OK",
+      "validationStatus": "PENDING_EXTERNAL_VALIDATION",
+      "observation": "Nenhuma candidatura automatica foi implementada nesta fase.",
+      "nextStep": "Validacao externa revisar gates de aprovacao."
     },
     {
-      "id": "P0-06",
-      "evidence": "Arquivo docs/02-architecture.md definindo apps/packages."
+      "phase": 0,
+      "item": "P0-06 - Definir arquitetura alvo",
+      "filesCreatedOrModified": ["docs/02-architecture.md", "docs/14-chrome-extension-scope.md", "docs/15-autonomous-24h-operation.md"],
+      "commandsExecuted": ["Get-Content docs/02-architecture.md"],
+      "expected": "Monorepo, apps, packages, banco, workers, extensao e integracoes definidos.",
+      "obtained": "Arquitetura alvo separa web, API, worker 24h, Chrome Extension e packages compartilhados.",
+      "executionStatus": "OK",
+      "validationStatus": "PENDING_EXTERNAL_VALIDATION",
+      "observation": "Chrome Extension nao e motor 24h; worker/backend e o motor autonomo.",
+      "nextStep": "Validacao externa revisar arquitetura."
     },
     {
-      "id": "P0-07",
-      "evidence": "Arquivo docs/13-acceptance-criteria.md com o DoD."
+      "phase": 0,
+      "item": "P0-07 - Definir Definition of Done por fase",
+      "filesCreatedOrModified": ["docs/11-roadmap-master.md", "docs/12-phase-plan.md", "docs/13-acceptance-criteria.md"],
+      "commandsExecuted": ["Get-Content docs/11-roadmap-master.md"],
+      "expected": "Cada fase tem DoD tecnico e funcional.",
+      "obtained": "Roadmap P0-P15 criado com resultado esperado, entregas e Definition of Done por fase.",
+      "executionStatus": "OK",
+      "validationStatus": "PENDING_EXTERNAL_VALIDATION",
+      "observation": "Corrige WARN da validacao externa anterior.",
+      "nextStep": "Validacao externa revisar DoD por fase."
     },
     {
-      "id": "P0-08",
-      "evidence": "Arquivo docs/10-data-privacy-and-security.md e docs/16-error-handling-and-validation-policy.md estabelecendo as tratativas para riscos."
+      "phase": 0,
+      "item": "P0-08 - Criar matriz de riscos",
+      "filesCreatedOrModified": ["docs/10-data-privacy-and-security.md"],
+      "commandsExecuted": ["Get-Content docs/10-data-privacy-and-security.md"],
+      "expected": "Riscos com mitigacao, severidade e responsavel.",
+      "obtained": "Matriz de riscos R-01 a R-10 criada com mitigacao, severidade e responsavel.",
+      "executionStatus": "OK",
+      "validationStatus": "PENDING_EXTERNAL_VALIDATION",
+      "observation": "Corrige FAIL da validacao externa anterior.",
+      "nextStep": "Validacao externa revisar matriz de riscos."
     },
     {
-      "id": "P0-09",
-      "evidence": "Arquivos .ops/phase-0/ criados, incluindo phase-0-checklist.md e phase-0-final-report.md"
+      "phase": 0,
+      "item": "P0-09 - Criar documentos operacionais .ops",
+      "filesCreatedOrModified": [
+        ".ops/master-checklist/checklist_mestre_ia_job_match_os.html",
+        ".ops/master-checklist/checklist-execution-state.json",
+        ".ops/phase-0/phase-0-checklist.md",
+        ".ops/phase-0/phase-0-evidence.json",
+        ".ops/phase-0/phase-0-final-report.md"
+      ],
+      "commandsExecuted": [
+        "git branch --show-current",
+        "git status --short",
+        "node --version",
+        "pnpm --version",
+        "Test-Path .\\package.json"
+      ],
+      "expected": "Checklist, evidencia e relatorio final da fase com SKIPs justificados.",
+      "obtained": "Artefatos .ops atualizados, validacao deixada pendente e SKIP de package.json ausente registrado.",
+      "executionStatus": "OK",
+      "validationStatus": "PENDING_EXTERNAL_VALIDATION",
+      "observation": "Corrige FAIL anterior de evidencia incompleta, contagem incorreta e data 2024.",
+      "nextStep": "Validacao externa revisar artefatos .ops."
     }
   ]
 }

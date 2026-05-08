@@ -1,7 +1,19 @@
 # 15 - Autonomous 24h Operation
 
-A premissa do Job Match OS é liberar o tempo do candidato. Mas a plataforma deve rodar 24h de forma segura no servidor, não dependendo de abas ativas.
+## Motor autonomo
 
-1. **Agendadores (Schedulers)**: Verificam e-mails, processos parados e disparam alertas por Telegram ou email.
-2. **Workers**: Um `apps/worker` rodando BullMQ escutará filas do Redis para processar extrações demoradas (OCR ou LLM Analytics) em segundo plano, enviando uma notificação push via websocket para o UI quando acabar.
-3. Se o worker cai, um alerta precisa ser registrado; o frontend deve avisar que o sistema opera em modo "Degraded" e não falhar silenciosamente perdendo mensagens (Dead Letter Queues).
+O motor 24h sera o backend/worker, nao a Chrome Extension. Workers persistentes executam rotinas de ingestao permitida, score, follow-up, notificacao, retry e manutencao operacional.
+
+## Requisitos futuros
+
+- Redis/BullMQ ou tecnologia equivalente para filas reais.
+- Scheduler com jobs idempotentes.
+- Persistencia de status, erro e tentativa.
+- Rate limit por provedor/fonte.
+- Logs sem PII desnecessaria.
+- Auditoria de cada acao relevante.
+- Pausa automatica quando credencial, permissao ou aprovacao faltar.
+
+## Estados honestos
+
+Jobs nao podem concluir como sucesso quando a dependencia externa falhar ou nao estiver configurada. Devem registrar `provider_not_configured`, `oauth_required`, `external_integration_not_configured`, `waiting_human_approval` ou erro real.

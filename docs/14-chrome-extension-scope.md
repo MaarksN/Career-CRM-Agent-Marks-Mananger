@@ -1,9 +1,17 @@
 # 14 - Chrome Extension Scope
 
-A Chrome Extension do Job Match OS é um "Side Panel / Cockpit" desenhado para *acompanhar* a busca de vagas sem violar as permissões de navegação.
+## Papel da extensao
 
-## Restrições e Escopo
-1. A extensão só atua mediante interação ativa do usuário (Active Tab) - nada de scripts fantasmas varrendo o LinkedIn o tempo inteiro.
-2. Faz uso da estrutura `MV3` (Manifest V3) por padrão.
-3. Não efetua envios de dados (clicks invisíveis) na página da vaga para forçar "Auto Apply".
-4. Qualquer comunicação feita volta para o worker/API do projeto para análise pesada. Ela é "burra" e apenas repassa os dados extraídos, mostrando as respostas no seu painel.
+A Chrome Extension sera uma ferramenta de captura assistida no navegador do usuario. Ela ajuda a transformar uma vaga visivel em rascunho auditavel dentro do Career CRM.
+
+## Limites
+
+- Nao e o motor principal de operacao 24h.
+- Nao deve burlar login, paywall, captcha, robots, termos ou controles anti-bot.
+- Nao envia candidatura automaticamente.
+- Nao salva como oportunidade qualificada sem politica de fonte e revisao.
+- Nao finge captura quando o conteudo nao esta disponivel.
+
+## Fluxo esperado futuro
+
+Usuario autenticado abre uma vaga, aciona a extensao, revisa dados capturados, envia para API real e o sistema registra origem, metodo, timestamp e politica aplicada. Quando a fonte exigir API oficial, a extensao deve orientar acao manual ou registrar `official_api_required`.
