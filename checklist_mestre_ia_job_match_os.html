@@ -2187,92 +2187,33 @@ git status --short</pre
       `;
       }
 
-      function setPrecheck(key, checked) {
-        const item = ensureItem(key);
-        item.precheck = checked;
-        if (checked && !item.executor) item.executor = state.agentName || "";
-        saveLight();
-        render();
+    function abortWithAlert(message) {
+      alert(message);
+      render();
+    }
+
+    function setExecuted(key, checked) {
+      const item = ensureItem(key);
+      if (checked && !item.precheck) {
+        return abortWithAlert("Antes de executar, marque o Pré-check. A IA deve verificar dependências e validações anteriores primeiro.");
+      }
+      if (!roleCanExecute()) {
+        return abortWithAlert("Este modo não pode executar itens.");
       }
 
-      function setExecuted(key, checked) {
-        const item = ensureItem(key);
-        if (checked && !item.precheck) {
-          alert(
-            "Antes de executar, marque o Pré-check. A IA deve verificar dependências e validações anteriores primeiro."
-          );
-          render();
-          return;
-        }
-        if (!roleCanExecute()) {
-          alert("Este modo não pode executar itens.");
-          render();
-          return;
-        }
-        item.executed = checked;
-        if (checked) {
-          item.executor = item.executor || state.agentName || "";
-          item.executedAt = item.executedAt || currentLocalDateTime();
-        } else {
-          item.validated = false;
-        }
-        saveLight();
-        render();
+    function setValidated(key, checked) {
+      const item = ensureItem(key);
+      if (!roleCanValidate()) {
+        return abortWithAlert("Este modo não pode validar itens.");
       }
-
-      function setValidated(key, checked) {
-        const item = ensureItem(key);
-        if (!roleCanValidate()) {
-          alert("Este modo não pode validar itens.");
-          render();
-          return;
-        }
-        if (checked && !item.executed) {
-          alert("Não é permitido validar item não executado.");
-          render();
-          return;
-        }
-        const currentName = state.agentName || "";
-        const validator = item.validator || currentName;
-        const executor = item.executor || "";
-        if (
-          checked &&
-          executor &&
-          validator &&
-          normalizeName(executor) === normalizeName(validator)
-        ) {
-          alert("Quem executou não pode validar. Informe um validador diferente do executor.");
-          render();
-          return;
-        }
-        item.validated = checked;
-        if (checked) {
-          item.validator = validator;
-          item.validatedAt = item.validatedAt || currentLocalDateTime();
-          if (item.status === "PENDING") item.status = "OK";
-        } else {
-          item.status = "PENDING";
-        }
-        saveLight();
-        render();
+      if (checked && !item.executed) {
+        return abortWithAlert("Não é permitido validar item não executado.");
       }
-
-      function normalizeName(value) {
-        return String(value || "")
-          .trim()
-          .toLowerCase();
-      }
-
-      function setField(key, field, value) {
-        const item = ensureItem(key);
-        item[field] = value;
-        if (field === "status" && value !== "PENDING") {
-          item.validated = true;
-          item.validatedAt = item.validatedAt || currentLocalDateTime();
-          item.validator = item.validator || state.agentName || "";
-        }
-        saveLight();
-        updateSummary();
+      const currentName = state.agentName || "";
+      const validator = item.validator || currentName;
+      const executor = item.executor || "";
+      if (checked && executor && validator && normalizeName(executor) === normalizeName(validator)) {
+        return abortWithAlert("Quem executou não pode validar. Informe um validador diferente do executor.");
       }
 
       function currentLocalDateTime() {
