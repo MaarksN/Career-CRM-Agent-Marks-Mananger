@@ -13,11 +13,48 @@
     "validatedAt": "2026-05-07T23:42:00-03:00",
     "report": ".ops/phase-0/phase-0-validation-report.md"
   },
+  "latestValidation": {
+    "status": "FAIL",
+    "validator": "Antigravity AI (Gemini 3.1 Pro)",
+    "validatedAt": "2026-05-08",
+    "report": ".ops/phase-0-validation/phase-0-validation-final-report.md",
+    "failedItem": "V00.09 - pnpm validate falhou em format:check"
+  },
+  "latestCorrectiveExecution": {
+    "executedBy": "Jules / Codex acting as IA Executora",
+    "executedAt": "2026-05-08T00:50:00-03:00",
+    "executionStatus": "OK",
+    "validationStatus": "PENDING_EXTERNAL_VALIDATION",
+    "filesCreatedOrModified": [
+      ".ops/master-checklist/checklist-execution-state.json",
+      ".ops/master-checklist/checklist_mestre_ia_job_match_os.html",
+      ".ops/phase-0-validation/phase-0-validation-checklist.md",
+      ".ops/phase-0-validation/phase-0-validation-final-report.md",
+      ".ops/phase-0/phase-0-checklist.md",
+      ".ops/phase-0/phase-0-evidence.json",
+      ".ops/phase-0/phase-0-final-report.md",
+      ".ops/phase-0/phase-0-correction-report.md",
+      "checklist_mestre_ia_job_match_os.html",
+      "pnpm-lock.yaml",
+      "apps/api/",
+      "apps/web/",
+      "apps/worker/"
+    ],
+    "commandsExecuted": ["pnpm validate", "pnpm format", "pnpm install", "pnpm validate"],
+    "expected": "pnpm validate deve passar porque package.json existe.",
+    "obtained": "pnpm validate concluiu com exit code 0: format:check, typecheck, lint, test e build OK.",
+    "observation": "Permanece WARN ambiental de Node v25.9.0 fora do engine >=24 <25; nao e validacao final.",
+    "nextStep": "Validacao externa reexecutar pnpm validate e decidir a Fase 0."
+  },
   "checklistRead": "checklist_mestre_ia_job_match_os.html",
   "checklistUpdated": ".ops/master-checklist/checklist_mestre_ia_job_match_os.html",
   "requiredCommandsAtStart": [
     { "command": "git branch --show-current", "status": "OK", "result": "main" },
-    { "command": "git status --short", "status": "OK", "result": "Existing modified .ops files and new validation report were present before correction." },
+    {
+      "command": "git status --short",
+      "status": "OK",
+      "result": "Existing modified .ops files and new validation report were present before correction."
+    },
     { "command": "node --version", "status": "OK", "result": "v25.9.0" },
     { "command": "pnpm --version", "status": "OK", "result": "9.15.9" }
   ],
@@ -32,8 +69,15 @@
     {
       "phase": 0,
       "item": "P0-01 - Definir visao do produto Job Match OS",
-      "filesCreatedOrModified": ["README.md", "docs/00-executive-summary.md", "docs/01-product-blueprint.md"],
-      "commandsExecuted": ["Get-Content checklist_mestre_ia_job_match_os.html", "Get-Content README.md"],
+      "filesCreatedOrModified": [
+        "README.md",
+        "docs/00-executive-summary.md",
+        "docs/01-product-blueprint.md"
+      ],
+      "commandsExecuted": [
+        "Get-Content checklist_mestre_ia_job_match_os.html",
+        "Get-Content README.md"
+      ],
       "expected": "Documento de visao com problema, proposta de valor, modulos e publico-alvo.",
       "obtained": "Produto definido como Job Match OS / Career CRM, com vagas como leads, candidaturas como pipeline e Resume-as-Code.",
       "executionStatus": "OK",
@@ -44,8 +88,14 @@
     {
       "phase": 0,
       "item": "P0-02 - Definir regra anti-fake desde a Fase 0",
-      "filesCreatedOrModified": ["README.md", "docs/16-error-handling-and-validation-policy.md", "docs/17-no-fake-success-policy.md"],
-      "commandsExecuted": ["Select-String checklist_mestre_ia_job_match_os.html -Pattern \"Regra Anti-Fake\""],
+      "filesCreatedOrModified": [
+        "README.md",
+        "docs/16-error-handling-and-validation-policy.md",
+        "docs/17-no-fake-success-policy.md"
+      ],
+      "commandsExecuted": [
+        "Select-String checklist_mestre_ia_job_match_os.html -Pattern \"Regra Anti-Fake\""
+      ],
       "expected": "Politica registrada: tudo interno deve ser real dentro do escopo da fase.",
       "obtained": "Politica anti-fake registra proibicoes e estados honestos.",
       "executionStatus": "OK",
@@ -80,7 +130,10 @@
     {
       "phase": 0,
       "item": "P0-05 - Definir politica de candidatura segura",
-      "filesCreatedOrModified": ["docs/05-safe-automation-policy.md", "docs/07-career-crm-workflows.md"],
+      "filesCreatedOrModified": [
+        "docs/05-safe-automation-policy.md",
+        "docs/07-career-crm-workflows.md"
+      ],
       "commandsExecuted": ["Get-Content docs/05-safe-automation-policy.md"],
       "expected": "Auto apply bloqueado por padrao e aprovacao humana obrigatoria.",
       "obtained": "Acoes externas criticas exigem aprovacao humana e auditoria.",
@@ -92,7 +145,11 @@
     {
       "phase": 0,
       "item": "P0-06 - Definir arquitetura alvo",
-      "filesCreatedOrModified": ["docs/02-architecture.md", "docs/14-chrome-extension-scope.md", "docs/15-autonomous-24h-operation.md"],
+      "filesCreatedOrModified": [
+        "docs/02-architecture.md",
+        "docs/14-chrome-extension-scope.md",
+        "docs/15-autonomous-24h-operation.md"
+      ],
       "commandsExecuted": ["Get-Content docs/02-architecture.md"],
       "expected": "Monorepo, apps, packages, banco, workers, extensao e integracoes definidos.",
       "obtained": "Arquitetura alvo separa web, API, worker 24h, Chrome Extension e packages compartilhados.",
@@ -104,7 +161,11 @@
     {
       "phase": 0,
       "item": "P0-07 - Definir Definition of Done por fase",
-      "filesCreatedOrModified": ["docs/11-roadmap-master.md", "docs/12-phase-plan.md", "docs/13-acceptance-criteria.md"],
+      "filesCreatedOrModified": [
+        "docs/11-roadmap-master.md",
+        "docs/12-phase-plan.md",
+        "docs/13-acceptance-criteria.md"
+      ],
       "commandsExecuted": ["Get-Content docs/11-roadmap-master.md"],
       "expected": "Cada fase tem DoD tecnico e funcional.",
       "obtained": "Roadmap P0-P15 criado com resultado esperado, entregas e Definition of Done por fase.",
@@ -143,10 +204,10 @@
         "Test-Path .\\package.json"
       ],
       "expected": "Checklist, evidencia e relatorio final da fase com SKIPs justificados.",
-      "obtained": "Artefatos .ops atualizados, validacao deixada pendente e SKIP de package.json ausente registrado.",
+      "obtained": "Artefatos .ops atualizados, validacao deixada pendente e correcao V00.09 registrada com pnpm validate OK.",
       "executionStatus": "OK",
       "validationStatus": "PENDING_EXTERNAL_VALIDATION",
-      "observation": "Corrige FAIL anterior de evidencia incompleta, contagem incorreta e data 2024.",
+      "observation": "Corrige FAIL anterior de evidencia incompleta e a falha posterior de format:check reportada pela validacao Antigravity.",
       "nextStep": "Validacao externa revisar artefatos .ops."
     }
   ]

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="460" viewBox="0 0 720 460" role="img" aria-labelledby="title desc">
+  <title id="title">Job Match OS foundation map</title>
+  <desc id="desc">A system map showing web, api, worker and shared packages.</desc>
+  <rect width="720" height="460" fill="#ffffff"/>
+  <rect x="36" y="36" width="648" height="388" rx="8" fill="#f6f8fb" stroke="#d9e2ef" stroke-width="2"/>
+  <g fill="#14213d" font-family="Arial, sans-serif" font-size="24" font-weight="700">
+    <text x="64" y="82">Job Match OS</text>
+  </g>
+  <g fill="#4b587c" font-family="Arial, sans-serif" font-size="14">
+    <text x="64" y="110">Phase 1 real monorepo foundation</text>
+  </g>
+  <g stroke="#8aa2c6" stroke-width="3" fill="none">
+    <path d="M176 190 H544"/>
+    <path d="M360 190 V302"/>
+    <path d="M222 302 H498"/>
+  </g>
+  <g>
+    <rect x="72" y="146" width="136" height="88" rx="8" fill="#e9f5ef" stroke="#7bc6a0"/>
+    <rect x="292" y="146" width="136" height="88" rx="8" fill="#edf3ff" stroke="#8aaee8"/>
+    <rect x="512" y="146" width="136" height="88" rx="8" fill="#fff4df" stroke="#e4b15a"/>
+    <rect x="72" y="282" width="576" height="88" rx="8" fill="#ffffff" stroke="#d9e2ef"/>
+  </g>
+  <g fill="#14213d" font-family="Arial, sans-serif" font-size="17" font-weight="700">
+    <text x="117" y="184">web</text>
+    <text x="337" y="184">api</text>
+    <text x="548" y="184">worker</text>
+    <text x="310" y="324">packages</text>
+  </g>
+  <g fill="#4b587c" font-family="Arial, sans-serif" font-size="13">
+    <text x="105" y="207">Next.js</text>
+    <text x="329" y="207">HTTP</text>
+    <text x="540" y="207">runOnce</text>
+    <text x="154" y="348">config / logger / contracts / scoring / safe integrations</text>
+  </g>
+</svg>

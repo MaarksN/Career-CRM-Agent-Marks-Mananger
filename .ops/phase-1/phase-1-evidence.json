@@ -1,0 +1,186 @@
+{
+  "phase": "1",
+  "name": "Fundacao real do monorepo",
+  "executorAgent": "Codex",
+  "validatorAgent": "Jules",
+  "status": "PENDING_EXTERNAL_VALIDATION",
+  "commands": [
+    {
+      "command": "git branch --show-current",
+      "status": "OK",
+      "result": "main"
+    },
+    {
+      "command": "git status --short",
+      "status": "OK",
+      "result": "Executado antes e depois; alteracoes de Fase 1 presentes."
+    },
+    {
+      "command": "node --version",
+      "status": "WARN",
+      "result": "v25.9.0",
+      "expected": ">=24 <25"
+    },
+    {
+      "command": "pnpm.cmd --version",
+      "status": "OK",
+      "result": "9.15.9"
+    },
+    {
+      "command": "pnpm.cmd install",
+      "status": "WARN",
+      "result": "Instalacao OK; WARN de engine por Node v25.9.0."
+    },
+    {
+      "command": "pnpm.cmd format",
+      "status": "OK",
+      "result": "Prettier executado."
+    },
+    {
+      "command": "pnpm.cmd format:check",
+      "status": "OK",
+      "result": "All matched files use Prettier code style."
+    },
+    {
+      "command": "pnpm.cmd typecheck",
+      "status": "OK",
+      "result": "15 workspaces successful."
+    },
+    {
+      "command": "pnpm.cmd lint",
+      "status": "OK",
+      "result": "15 workspaces successful."
+    },
+    {
+      "command": "pnpm.cmd test",
+      "status": "OK",
+      "result": "30 turbo tasks successful; API, worker, scoring and job-sources tests passed."
+    },
+    {
+      "command": "pnpm.cmd build",
+      "status": "OK",
+      "result": "15 workspaces successful; Next.js build OK."
+    },
+    {
+      "command": "pnpm.cmd validate",
+      "status": "OK",
+      "result": "format:check, typecheck, lint, test and build completed successfully."
+    }
+  ],
+  "filesCreated": [
+    ".env.example",
+    ".gitignore",
+    ".node-version",
+    ".nvmrc",
+    ".prettierignore",
+    ".prettierrc",
+    "apps/api/package.json",
+    "apps/api/src/index.test.ts",
+    "apps/api/src/index.ts",
+    "apps/api/tsconfig.json",
+    "apps/web/app/layout.tsx",
+    "apps/web/app/page.tsx",
+    "apps/web/next-env.d.ts",
+    "apps/web/next.config.mjs",
+    "apps/web/package.json",
+    "apps/web/public/foundation-map.svg",
+    "apps/web/tsconfig.json",
+    "apps/worker/package.json",
+    "apps/worker/src/index.test.ts",
+    "apps/worker/src/index.ts",
+    "apps/worker/tsconfig.json",
+    "package.json",
+    "packages/ai/package.json",
+    "packages/ai/src/index.ts",
+    "packages/ai/tsconfig.json",
+    "packages/calendar/package.json",
+    "packages/calendar/src/index.ts",
+    "packages/calendar/tsconfig.json",
+    "packages/config/package.json",
+    "packages/config/src/index.ts",
+    "packages/config/tsconfig.json",
+    "packages/contracts/package.json",
+    "packages/contracts/src/index.ts",
+    "packages/contracts/tsconfig.json",
+    "packages/database/package.json",
+    "packages/database/src/index.ts",
+    "packages/database/tsconfig.json",
+    "packages/documents/package.json",
+    "packages/documents/src/index.ts",
+    "packages/documents/tsconfig.json",
+    "packages/domain/package.json",
+    "packages/domain/src/index.ts",
+    "packages/domain/tsconfig.json",
+    "packages/job-sources/package.json",
+    "packages/job-sources/src/index.test.ts",
+    "packages/job-sources/src/index.ts",
+    "packages/job-sources/tsconfig.json",
+    "packages/logger/package.json",
+    "packages/logger/src/index.ts",
+    "packages/logger/tsconfig.json",
+    "packages/notifications/package.json",
+    "packages/notifications/src/index.ts",
+    "packages/notifications/tsconfig.json",
+    "packages/scoring/package.json",
+    "packages/scoring/src/index.test.ts",
+    "packages/scoring/src/index.ts",
+    "packages/scoring/tsconfig.json",
+    "packages/testing/package.json",
+    "packages/testing/src/index.ts",
+    "packages/testing/tsconfig.json",
+    "pnpm-workspace.yaml",
+    "tsconfig.base.json",
+    "turbo.json"
+  ],
+  "filesModified": [
+    ".ops/master-checklist/checklist-execution-state.json",
+    ".ops/master-checklist/checklist_mestre_ia_job_match_os.html",
+    "eslint.config.js",
+    "pnpm-lock.yaml"
+  ],
+  "checks": [
+    {
+      "name": "TypeScript strict",
+      "status": "OK",
+      "evidence": "tsconfig.base.json com strict true e pnpm.cmd typecheck OK."
+    },
+    {
+      "name": "ESLint real",
+      "status": "OK",
+      "evidence": "pnpm.cmd lint OK em 15 workspaces."
+    },
+    {
+      "name": "Prettier real",
+      "status": "OK",
+      "evidence": "pnpm.cmd format:check OK."
+    },
+    {
+      "name": "node:test",
+      "status": "OK",
+      "evidence": "Testes reais em apps/api, apps/worker, packages/scoring e packages/job-sources."
+    },
+    {
+      "name": "Safe automation",
+      "status": "OK",
+      "evidence": "Sem scraping, sem auto apply, sem Google Calendar real, sem IA real."
+    },
+    {
+      "name": "Environment",
+      "status": "WARN",
+      "evidence": "Node v25.9.0 difere do requisito >=24 <25."
+    }
+  ],
+  "validation": {
+    "executorCannotValidate": true,
+    "externalValidationRequired": true
+  },
+  "safeAutomation": {
+    "fakeSuccess": false,
+    "realImplementationSincePhase0": true,
+    "scrapingImplemented": false,
+    "autoApplyImplemented": false,
+    "realGoogleCalendarImplemented": false,
+    "realAiImplemented": false
+  },
+  "nextPhase": "Fase 2 - Banco de dados e contratos tecnicos"
+}
