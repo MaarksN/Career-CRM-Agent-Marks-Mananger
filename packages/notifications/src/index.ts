@@ -4,7 +4,7 @@ export interface NotificationMessage {
 }
 
 export interface NotificationResult {
-  readonly status: "noop_notification_recorded" | "console_notification_recorded";
+  readonly status: "noop_notification_recorded";
   readonly externalDelivery: false;
   readonly message: string;
 }
@@ -25,17 +25,3 @@ export function createNoopNotificationProvider(): NotificationProvider {
   };
 }
 
-export function createConsoleNotificationProvider(): NotificationProvider {
-  return {
-    name: "console",
-    send: async (message) => {
-      console.log(JSON.stringify({ channel: "console", subject: message.subject }));
-
-      return {
-        status: "console_notification_recorded",
-        externalDelivery: false,
-        message: "Notification printed to console only; no external delivery was attempted."
-      };
-    }
-  };
-}
